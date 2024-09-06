@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:05:16 by mravelon          #+#    #+#             */
-/*   Updated: 2024/09/05 15:28:02 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/09/06 09:34:21 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*res;
 
 	i = 0;

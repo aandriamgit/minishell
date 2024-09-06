@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:13:04 by mravelon          #+#    #+#             */
-/*   Updated: 2024/09/05 16:13:30 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/09/06 09:34:10 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putstr(char *str, int fd)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -23,4 +23,3 @@ void	ft_putstr(char *str, int fd)
 		i++;
 	}
 }
-

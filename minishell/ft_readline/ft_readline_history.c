@@ -6,15 +6,15 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:23:39 by mravelon          #+#    #+#             */
-/*   Updated: 2024/09/05 16:39:30 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/09/06 09:33:51 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int read_size_buffer(char *str)
+int	read_size_buffer(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\n')
@@ -22,20 +22,19 @@ int read_size_buffer(char *str)
 	return (i);
 }
 
-int simple_read_size(char *str)
+int	simple_read_size(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
-	   i++;
+	while (str[i])
+		i++;
 	return (i);
 }
 
-
-void ft_readline_history(char *buffer, char **tmp)
+void	ft_readline_history(char *buffer, char **tmp)
 {
-	char *stock;
+	char	*stock;
 
 	if (buffer[0] != '\n')
 	{
