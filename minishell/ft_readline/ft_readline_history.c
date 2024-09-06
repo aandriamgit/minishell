@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:23:39 by mravelon          #+#    #+#             */
-/*   Updated: 2024/09/06 16:27:48 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/06 16:33:50 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ void	ft_readline_history(char *buffer)
 		if (fd == -1)
 			exit(1);
 		nb = number_of_line(fd);
+		write(fd, "==", 2);
 		ft_putnbr_fd(nb, fd);
-		write(fd, ". ", 2);
+		write(fd, "== ", 3);
 		write(fd, buffer, ft_strlen(buffer));
 	}
 }
