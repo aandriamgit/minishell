@@ -9,6 +9,7 @@ SRCS = minishell.c \
 		lib/ft_strcmp.c \
 		lib/ft_strlen.c \
 		lib/ft_putstr.c \
+		lib/ft_putnbr_fd.c \
 		lib/ft_strdup.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

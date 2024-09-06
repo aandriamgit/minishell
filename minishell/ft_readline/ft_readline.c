@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 13:38:04 by mravelon          #+#    #+#             */
-/*   Updated: 2024/09/06 09:33:34 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:47:30 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 void	ft_readline(void)
 {
-	static char	buffer[BUFFER_SIZE];
-	static char	*tmp;
-	int			bytes;
+	char	*buffer;
 
-	bytes = read(0, buffer, BUFFER_SIZE);
+	buffer = malloc(1025);
+	buffer[1024] = '\0';
+	read(0, buffer, 1024);
 	if (ft_strncmp(buffer, "exit\n") == 0)
 	{
-		if (tmp)
-			free(tmp);
+		free(buffer);
 		exit(0);
 	}
-	ft_readline_history(buffer, &tmp);
-	if (tmp)
-		ft_putstr(tmp, 1);
+	ft_readline_history(buffer);
+	free(buffer);
 }
