@@ -1,7 +1,7 @@
 NAME = minishell
 CFLAGS = -Werror -Wall -Wextra -g
 RM = rm -rf
-OBJ_DIR = obj
+OBJ_DIR = .obj
 SRCS = minishell.c \
 		ft_readline/ft_readline.c \
 		ft_readline/ft_readline_history.c \
