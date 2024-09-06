@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 13:21:31 by mravelon          #+#    #+#             */
-/*   Updated: 2024/09/06 09:32:33 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/06 09:36:33 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ int	main(int argc, char **argv)
 			ft_readline();
 		}
 	}
+	else
+		ft_putstr("[Error] minishell doesn't need argument(s)\n", 1);
 	return (0);
 }
