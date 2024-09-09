@@ -6,39 +6,54 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/05 11:48:28 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:21:19 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_putstr(char *lol)
+char	*ft_readline(char *prompt)
 {
-	int	i;
+	char	*buffer;
 
-	i = 0;
-	while (lol[i])
+	ft_putstr_fd(prompt, 1);
+	buffer = malloc(1025);
+	buffer[1024] = '\0';
+	read(0, buffer, 1024);
+	return (buffer);
+}
+
+void	ft_add_history(char *input)
+{
+	int	fd;
+	int	nb;
+
+	if (input[0] != '\n')
 	{
-		write(1, &lol[i], 1);
-		i++;
+		fd = open("ft_add_history/.minishell_history", O_RDWR | O_APPEND);
+		if (fd == -1)
+			exit(1);
+		nb = number_of_line(fd);
+		ft_putstr_fd("==", fd);
+		ft_putnbr_fd(nb, fd);
+		ft_putstr_fd("== ", fd);
+		free(input);
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	int	flag;
+	char	*input;
 
 	(void)argv;
-	flag = 0;
 	if (argc == 1)
 	{
 		while (1)
 		{
-			if (flag == 0)
-			{
-				ft_putstr("Minishell>   ");
-				flag = 1;
-			}
+			input = ft_readline("minishell > ");
+			if (ft_strncmp(input, "exit") == 0)
+				exit(1);
+			ft_add_history(input);
 		}
 	}
 	else

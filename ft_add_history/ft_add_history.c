@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_add_history.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/05 11:33:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/09 14:14:06 by aandriam         ###   ########.fr       */
+/*   Created: 2024/09/09 14:04:27 by aandriam          #+#    #+#             */
+/*   Updated: 2024/09/09 14:05:19 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../minishell.h"
 
-# include <fcntl.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <time.h>
-# include <unistd.h>
+int	number_of_line(int fd)
+{
+	char	tmp;
+	int		n_read;
+	int		i;
 
-void	ft_putstr_fd(char *s, int fd);
-int		ft_strncmp(const char *s1, const char *s2);
-int		number_of_line(int fd);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putnbr_fd(int n, int fd);
-
-#endif
+	n_read = 1;
+	i = 1;
+	while (n_read)
+	{
+		n_read = read(fd, &tmp, 1);
+		if (n_read == -1)
+			return (-1);
+		if (n_read == 0)
+			return (i);
+		if (tmp == '\n')
+			i++;
+	}
+	return (i);
+}
