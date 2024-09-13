@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/09 14:21:19 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:16:04 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_add_history(char *input)
 		ft_putstr_fd("==", fd);
 		ft_putnbr_fd(nb, fd);
 		ft_putstr_fd("== ", fd);
-		free(input);
+		ft_putstr_fd(input, fd);
 	}
 }
 
@@ -51,9 +51,9 @@ int	main(int argc, char **argv)
 		while (1)
 		{
 			input = ft_readline("minishell > ");
-			if (ft_strncmp(input, "exit") == 0)
-				exit(1);
 			ft_add_history(input);
+			if (ft_strncmp(input, "exit/n") == 0)
+				exit(1);
 		}
 	}
 	else
