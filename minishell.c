@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/13 14:16:04 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:15:51 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,18 @@
 char	*ft_readline(char *prompt)
 {
 	char	*buffer;
+	char	*clean;
 
 	ft_putstr_fd(prompt, 1);
 	buffer = malloc(1025);
+	if (!buffer)
+		exit(1);
 	buffer[1024] = '\0';
 	read(0, buffer, 1024);
-	return (buffer);
+	clean = only_readable(buffer);
+	free(buffer);
+	buffer = NULL;
+	return (clean);
 }
 
 void	ft_add_history(char *input)
@@ -52,8 +58,12 @@ int	main(int argc, char **argv)
 		{
 			input = ft_readline("minishell > ");
 			ft_add_history(input);
-			if (ft_strncmp(input, "exit/n") == 0)
+			if (ft_strncmp(input, "exit\n") == 0)
+			{
+				free(input);
 				exit(1);
+			}
+			free(input);
 		}
 	}
 	else
