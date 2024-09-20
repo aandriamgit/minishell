@@ -6,45 +6,40 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/19 15:15:51 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/20 15:00:53 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_readline(char *prompt)
+void	shell_init(char **input)
 {
-	char	*buffer;
-	char	*clean;
-
-	ft_putstr_fd(prompt, 1);
-	buffer = malloc(1025);
-	if (!buffer)
+	*input = ft_readline("minishell > ");
+	ft_add_history(*input);
+	if (ft_strncmp(*input, "exit\n") == 0)
+	{
+		free(*input);
 		exit(1);
-	buffer[1024] = '\0';
-	read(0, buffer, 1024);
-	clean = only_readable(buffer);
-	free(buffer);
-	buffer = NULL;
-	return (clean);
+	}
 }
 
-void	ft_add_history(char *input)
+int	is_simple_command(char *input)
 {
-	int	fd;
-	int	nb;
+	if (input[0] == '.' || input[0] == '/')
+		return (0);
+	return (1);
+}
 
-	if (input[0] != '\n')
-	{
-		fd = open("ft_add_history/.minishell_history", O_RDWR | O_APPEND);
-		if (fd == -1)
-			exit(1);
-		nb = number_of_line(fd);
-		ft_putstr_fd("==", fd);
-		ft_putnbr_fd(nb, fd);
-		ft_putstr_fd("== ", fd);
-		ft_putstr_fd(input, fd);
-	}
+void	path_execution(char *input)
+{
+	(void)input;
+	ft_putstr_fd("path_execution\n", 1);
+}
+
+void	simple_execution(char *input)
+{
+	(void)input;
+	ft_putstr_fd("simple_execution\n", 1);
 }
 
 int	main(int argc, char **argv)
@@ -56,13 +51,11 @@ int	main(int argc, char **argv)
 	{
 		while (1)
 		{
-			input = ft_readline("minishell > ");
-			ft_add_history(input);
-			if (ft_strncmp(input, "exit\n") == 0)
-			{
-				free(input);
-				exit(1);
-			}
+			shell_init(&input);
+			if (is_simple_command(input))
+				simple_execution(input);
+			else
+				path_execution(input);
 			free(input);
 		}
 	}

@@ -9,8 +9,8 @@ SRCS = minishell.c \
 	   	./lib/ft_putchar_fd.c \
 		./lib/ft_strlen.c \
 		./lib/ft_substr.c \
-		./ft_add_history/ft_add_history.c\
-		./ft_readline/ft_readline.c
+		./shell_init/ft_readline/ft_readline.c \
+		./shell_init/ft_add_history/ft_add_history.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
@@ -19,7 +19,7 @@ BLUE = \033[38;2;180;190;254m
 GREEN = \033[38;2;166;227;161m
 RESET = \033[0m
 COMPILING = "\r${YELLOW}[ ]${RESET} compiling ${BLUE}"
-COMPILED = "\r${GREEN}[✔]${RESET} compiled successfully! ${BLUE}.  ★                    \n"
+COMPILED = "\r${GREEN}[✔]${RESET} compiled successfully! ${BLUE}.  ★                                       \n"
 RM_NAME = "\r${GREEN}[✔]${RESET} rm name successfully! ${BLUE}✧̣̇ ˳\n"
 RM_OBJS = "\r${GREEN}[✔]${RESET} rm objs successfully! ${BLUE}.˚ ✦\n"
 
