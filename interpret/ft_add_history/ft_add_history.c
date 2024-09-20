@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:04:27 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/20 14:46:53 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/20 16:13:59 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_add_history(char *input)
 
 	if (input[0] != '\n')
 	{
-		fd = open("shell_init/ft_add_history/.minishell_history", O_RDWR | O_APPEND);
+		fd = open("interpret/ft_add_history/.minishell_history", O_RDWR | O_APPEND);
 		if (fd == -1)
 			exit(1);
 		nb = number_of_line(fd);
