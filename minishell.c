@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/21 16:41:20 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/21 16:51:14 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,7 @@ void	shell_init(t_vars *vars)
 	if (access(vars->log_dir, F_OK) == 0)
 		return ;
 	else
-	{
-		if (execve("/bin/mkdir", big_param, NULL) == -1)
-		{
-			perror("execve");
-			exit(EXIT_FAILURE);
-		}
-	}
+		execve("/bin/mkdir", big_param, NULL);
 	close(fd);
 }
 
