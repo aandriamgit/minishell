@@ -9,6 +9,8 @@ SRCS = minishell.c \
 	   	./lib/ft_putchar_fd.c \
 		./lib/ft_strlen.c \
 		./lib/ft_substr.c \
+		./lib/ft_strjoin.c \
+		./lib/ft_strdup.c \
 		./interpret/ft_readline/ft_readline.c \
 		./interpret/ft_add_history/ft_add_history.c
 

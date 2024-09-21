@@ -6,17 +6,37 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/20 16:22:36 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/21 16:41:20 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	shell_init(void)
+void	shell_init(t_vars *vars)
 {
 	char	*home_dir;
+	char	**big_param;
+	int		fd;
 
 	home_dir = getenv("HOME");
+	vars->log_dir = ft_strjoin(home_dir, "/.minishell_log");
+	big_param = malloc(sizeof(char *) * 3);
+	big_param[0] = ft_strdup("mkdir");
+	big_param[1] = ft_strdup(vars->log_dir);
+	big_param[2] = NULL;
+	vars->history_dir = ft_strjoin(vars->log_dir, "/.minishell_history");
+	fd = open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
+	if (access(vars->log_dir, F_OK) == 0)
+		return ;
+	else
+	{
+		if (execve("/bin/mkdir", big_param, NULL) == -1)
+		{
+			perror("execve");
+			exit(EXIT_FAILURE);
+		}
+	}
+	close(fd);
 }
 
 void	interpret(char **input)
@@ -45,11 +65,12 @@ void	simple_execution(char *input)
 int	main(int argc, char **argv)
 {
 	char	*input;
+	t_vars	vars;
 
 	(void)argv;
 	if (argc == 1)
 	{
-		shell_init();
+		shell_init(&vars);
 		while (1)
 		{
 			interpret(&input);
