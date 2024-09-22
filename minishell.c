@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/22 12:48:01 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/22 12:59:02 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	shell_init(t_vars *vars)
 {
 	char	**big_param;
 	int		fd;
-	pid_t	pid;
 
-	dir_init(vars);
+	vars_init(vars);
 	big_param_init(&big_param, *vars);
 	if (access(vars->history_dir, F_OK) == 0)
 	{
@@ -26,17 +25,10 @@ void	shell_init(t_vars *vars)
 		return ;
 	}
 	else
-	{
-		pid = fork();
-		if (pid == 0)
-			child_process_mkdir(big_param);
-		else if (pid > 0)
-			wait(NULL);
-		else
-			perror("fork error");
-	}
+		fork_mkdir(big_param);
 	fd = open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
 	terminate_shell_init(big_param);
+	close(fd);
 }
 
 void	interpret(char **input, t_vars *vars)
