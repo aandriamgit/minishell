@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:33:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/22 12:58:59 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/22 13:33:39 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void		big_param_init(char ***big_param, t_vars vars);
 void		terminate_shell_init(char **big_param);
 void		vars_init(t_vars *vars);
 void		fork_mkdir(char **big_param);
+void		exit_protocol(t_vars *vars, char **input);
 
 #endif

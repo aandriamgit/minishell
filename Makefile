@@ -13,6 +13,7 @@ SRCS = minishell.c \
 		./lib/ft_strdup.c \
 		./interpret/ft_readline/ft_readline.c \
 		./interpret/ft_add_history/ft_add_history.c \
+		./interpret/interpret.c \
 		./shell_init/shell_init.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

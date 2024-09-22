@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/22 12:59:02 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/22 13:34:52 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,7 @@ void	interpret(char **input, t_vars *vars)
 	*input = ft_readline("minishell > ");
 	ft_add_history(*input, *vars);
 	if (ft_strncmp(*input, "exit\n") == 0)
-	{
-		free(vars->history_dir);
-		free(vars->log_dir);
-		free(*input);
-		exit(1);
-	}
+		exit_protocol(vars, input);
 }
 
 void	path_execution(char *input)
