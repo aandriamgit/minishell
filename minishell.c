@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/21 16:51:14 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/22 12:48:01 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,39 @@
 
 void	shell_init(t_vars *vars)
 {
-	char	*home_dir;
 	char	**big_param;
 	int		fd;
+	pid_t	pid;
 
-	home_dir = getenv("HOME");
-	vars->log_dir = ft_strjoin(home_dir, "/.minishell_log");
-	big_param = malloc(sizeof(char *) * 3);
-	big_param[0] = ft_strdup("mkdir");
-	big_param[1] = ft_strdup(vars->log_dir);
-	big_param[2] = NULL;
-	vars->history_dir = ft_strjoin(vars->log_dir, "/.minishell_history");
-	fd = open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
-	if (access(vars->log_dir, F_OK) == 0)
+	dir_init(vars);
+	big_param_init(&big_param, *vars);
+	if (access(vars->history_dir, F_OK) == 0)
+	{
+		terminate_shell_init(big_param);
 		return ;
+	}
 	else
-		execve("/bin/mkdir", big_param, NULL);
-	close(fd);
+	{
+		pid = fork();
+		if (pid == 0)
+			child_process_mkdir(big_param);
+		else if (pid > 0)
+			wait(NULL);
+		else
+			perror("fork error");
+	}
+	fd = open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
+	terminate_shell_init(big_param);
 }
 
-void	interpret(char **input)
+void	interpret(char **input, t_vars *vars)
 {
 	*input = ft_readline("minishell > ");
-	ft_add_history(*input);
+	ft_add_history(*input, *vars);
 	if (ft_strncmp(*input, "exit\n") == 0)
 	{
+		free(vars->history_dir);
+		free(vars->log_dir);
 		free(*input);
 		exit(1);
 	}
@@ -67,7 +75,7 @@ int	main(int argc, char **argv)
 		shell_init(&vars);
 		while (1)
 		{
-			interpret(&input);
+			interpret(&input, &vars);
 			if (input[0] == '.' || input[0] == '/')
 				path_execution(input);
 			else

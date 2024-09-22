@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:04:27 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/20 16:13:59 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/22 12:47:27 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ int	number_of_line(int fd)
 	return (i);
 }
 
-void	ft_add_history(char *input)
+void	ft_add_history(char *input, t_vars vars)
 {
 	int	fd;
 	int	nb;
 
 	if (input[0] != '\n')
 	{
-		fd = open("interpret/ft_add_history/.minishell_history", O_RDWR | O_APPEND);
+		fd = open(vars.history_dir, O_RDWR | O_APPEND);
 		if (fd == -1)
 			exit(1);
 		nb = number_of_line(fd);

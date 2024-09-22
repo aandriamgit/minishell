@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:33:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/21 16:36:37 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/22 12:47:43 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <sys/wait.h>
 # include <time.h>
 # include <unistd.h>
 
@@ -35,8 +36,12 @@ size_t		ft_strlen(const char *s);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*only_readable(char *buffer);
 char		*ft_readline(char *prompt);
-void		ft_add_history(char *input);
+void		ft_add_history(char *input, t_vars vars);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strdup(const char *s);
+void		big_param_init(char ***big_param, t_vars vars);
+void		terminate_shell_init(char **big_param);
+void		dir_init(t_vars *vars);
+void		child_process_mkdir(char **big_param);
 
 #endif
