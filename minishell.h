@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:33:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/22 17:30:03 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:43:06 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <sys/wait.h>
+# include <termios.h>
 # include <time.h>
 # include <unistd.h>
 
@@ -53,5 +54,6 @@ char		*test(char *path, char *input);
 void		fork_exec_nopipe(char *path, char **big_param, t_vars *vars);
 void		purification(char **input);
 void		free_res(char ***res);
+void		set_non_canonical_mode(void);
 
 #endif

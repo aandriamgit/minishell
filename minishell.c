@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/22 17:05:21 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:30:04 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	shell_init(t_vars *vars)
 	terminate_shell_init(big_param);
 	fd = open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
 	close(fd);
+	set_non_canonical_mode();
 }
 
 void	interpret(char **input, t_vars *vars)
@@ -37,7 +38,6 @@ void	interpret(char **input, t_vars *vars)
 	ft_add_history(*input, vars);
 	if (ft_strncmp(*input, "exit\n") == 0)
 		exit_protocol(vars, input);
-	purification(input);
 	vars->input = *input;
 }
 

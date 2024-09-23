@@ -6,11 +6,12 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:03:09 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/22 15:22:25 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:45:45 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include <unistd.h>
 
 void	vars_init(t_vars *vars)
 {
@@ -49,4 +50,22 @@ void	fork_mkdir(char **big_param)
 		wait(NULL);
 	else
 		perror("fork error");
+}
+
+void	set_non_canonical_mode(void)
+{
+	struct termios	tty;
+
+	if (tcgetattr(STDIN_FILENO, &tty) != 0)
+	{
+		perror("tcgetattr");
+		exit(EXIT_FAILURE);
+	}
+	tty.c_lflag &= ~(ICANON | ECHO);
+	tty.c_cc[VMIN] = 4;
+	if (tcsetattr(STDIN_FILENO, TCSANOW, &tty) != 0)
+	{
+		perror("tcsetattr");
+		exit(EXIT_FAILURE);
+	}
 }
