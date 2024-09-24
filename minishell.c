@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/24 13:34:12 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/24 13:52:33 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	shell_init(t_vars *vars)
 	terminate_shell_init(big_param);
 	fd = open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
 	close(fd);
-	set_non_canonical_mode();
 }
 
 void	interpret(char **input, t_vars *vars)
@@ -41,9 +40,9 @@ void	interpret(char **input, t_vars *vars)
 	vars->input = *input;
 }
 
-void	path_execution(char *input)
+void	path_execution(t_vars *vars)
 {
-	(void)input;
+	(void)vars;
 	ft_putstr_fd("path_execution\n", 1);
 }
 
@@ -67,10 +66,10 @@ int	main(int argc, char **argv)
 		while (1)
 		{
 			interpret(&input, &vars);
-			// if (input[0] == '.' || input[0] == '/')
-			// 	path_execution(&vars);
-			// else
-			simple_execution(&vars);
+			if (input[0] == '.' || input[0] == '/')
+				path_execution(&vars);
+			else
+				simple_execution(&vars);
 			free(input);
 		}
 	}
