@@ -1,28 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_history.c                                   :+:      :+:    :+:   */
+/*   add_prev_history.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 14:04:27 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/24 14:34:19 by aandriam         ###   ########.fr       */
+/*   Created: 2024/09/24 14:13:13 by aandriam          #+#    #+#             */
+/*   Updated: 2024/09/24 15:02:49 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-void	ft_add_history(char *input, t_vars *vars)
+void	lol(char **lol)
 {
-	int	fd;
+	int	i;
 
-	if (input[0] != '\n')
+	i = ft_strlen(*lol);
+	(*lol)[i - 1] = '\0';
+}
+
+void	add_prev_history(t_vars *vars)
+{
+	char	*prev;
+	int		fd;
+
+	fd = open(vars->history_dir, O_RDONLY);
+	prev = get_next_line(fd);
+	if (!prev)
+		return ;
+	lol(&prev);
+	add_history(prev);
+	while (prev)
 	{
-		fd = open(vars->history_dir, O_RDWR | O_APPEND);
-		if (fd == -1)
-			exit(1);
-		ft_putstr_fd(input, fd);
-		ft_putstr_fd("\n", fd);
-		add_history(input);
+		free(prev);
+		prev = get_next_line(fd);
+		if (!prev)
+			return ;
+		lol(&prev);
+		add_history(prev);
 	}
+	close(fd);
 }

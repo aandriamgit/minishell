@@ -6,12 +6,11 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:03:09 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/23 15:45:45 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:26:52 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include <unistd.h>
 
 void	vars_init(t_vars *vars)
 {

@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_history.c                                   :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 14:04:27 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/24 14:34:19 by aandriam         ###   ########.fr       */
+/*   Created: 2024/09/24 15:45:26 by aandriam          #+#    #+#             */
+/*   Updated: 2024/09/24 15:45:40 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-void	ft_add_history(char *input, t_vars *vars)
+char	*ft_strrchr(const char *s, int c)
 {
-	int	fd;
+	char	*point;
+	size_t	i;
 
-	if (input[0] != '\n')
+	i = 0;
+	point = NULL;
+	while (s[i] != '\0')
 	{
-		fd = open(vars->history_dir, O_RDWR | O_APPEND);
-		if (fd == -1)
-			exit(1);
-		ft_putstr_fd(input, fd);
-		ft_putstr_fd("\n", fd);
-		add_history(input);
+		if (s[i] == (char)c)
+		{
+			point = (char *)&s[i];
+		}
+		i++;
 	}
+	if ((char)c == '\0')
+	{
+		point = (char *)&s[i];
+	}
+	return (point);
 }

@@ -6,35 +6,49 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/24 13:52:33 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/24 16:08:53 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	shell_init(t_vars *vars)
+void	shell_init(t_vars *vars, char **env)
 {
 	char	**big_param;
-	int		fd;
 
 	vars_init(vars);
+	(void)env;
 	big_param_init(&big_param, *vars);
-	if (access(vars->history_dir, F_OK) == 0)
+	if (access(vars->log_dir, F_OK) == 0)
 	{
 		terminate_shell_init(big_param);
+		if (access(vars->history_dir, F_OK) == 0)
+			add_prev_history(vars);
+		else
+			open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
 		return ;
 	}
 	else
 		fork_mkdir(big_param);
+	open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
+	add_prev_history(vars);
 	terminate_shell_init(big_param);
-	fd = open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
-	close(fd);
 }
 
 void	interpret(char **input, t_vars *vars)
 {
-	*input = readline("minishell > ");
-	ft_add_history(*input, vars);
+	char	*prompt;
+
+	prompt = nice_prompt();
+	*input = readline(prompt);
+	free(prompt);
+	if (access(vars->history_dir, F_OK) == 0)
+		ft_add_history(*input, vars);
+	else
+	{
+		open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
+		ft_add_history(*input, vars);
+	}
 	if (ft_strncmp(*input, "exit") == 0)
 		exit_protocol(vars, input);
 	vars->input = *input;
@@ -54,7 +68,7 @@ void	simple_execution(t_vars *vars)
 		no_pipe_exec(vars);
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **env)
 {
 	char	*input;
 	t_vars	vars;
@@ -62,7 +76,7 @@ int	main(int argc, char **argv)
 	(void)argv;
 	if (argc == 1)
 	{
-		shell_init(&vars);
+		shell_init(&vars, env);
 		while (1)
 		{
 			interpret(&input, &vars);

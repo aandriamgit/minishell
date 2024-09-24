@@ -6,13 +6,14 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:30:40 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/22 17:57:35 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:30:10 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 void		free_res(char ***res);
+
 static void	terminate_nopipe(char *path, char **big_param, t_vars *vars)
 {
 	free(path);

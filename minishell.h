@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:33:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/24 13:38:44 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:48:16 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,14 @@ typedef struct s_vars
 }			t_vars;
 
 void		ft_putstr_fd(char *s, int fd);
+char		*ft_strrchr(const char *s, int c);
 int			ft_strncmp(const char *s1, const char *s2);
 int			number_of_line(int fd);
 void		ft_putchar_fd(char c, int fd);
 void		ft_putnbr_fd(int n, int fd);
 size_t		ft_strlen(const char *s);
+char		*join_them(char *new_buff, char *temp);
+char		have_nl(char *buffer);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*only_readable(char *buffer);
 char		*ft_readline(char *prompt);
@@ -54,8 +57,12 @@ void		pipe_exec(t_vars *vars);
 char		**ft_split(char const *s, char c);
 char		*test(char *path, char *input);
 void		fork_exec_nopipe(char *path, char **big_param, t_vars *vars);
-void		purification(char **input);
 void		free_res(char ***res);
 void		set_non_canonical_mode(void);
+char		*get_next_line(int fd);
+char		*join_them(char *new_buff, char *temp);
+char		have_nl(char *buffer);
+void		add_prev_history(t_vars *vars);
+char		*nice_prompt(void);
 
 #endif
