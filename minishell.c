@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/23 16:30:04 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/24 13:34:12 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	shell_init(t_vars *vars)
 
 void	interpret(char **input, t_vars *vars)
 {
-	*input = ft_readline("minishell > ");
+	*input = readline("minishell > ");
 	ft_add_history(*input, vars);
-	if (ft_strncmp(*input, "exit\n") == 0)
+	if (ft_strncmp(*input, "exit") == 0)
 		exit_protocol(vars, input);
 	vars->input = *input;
 }

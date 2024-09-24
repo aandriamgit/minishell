@@ -36,7 +36,7 @@ $(OBJ_DIR)/%.o: %.c
 	@printf $(COMPILING)$<
 
 $(NAME) : $(OBJS)
-	@cc $(CFLAGS) $(OBJS) -o $(NAME)
+	@cc $(CFLAGS) $(OBJS) -lreadline -o $(NAME)
 	@printf $(COMPILED)
 
 all: $(NAME)
