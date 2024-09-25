@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:59:37 by mravelon          #+#    #+#             */
-/*   Updated: 2024/09/22 16:07:58 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:58:03 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int count_allocation(char *cmd)
 				count += 2;
 			i++;
 		}
+		else if (cmd [i] == '"')
+			count++;
 		else if (cmd[i] == '>' && cmd[i + 1] == '>')
 		{
 			count += 2;		
@@ -78,6 +80,7 @@ char	*make_space(char *cmd)
 	i = 0;
 	j = 0;
 	new_cmd = malloc(sizeof(char) * (count_allocation(cmd) + 1));
+	printf("\n%d\n", count_allocation(cmd));
 	if (cmd[i] == '>')
 	{
 		new_cmd[j] = cmd[i];

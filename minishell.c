@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   binary_tree.c                                      :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/22 16:21:23 by mravelon          #+#    #+#             */
-/*   Updated: 2024/09/22 17:26:36 by mravelon         ###   ########.fr       */
+/*   Created: 2024/09/22 15:29:47 by mravelon          #+#    #+#             */
+/*   Updated: 2024/09/25 13:42:36 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
+#include <stdio.h>
 
-/*typedef struct s_tree
+int main(int argc, char **argv)
 {
-	char *cmd;
-	struct s_tree *left;
-	struct s_tree *right;
-} t_tree;*/
+	char *input;
+	char *new_input;
+	t_pipe *cmd;
 
-void binary_tree(char *new_input)
-{
-	char **piped_input;
-	t_tree *tree;
-	int i;
-
-	i = 0;
-	piped_input = ft_split(new_input, '|');
-
-	while (piped_input[i])
+	(void)argv;
+	if (argc == 1)
 	{
-		right_chain_of_leaf(&tree, creat_leaf(piped_input[i]));
-		i++;
+		while (1)
+		{
+			input = readline("minishell >");
+			if (ft_strncmp(input, "exit") == 0)
+				exit(1);
+			add_history(input);
+			new_input = formating(input);
+			printf("new_input = %s\n", new_input);
+			cmd = binary_tree(new_input);
+		}
 	}
+	return (0);
 }

@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   binary_tree.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/22 15:29:47 by mravelon          #+#    #+#             */
-/*   Updated: 2024/09/22 16:16:26 by mravelon         ###   ########.fr       */
+/*   Created: 2024/09/25 13:34:06 by mravelon          #+#    #+#             */
+/*   Updated: 2024/09/25 13:39:26 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdio.h>
+#include "../minishell.h"
 
-int main(int argc, char **argv)
+t_pipe *binary_tree(char *format_cmd)
 {
-	char *input;
-	char *new_input;
+	t_pipe *cmd;
 
-	(void)argv;
-	if (argc == 1)
-	{
-		while (1)
-		{
-			input = readline("minishell >");
-			if (ft_strncmp(input, "exit") == 0)
-				exit(1);
-			add_history(input);
-			new_input = formating(input);
-			printf("new_input = %s\n", new_input);
-		}
-	}
-	return (0);
+	cmd = down_pipe(format_cmd);
+	return(cmd);
 }
