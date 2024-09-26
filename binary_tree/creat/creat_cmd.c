@@ -6,11 +6,43 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:32:35 by mravelon          #+#    #+#             */
-/*   Updated: 2024/09/26 13:44:48 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:03:44 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int lenght_char(char **new_command, int i)
+{
+	int count;
+
+	count = 0;
+	while (new_command[i])
+	{
+		count++;
+		i++;
+	}
+	return (count);
+}
+
+char **rest_argument(char **command, int i)
+{
+	char **new_command;
+	int j;
+
+	j = 0;
+	new_command = malloc(sizeof(char *) * (lenght_char(command, i)));
+	if (!new_command)
+		return (NULL);
+	while (command[i])
+	{
+		new_command[j] = command[i];
+		j++;
+		i++;
+	}
+	new_command[j] = NULL;
+	return (new_command);
+}
 
 t_command *creat_cmd(char *command)
 {
@@ -31,6 +63,6 @@ t_command *creat_cmd(char *command)
 	{
 		cmd->option = NULL;
 	}
-	cmd->argument = down_argument(i, new_command);
+	cmd->arguments = rest_argument(new_command, i);
 	return (cmd);
 }
