@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:33:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/24 15:48:16 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:41:18 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,45 +24,86 @@
 # include <time.h>
 # include <unistd.h>
 
+typedef struct s_argument
+{
+	char					*arg;
+
+	struct s_argument		*next;
+}							t_argument;
+
+typedef struct s_command
+{
+	char					*cmd;
+	char					**args;
+}							t_command;
+
+typedef struct s_redirection
+{
+	char					*type;
+
+	struct s_command		*cmd;
+	struct s_redirection	*next;
+}							t_redirection;
+
+typedef struct s_pipe
+{
+	struct s_redirection	*redirection;
+	struct s_pipe			*next;
+}							t_pipe;
+
 typedef struct s_vars
 {
-	char	*log_dir;
-	char	*history_dir;
-	char	*input;
-}			t_vars;
+	char					*log_dir;
+	char					*history_dir;
+	char					*input;
+	char					**env;
+	char					*env_dir;
+	char					*env_dir_name;
+}							t_vars;
 
-void		ft_putstr_fd(char *s, int fd);
-char		*ft_strrchr(const char *s, int c);
-int			ft_strncmp(const char *s1, const char *s2);
-int			number_of_line(int fd);
-void		ft_putchar_fd(char c, int fd);
-void		ft_putnbr_fd(int n, int fd);
-size_t		ft_strlen(const char *s);
-char		*join_them(char *new_buff, char *temp);
-char		have_nl(char *buffer);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-char		*only_readable(char *buffer);
-char		*ft_readline(char *prompt);
-void		ft_add_history(char *input, t_vars *vars);
-char		*ft_strjoin(char const *s1, char const *s2);
-char		*ft_strdup(const char *s);
-void		big_param_init(char ***big_param, t_vars vars);
-void		terminate_shell_init(char **big_param);
-void		vars_init(t_vars *vars);
-void		fork_mkdir(char **big_param);
-void		exit_protocol(t_vars *vars, char **input);
-int			have_pipe(t_vars *vars);
-void		no_pipe_exec(t_vars *vars);
-void		pipe_exec(t_vars *vars);
-char		**ft_split(char const *s, char c);
-char		*test(char *path, char *input);
-void		fork_exec_nopipe(char *path, char **big_param, t_vars *vars);
-void		free_res(char ***res);
-void		set_non_canonical_mode(void);
-char		*get_next_line(int fd);
-char		*join_them(char *new_buff, char *temp);
-char		have_nl(char *buffer);
-void		add_prev_history(t_vars *vars);
-char		*nice_prompt(void);
+void						ft_putstr_fd(char *s, int fd);
+char						*ft_strrchr(const char *s, int c);
+int							ft_strncmp(const char *s1, const char *s2);
+int							number_of_line(int fd);
+void						ft_putchar_fd(char c, int fd);
+void						ft_putnbr_fd(int n, int fd);
+size_t						ft_strlen(const char *s);
+char						*join_them(char *new_buff, char *temp);
+char						have_nl(char *buffer);
+char						*ft_substr(char const *s, unsigned int start,
+								size_t len);
+char						*only_readable(char *buffer);
+void						ft_add_history(char *input, t_vars *vars);
+char						*ft_strjoin(char const *s1, char const *s2);
+char						*ft_strdup(const char *s);
+void						big_param_init(char ***big_param, t_vars vars);
+void						terminate_shell_init(char **big_param);
+void						vars_init(t_vars *vars, char **env);
+void						fork_mkdir(char **big_param);
+void						exit_protocol(t_vars *vars, char **input);
+int							have_pipe(t_vars *vars);
+void						no_pipe_exec(t_vars *vars);
+void						pipe_exec(t_vars *vars);
+char						**ft_split(char const *s, char c);
+char						*test(char *path, char *input);
+void						fork_exec_nopipe(char *path, char **big_param,
+								t_vars *vars);
+void						free_res(char ***res);
+void						set_non_canonical_mode(void);
+char						*get_next_line(int fd);
+char						*join_them(char *new_buff, char *temp);
+char						have_nl(char *buffer);
+void						add_prev_history(t_vars *vars);
+char						*nice_prompt(void);
+int							is_special_cmd(t_vars *vars);
+void						exec_special_cmd(t_vars *vars);
+void						terminate_nopipe_o(char *path, char **big_param,
+								t_vars *vars);
+void						exec_cd(t_vars *vars);
+void						exec_export(t_vars *vars);
+void						exec_unset(t_vars *vars);
+void						exec_env(t_vars *vars);
+void						exec_echo(t_vars *vars);
+void						creat_env_dir(t_vars *vars);
 
 #endif

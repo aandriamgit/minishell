@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/24 16:08:53 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:32:33 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void	shell_init(t_vars *vars, char **env)
 {
 	char	**big_param;
 
-	vars_init(vars);
-	(void)env;
+	vars_init(vars, env);
 	big_param_init(&big_param, *vars);
 	if (access(vars->log_dir, F_OK) == 0)
 	{
@@ -33,6 +32,7 @@ void	shell_init(t_vars *vars, char **env)
 	open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
 	add_prev_history(vars);
 	terminate_shell_init(big_param);
+	// creat_env_dir(vars);
 }
 
 void	interpret(char **input, t_vars *vars)

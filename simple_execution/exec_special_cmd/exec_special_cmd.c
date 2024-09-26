@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interpret.c                                        :+:      :+:    :+:   */
+/*   exec_special_cmd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/22 13:32:34 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/26 15:11:24 by aandriam         ###   ########.fr       */
+/*   Created: 2024/09/25 17:25:50 by aandriam          #+#    #+#             */
+/*   Updated: 2024/09/25 17:42:36 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-void	exit_protocol(t_vars *vars, char **input)
+void	exec_cd(t_vars *vars)
 {
-	free(vars->history_dir);
-	free(vars->log_dir);
-	free(*input);
-	exit(0);
+	(void)vars;
 }
 
-char	*nice_prompt(void)
+void	exec_export(t_vars *vars)
 {
-	char	*res;
-	char	*tmp;
-	char	buffer[1024];
+	(void)vars;
+}
 
-	getcwd(buffer, 1024);
-	tmp = ft_strjoin("\033[38;2;166;227;161m╭\033[38;2;148;226;213m ", buffer);
-	res = ft_strjoin(tmp, "\033[38;2;137;180;250m \n╰ \033[0m");
-	free(tmp);
-	return (res);
+void	exec_unset(t_vars *vars)
+{
+	(void)vars;
+}
+
+void	exec_env(t_vars *vars)
+{
+	ft_putstr_fd("voici env mais pas encore fini\n", 1);
+	(void)vars;
+}
+
+void	exec_echo(t_vars *vars)
+{
+	(void)vars;
 }

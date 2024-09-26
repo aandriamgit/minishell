@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interpret.c                                        :+:      :+:    :+:   */
+/*   big_param_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/22 13:32:34 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/26 15:11:24 by aandriam         ###   ########.fr       */
+/*   Created: 2024/09/25 18:00:28 by aandriam          #+#    #+#             */
+/*   Updated: 2024/09/25 18:00:45 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	exit_protocol(t_vars *vars, char **input)
+void	big_param_init(char ***big_param, t_vars vars)
 {
-	free(vars->history_dir);
-	free(vars->log_dir);
-	free(*input);
-	exit(0);
-}
-
-char	*nice_prompt(void)
-{
-	char	*res;
-	char	*tmp;
-	char	buffer[1024];
-
-	getcwd(buffer, 1024);
-	tmp = ft_strjoin("\033[38;2;166;227;161m╭\033[38;2;148;226;213m ", buffer);
-	res = ft_strjoin(tmp, "\033[38;2;137;180;250m \n╰ \033[0m");
-	free(tmp);
-	return (res);
+	*big_param = malloc(sizeof(char *) * 3);
+	if (*big_param == NULL)
+		exit(0);
+	(*big_param)[0] = ft_strdup("mkdir");
+	(*big_param)[1] = ft_strdup(vars.log_dir);
+	(*big_param)[2] = NULL;
 }

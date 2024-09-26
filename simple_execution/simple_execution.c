@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 14:45:22 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/23 14:07:17 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:31:44 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,14 @@ void	no_pipe_exec(t_vars *vars)
 	char	*path;
 	char	*cmd;
 
-	big_param = ft_split(vars->input, ' ');
-	cmd = ft_strjoin("/", big_param[0]);
-	path = test(getenv("PATH"), cmd);
-	fork_exec_nopipe(path, big_param, vars);
-	terminate_nopipe(path, &big_param);
+	if (is_special_cmd(vars))
+		exec_special_cmd(vars);
+	else
+	{
+		big_param = ft_split(vars->input, ' ');
+		cmd = ft_strjoin("/", big_param[0]);
+		path = test(getenv("PATH"), cmd);
+		fork_exec_nopipe(path, big_param, vars);
+		terminate_nopipe(path, &big_param);
+	}
 }

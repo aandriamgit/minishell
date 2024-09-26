@@ -6,34 +6,39 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:30:40 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/24 15:30:10 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:34:34 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void		free_res(char ***res);
-
-static void	terminate_nopipe(char *path, char **big_param, t_vars *vars)
+void	exec_special_cmd(t_vars *vars)
 {
-	free(path);
-	free(vars->input);
-	free(vars->log_dir);
-	free(vars->history_dir);
-	free_res(&big_param);
+	if (ft_strncmp(vars->input, "cd") == 0)
+		exec_cd(vars);
+	else if (ft_strncmp(vars->input, "export") == 0)
+		exec_export(vars);
+	else if (ft_strncmp(vars->input, "unset") == 0)
+		exec_unset(vars);
+	else if (ft_strncmp(vars->input, "env") == 0)
+		exec_env(vars);
+	else if (ft_strncmp(vars->input, "echo") == 0)
+		exec_echo(vars);
 }
 
-void	free_res(char ***res)
+int	is_special_cmd(t_vars *vars)
 {
-	int	i;
-
-	i = 0;
-	while ((*res)[i])
-	{
-		free((*res)[i]);
-		i++;
-	}
-	free(*res);
+	if (ft_strncmp(vars->input, "cd") == 0)
+		return (1);
+	else if (ft_strncmp(vars->input, "export") == 0)
+		return (1);
+	else if (ft_strncmp(vars->input, "unset") == 0)
+		return (1);
+	else if (ft_strncmp(vars->input, "env") == 0)
+		return (1);
+	else if (ft_strncmp(vars->input, "echo") == 0)
+		return (1);
+	return (0);
 }
 
 char	*test(char *path, char *input)
@@ -73,13 +78,13 @@ void	fork_exec_nopipe(char *path, char **big_param, t_vars *vars)
 		if (!path)
 		{
 			printf("error : command not found: %s\n", big_param[0]);
-			terminate_nopipe(path, big_param, vars);
+			terminate_nopipe_o(path, big_param, vars);
 			exit(1);
 		}
 		if (execve(path, big_param, NULL) == -1)
 		{
 			printf("error : command not found: %s\n", big_param[0]);
-			terminate_nopipe(path, big_param, vars);
+			terminate_nopipe_o(path, big_param, vars);
 			exit(1);
 			ft_putstr_fd("askjdfhjksdafjklasfd", 1);
 		}
