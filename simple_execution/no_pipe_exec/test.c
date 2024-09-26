@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interpret.c                                        :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/22 13:32:34 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/26 17:48:04 by aandriam         ###   ########.fr       */
+/*   Created: 2024/09/26 16:23:46 by aandriam          #+#    #+#             */
+/*   Updated: 2024/09/26 16:24:08 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-void	exit_protocol(t_vars *vars, char **input)
+char	*test(char *path, char *input)
 {
-	free(vars->history_dir);
-	free(vars->log_dir);
-	free(*input);
-	exit(0);
-}
-
-char	*nice_prompt(void)
-{
-	char	*res;
+	char	**res;
 	char	*tmp;
-	char	buffer[1024];
+	int		i;
 
-	getcwd(buffer, 1024);
-	tmp = ft_strjoin("\033[38;2;166;227;161m╭\033[38;2;148;226;213m ", buffer);
-	res = ft_strjoin(tmp, "\033[38;2;137;180;250m \n╰ \033[0m");
-	free(tmp);
-	return (res);
+	i = 0;
+	res = ft_split(path, ':');
+	while (res[i])
+	{
+		tmp = ft_strjoin(res[i], input);
+		if ((access(tmp, X_OK)) == 0)
+		{
+			free_res(&res);
+			free(input);
+			input = NULL;
+			return (tmp);
+		}
+		free(tmp);
+		i++;
+	}
+	free(input);
+	free_res(&res);
+	input = NULL;
+	return (NULL);
 }

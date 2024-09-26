@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:32:05 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/26 13:32:33 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:42:57 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ void	path_execution(t_vars *vars)
 
 void	simple_execution(t_vars *vars)
 {
-	if (have_pipe(vars))
+	if (ft_strncmp(vars->input, "p_test") == 0)
+		p_test(vars);
+	else if (have_pipe(vars))
 		pipe_exec(vars);
 	else
 		no_pipe_exec(vars);

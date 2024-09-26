@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:33:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/26 14:41:18 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:56:58 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@
 # include <termios.h>
 # include <time.h>
 # include <unistd.h>
-
-typedef struct s_argument
-{
-	char					*arg;
-
-	struct s_argument		*next;
-}							t_argument;
 
 typedef struct s_command
 {
@@ -59,6 +52,7 @@ typedef struct s_vars
 	char					**env;
 	char					*env_dir;
 	char					*env_dir_name;
+	struct s_pipe			*pipe;
 }							t_vars;
 
 void						ft_putstr_fd(char *s, int fd);
@@ -88,8 +82,8 @@ char						**ft_split(char const *s, char c);
 char						*test(char *path, char *input);
 void						fork_exec_nopipe(char *path, char **big_param,
 								t_vars *vars);
-void						free_res(char ***res);
 void						set_non_canonical_mode(void);
+void						free_res(char ***res);
 char						*get_next_line(int fd);
 char						*join_them(char *new_buff, char *temp);
 char						have_nl(char *buffer);
@@ -105,5 +99,9 @@ void						exec_unset(t_vars *vars);
 void						exec_env(t_vars *vars);
 void						exec_echo(t_vars *vars);
 void						creat_env_dir(t_vars *vars);
+t_pipe						*parsing_test(void);
+void						p_test(t_vars *vars);
+void						use_as_input(char **buff, t_pipe *v_one);
+char						*get_output(t_pipe *v_one, t_vars *vars);
 
 #endif

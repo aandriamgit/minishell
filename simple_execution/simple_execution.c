@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 14:45:22 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/25 16:31:44 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:58:46 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,25 @@ int	have_pipe(t_vars *vars)
 	return (0);
 }
 
+void	p_test(t_vars *vars)
+{
+	t_pipe	*v_one;
+	char	*buff;
+
+	vars->pipe = parsing_test();
+	v_one = vars->pipe;
+	while (v_one->next)
+	{
+		buff = get_output(v_one, vars);
+		v_one = v_one->next;
+		exit(0);
+		use_as_input(&buff, v_one);
+	}
+}
+
 void	pipe_exec(t_vars *vars)
 {
-	(void)vars->input;
-	return ;
+	(void)vars;
 }
 
 void	no_pipe_exec(t_vars *vars)
@@ -45,7 +60,8 @@ void	no_pipe_exec(t_vars *vars)
 	char	*cmd;
 
 	if (is_special_cmd(vars))
-		exec_special_cmd(vars);
+		ft_putstr_fd("is_special_cmd", 1);
+	// exec_special_cmd(vars);
 	else
 	{
 		big_param = ft_split(vars->input, ' ');
