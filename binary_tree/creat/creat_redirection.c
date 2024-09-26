@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:53:30 by mravelon          #+#    #+#             */
-/*   Updated: 2024/09/25 14:10:59 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:42:41 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_redirection *down_redirection(char *cmd_with_redirection)
 	char **type;
 	t_redirection *redirection;
 
+	redirection = NULL;
 	i = 0;
 	type = take_type(cmd_with_redirection);
 	new_cmd_wr = cheated_split(cmd_with_redirection);

@@ -14,6 +14,7 @@ SRC = minishell.c\
 		./binary_tree/creat/take_type.c\
 		./binary_tree/creat/creat_pipe.c\
 		./binary_tree/creat/creat_redirection.c\
+		./binary_tree/creat/creat_argument.c\
 
 CFLAGS = -Wall -Wextra -Werror -g
 

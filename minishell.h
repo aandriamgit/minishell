@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:37:04 by mravelon          #+#    #+#             */
-/*   Updated: 2024/09/25 14:22:46 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:22:48 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ t_command *creat_cmd(char *command);
 t_redirection *down_redirection(char *cmd_with_redirection);
 t_pipe	*down_pipe(char *cmd_with_pipe);
 char **take_type(char *cmd);
-
+t_argument *down_argument(int i, char **arg);
 #endif
 

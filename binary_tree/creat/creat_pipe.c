@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:45:09 by mravelon          #+#    #+#             */
-/*   Updated: 2024/09/25 13:28:01 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:43:36 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ t_pipe	*down_pipe(char *cmd_with_pipe)
 	t_pipe *pipe;
 	int i;
 
+	pipe = NULL;
 	i = 0;
-	new_cmd_wp = ft_split(cmd_with_pipe, ' ');
+	new_cmd_wp = ft_split(cmd_with_pipe, '|');
 	while (new_cmd_wp[i])
 	{
 		make_pipe(&pipe, creat_pipe(new_cmd_wp[i]));
