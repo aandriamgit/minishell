@@ -39,7 +39,7 @@ BLUE = \033[38;2;180;190;254m
 GREEN = \033[38;2;166;227;161m
 RESET = \033[0m
 COMPILING = "\r${YELLOW}[ ]${RESET} compiling ${BLUE}"
-COMPILED = "\r${GREEN}[✔]${RESET} compiled successfully! ${BLUE}.  ★                                                                \n"
+COMPILED = "\r${GREEN}[✔]${RESET} compiled successfully! ${BLUE}.  ★                                                \n"
 RM_NAME = "\r${GREEN}[✔]${RESET} rm name successfully! ${BLUE}✧̣̇ ˳\n"
 RM_OBJS = "\r${GREEN}[✔]${RESET} rm objs successfully! ${BLUE}.˚ ✦\n"
 

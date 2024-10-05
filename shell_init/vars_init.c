@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:58:37 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/26 13:33:59 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:28:25 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	get_env_dir_name(t_vars *vars)
 {
 	char	*dir_name;
 	char	*pid;
-	char	*shlvl;
-	char	*tmp;
 
+	/* char	*shlvl; */
+	/* char	*tmp; */
 	pid = getenv("SYSTEMD_EXEC_PID");
-	shlvl = getenv("SHLVL");
+	/* shlvl = getenv("SHLVL"); */
 	pid = ft_strrchr(pid, '=');
-	tmp = ft_strjoin(shlvl, pid);
+	/* tmp = ft_strjoin(shlvl, pid); */
 	dir_name = ft_strjoin("/env_dir_", pid);
 	vars->env_dir_name = ft_strjoin(vars->log_dir, dir_name);
 }
