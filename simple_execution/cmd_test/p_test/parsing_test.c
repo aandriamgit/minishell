@@ -6,11 +6,11 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:57:45 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/26 17:57:58 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/11 11:06:31 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../../../minishell.h"
 
 t_command	*cmd_gen(char *input)
 {

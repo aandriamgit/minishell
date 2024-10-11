@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:33:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/26 18:56:58 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/11 11:00:31 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,9 @@ char						have_nl(char *buffer);
 void						add_prev_history(t_vars *vars);
 char						*nice_prompt(void);
 int							is_special_cmd(t_vars *vars);
-void						exec_special_cmd(t_vars *vars);
 void						terminate_nopipe_o(char *path, char **big_param,
+								t_vars *vars);
+void						terminate_nopipe(char *path, char **big_param,
 								t_vars *vars);
 void						exec_cd(t_vars *vars);
 void						exec_export(t_vars *vars);
@@ -100,8 +101,15 @@ void						exec_env(t_vars *vars);
 void						exec_echo(t_vars *vars);
 void						creat_env_dir(t_vars *vars);
 t_pipe						*parsing_test(void);
-void						p_test(t_vars *vars);
+void						cmd_test(t_vars *vars);
 void						use_as_input(char **buff, t_pipe *v_one);
 char						*get_output(t_pipe *v_one, t_vars *vars);
+int							is_redirection(t_vars vars);
+void						exec_redirection(t_vars *vars);
+void						p_test(t_vars *vars);
+void						redir_test(t_vars *vars);
+void						s_o_test(t_vars *vars);
+void						append_test(t_vars *vars);
+void						s_o_errors_test(t_vars *vars);
 
 #endif

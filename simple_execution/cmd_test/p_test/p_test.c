@@ -6,11 +6,11 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:55:31 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/26 18:59:42 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/11 11:06:16 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../../../minishell.h"
 
 static void	exec_cmd(t_command *cmd, t_vars *vars)
 {

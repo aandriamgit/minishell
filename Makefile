@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/10/11 10:55:39 by aandriam          #+#    #+#              #
+#    Updated: 2024/10/11 11:05:15 by aandriam         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = minishell
 CFLAGS = -Werror -Wall -Wextra -g
 RM = rm -rf
@@ -23,12 +35,13 @@ SRCS = minishell.c \
 		./shell_init/vars_init.c \
 		./simple_execution/simple_execution.c \
 		./simple_execution/no_pipe_exec/test.c \
-		./simple_execution/no_pipe_exec/is_special_cmd.c \
+		./simple_execution/no_pipe_exec/no_pipe_exec.c \
 		./simple_execution/no_pipe_exec/fork_exec_nopipe.c \
-		./simple_execution/no_pipe_exec/exec_special_cmd/exec_special_cmd.c \
 		./simple_execution/pipe_exec/pipe_exec.c \
-		./simple_execution/p_test/p_test.c \
-		./simple_execution/p_test/parsing_test.c \
+		./simple_execution/cmd_test/p_test/p_test.c \
+		./simple_execution/cmd_test/p_test/parsing_test.c \
+		./simple_execution/cmd_test/cmd_test.c \
+		./simple_execution/cmd_test/redir_test/redir_test.c \
 		./get_next_line/get_next_line.c \
 		./get_next_line/get_next_line_utils.c
 
