@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 10:57:02 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/11 14:45:00 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/12 16:41:37 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	s_o_test(t_vars *vars)
 {
-	ft_putstr_fd("[ ] work still on progress\n", 1);
-	ft_putstr_fd("input redirection test is 'cat < input_red.txt'\n", 1);
+	ft_putstr_fd("input redirection test with 'cat < input_red.txt'\n", 1);
 	vars->pipe = generate_redir("cat", "<", "input_red.txt");
+	test_exec_redir(vars->pipe, vars);
+	ft_putstr_fd("[ ] work still on progress\n", 1);
 }
 
 void	append_test(t_vars *vars)
