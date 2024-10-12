@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:42:11 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/12 16:43:25 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:11:32 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ void			here_doc_test(t_pipe *lol);
 void			output_redir_test(t_pipe *lol);
 void			append_redir_test(t_pipe *lol);
 int				file_exist(char *dir);
+char			*take_input(char *dir);
 
 #endif
