@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 16:14:53 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/12 17:10:59 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:29:22 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,25 @@ char	*take_input(char *dir)
 	char	*tmp;
 	int		fd;
 
+	fd = open(dir, O_RDONLY);
 	lol = get_next_line(fd);
-	while (tmp)
+	if (lol)
+		input = ft_strdup(lol);
+	while (lol)
 	{
-		tmp = get_next_line(fd);
+		free(lol);
+		lol = get_next_line(fd);
+		if (!lol)
+		{
+			free(dir);
+			return (input);
+		}
+		tmp = ft_strdup(input);
+		free(input);
 		input = ft_strjoin(lol, tmp);
+		free(tmp);
 	}
+	close(fd);
+	free(dir);
 	return (input);
 }
