@@ -6,7 +6,7 @@
 #    By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 10:55:39 by aandriam          #+#    #+#              #
-#    Updated: 2024/10/12 16:18:03 by aandriam         ###   ########.fr        #
+#    Updated: 2024/10/15 14:45:26 by aandriam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = minishell.c \
 		./lib/ft_strdup.c \
 		./lib/ft_split.c \
 		./lib/ft_strrchr.c \
+		./lib/ft_execve.c \
 		./interpret/ft_add_history/ft_add_history.c \
 		./interpret/interpret.c \
 		./shell_init/add_prev_history.c \
