@@ -6,7 +6,7 @@
 #    By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 16:14:24 by aandriam          #+#    #+#              #
-#    Updated: 2024/10/15 16:14:58 by aandriam         ###   ########.fr        #
+#    Updated: 2024/10/15 18:08:26 by aandriam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,22 @@ CFLAGS = -Werror -Wall -Wextra -g
 RM = rm -rf
 OBJ_DIR = .obj
 SRCS = minishell.c \
+	   ./lib/ft_split.c \
+	   ./lib/ft_execve.c \
+	   ./lib/ft_strdup.c \
+	   ./lib/ft_strlen.c \
+	   ./lib/ft_substr.c \
+	   ./lib/ft_strjoin.c \
+	   ./lib/ft_strncmp.c \
+	   ./lib/ft_free_all.c \
+	   ./lib/ft_putstr_fd.c \
+	   ./lib/ft_putnbr_fd.c \
+	   ./lib/ft_putchar_fd.c \
+	   ./shell_init/shell_init.c \
+	   ./shell_init/exec_big_param/exec_big_param.c \
+	   ./interpret/interpret.c \
+	   ./get_next_line/get_next_line.c \
+	   ./get_next_line/get_next_line_utils.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
