@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:12:29 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/15 18:11:08 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/16 06:49:33 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	shell_init(t_vars *vars, char **env)
 	big_param_init(&big_param, *vars);
 	if (access(vars->log_dir, F_OK) == 0)
 	{
-		ft_free_all(big_param);
+		ft_free_all(&big_param);
 		if (access(vars->history_dir, F_OK) == 0)
 			add_prev_history(vars);
 		else
@@ -31,7 +31,7 @@ void	shell_init(t_vars *vars, char **env)
 		exec_big_param(big_param);
 	open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
 	add_prev_history(vars);
-	ft_free_all(big_param);
+	ft_free_all(&big_param);
 }
 
 void	interpret(char **input, t_vars *vars)

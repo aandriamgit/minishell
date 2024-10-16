@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/15 17:51:59 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/16 07:10:04 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	exec_big_param(char **big_param)
 		return ;
 	}
 	else
-		ft_execve(big_param[0], big_param);
-	free(cmd);
+		ft_execve(path, big_param);
 	free(path);
 }

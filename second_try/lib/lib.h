@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:16:14 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/15 17:13:21 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/16 06:48:41 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *s);
 void	ft_execve(char *cmd, char **argv);
 char	**ft_split(char const *s, char c);
-void	ft_free_all(char **argv);
+void	ft_free_all(char ***argv);
 
 #endif
