@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:12:29 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/16 07:39:07 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/16 13:15:41 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,20 @@ void	path_execution(t_vars *vars)
 
 void	simple_execution(t_vars *vars)
 {
-	(void)vars;
+	int	type;
+
+	type = is_special(vars);
+	if (type)
+	{
+		if (type == 1)
+			pipe_test(vars);
+		else if (type == 2)
+			redirection_test(vars);
+	}
+	else
+	{
+		ft_putstr_fd("work still on progress", 1);
+	}
 }
 
 int	main(int argc, char **argv, char **env)

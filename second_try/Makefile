@@ -6,7 +6,7 @@
 #    By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 16:14:24 by aandriam          #+#    #+#              #
-#    Updated: 2024/10/15 18:08:26 by aandriam         ###   ########.fr        #
+#    Updated: 2024/10/16 13:48:56 by aandriam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,10 @@ SRCS = minishell.c \
 	   ./shell_init/exec_big_param/exec_big_param.c \
 	   ./interpret/interpret.c \
 	   ./get_next_line/get_next_line.c \
-	   ./get_next_line/get_next_line_utils.c
+	   ./get_next_line/get_next_line_utils.c \
+	   ./simple_execution/simple_execution.c \
+	   ./simple_execution/redirection_test/redirection_test.c \
+	   ./simple_execution/redirection_test/first_test/first_test.c 
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
