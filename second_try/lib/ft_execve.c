@@ -6,11 +6,11 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:44:24 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/16 06:43:09 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/16 07:25:03 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "lib.h"
 
 void	ft_execve(char *cmd, char **argv)
 {

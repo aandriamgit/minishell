@@ -6,15 +6,18 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:16:14 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/16 06:48:41 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/16 07:25:55 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIB_H
 # define LIB_H
 
+# include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/wait.h>
+# include <unistd.h>
 
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_strrchr(const char *s, int c);

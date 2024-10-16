@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:13:12 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/15 18:02:42 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/16 08:15:53 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,27 @@
 
 # include "get_next_line/get_next_line.h"
 # include "lib/lib.h"
-# include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/wait.h>
-# include <unistd.h>
+
+typedef struct s_redirection
+{
+	char					*type;
+	char					*file;
+	struct s_redirection	*next;
+}							t_redirection;
 
 typedef struct s_command
 {
 	char					*cmd;
 	char					**args;
+	t_redirection			*redir;
+	struct s_command		*next;
 }							t_command;
-
-typedef struct s_redirection
-{
-	char					*type;
-
-	struct s_command		*cmd;
-	struct s_redirection	*next;
-}							t_redirection;
 
 typedef struct s_pipe
 {
-	struct s_redirection	*redirection;
+	t_command				*cmd;
 	struct s_pipe			*next;
 }							t_pipe;
 
@@ -49,9 +45,6 @@ typedef struct s_vars
 	char					*history_dir;
 	char					*input;
 	char					**env;
-	char					*env_dir;
-	char					*env_dir_name;
-	struct s_pipe			*pipe;
 }							t_vars;
 
 void						vars_init(t_vars *vars, char **env);
