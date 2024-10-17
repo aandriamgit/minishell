@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_execution.c                                 :+:      :+:    :+:   */
+/*   creat_child.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 08:32:43 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/17 10:25:32 by aandriam         ###   ########.fr       */
+/*   Created: 2024/10/17 14:08:53 by aandriam          #+#    #+#             */
+/*   Updated: 2024/10/17 14:32:22 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simple_execution.h"
+#include "../first_test.h"
 
-int	is_special(t_vars *vars)
+int	is_last(t_pipe *next)
 {
-	if (ft_strncmp(vars->input, "pipe_test") == 0)
-		return (1);
-	else if (ft_strncmp(vars->input, "redirection_test") == 0)
-		return (2);
-	return (0);
+	if (!next)
+		return (0);
+	return (1);
 }
 
-void	pipe_test(t_vars *vars)
+void	handle_redir(t_redirection *redir)
 {
-	(void)vars;
+	(void)redir;
 }
 
-void	redirection_test(t_vars *vars)
+void	handle_cmd(t_command *cmd)
 {
-	(void)vars;
-	ft_putstr_fd("redirection test with 'cat < input.txt'\n", 1);
-	first_test("cat", "<", "input.txt");
+	if (cmd->redir)
+		handle_redir(cmd->redir);
 }

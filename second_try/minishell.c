@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:12:29 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/16 13:15:41 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:50:03 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	simple_execution(t_vars *vars)
 	}
 	else
 	{
-		ft_putstr_fd("work still on progress", 1);
+		ft_putstr_fd("not my job\n", 1);
 	}
 }
 
