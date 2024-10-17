@@ -19,14 +19,11 @@
 #include <unistd.h>
 #include <stdio.h>
 
-
-
 typedef struct s_command
 {
 	char *cmd;
 	char *option;
 	char **arguments;
-
 } t_command;
 
 
