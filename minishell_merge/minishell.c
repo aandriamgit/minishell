@@ -31,7 +31,9 @@ void handler(int signum)
 void	shell_init(t_vars *vars, t_list **env_cpy, char	**env)
 {
 	char	**big_param;
-
+	
+	*env_cpy = NULL;
+	*input = NULL;
 	vars_init(vars, env);
 	big_param_init(&big_param, *vars);
 	if (access(vars->log_dir, F_OK) == 0)
@@ -78,9 +80,7 @@ int	main(int	argc, char	**argv, char	**env)
 	t_vars 	vars;
 	t_pipe	cmd;
 	char 	*input;
-
-	env_cpy = NULL;
-	input = NULL;
+	
 	(void)argv;
 	if (argc == 1)
 	{		
