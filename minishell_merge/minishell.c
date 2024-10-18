@@ -6,32 +6,31 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/10/17 17:11:03 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:45:47 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
-void handler(int signum)
+void	handler(int signum)
 {
-		char	*lol;
+	char	*lol;
 
-		lol = nice_prompt_lol();
-		if (signum == SIGINT)
-		{
-			printf("\n%s\n", lol);
-			free(lol);
-			rl_on_new_line();
-			rl_replace_line("", 1);
-			rl_redisplay();
-		}
+	lol = nice_prompt_lol();
+	if (signum == SIGINT)
+	{
+		printf("\n%s\n", lol);
+		free(lol);
+		rl_on_new_line();
+		rl_replace_line("", 1);
+		rl_redisplay();
+	}
 }
 
-void	shell_init(t_vars *vars, t_list **env_cpy, char	**env)
+void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
 {
 	char	**big_param;
-	
+
 	*env_cpy = NULL;
 	*input = NULL;
 	vars_init(vars, env);
@@ -72,21 +71,22 @@ void	interpret(char **input, t_vars *vars, t_pipe *cmd)
 	if (ft_strncmp(*input, "exit") == 0)
 		exit_protocol(vars, input);
 	vars->input = *input;
+	(void)cmd;
 }
 
-int	main(int	argc, char	**argv, char	**env)
+int	main(int argc, char **argv, char **env)
 {
-	t_list 	*env_cpy;
-	t_vars 	vars;
+	t_list	*env_cpy;
+	t_vars	vars;
 	t_pipe	cmd;
-	char 	*input;
-	
+	char	*input;
+
 	(void)argv;
 	if (argc == 1)
-	{		
+	{
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, handler);
-		shell_init(&vars, &env_cpy, env);
+		shell_init(&vars, &env_cpy, &input, env);
 		while (1)
 		{
 			interpret(&input, &vars, &cmd);

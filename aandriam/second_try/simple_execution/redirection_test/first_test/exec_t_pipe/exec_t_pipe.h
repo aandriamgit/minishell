@@ -1,31 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   creat_child.c                                      :+:      :+:    :+:   */
+/*   exec_t_pipe.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 14:08:53 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/17 14:32:22 by aandriam         ###   ########.fr       */
+/*   Created: 2024/10/18 11:36:22 by aandriam          #+#    #+#             */
+/*   Updated: 2024/10/18 11:57:26 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../first_test.h"
 
-int	is_last(t_pipe *next)
-{
-	if (!next)
-		return (0);
-	return (1);
-}
-
-void	handle_redir(t_redirection *redir)
-{
-	(void)redir;
-}
-
-void	handle_cmd(t_command *cmd)
-{
-	if (cmd->redir)
-		handle_redir(cmd->redir);
-}
+void	change_stdout(int pipe_fd[2]);

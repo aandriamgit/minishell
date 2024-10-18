@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:52:58 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/17 10:27:34 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:22:53 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ void	first_test(char *cmd, char *type, char *file)
 	redir = gen_redir(type, file, NULL);
 	test_pipe->cmd = gen_cmd(cmd, big_param, redir, NULL);
 	test_pipe->next = NULL;
+	test_pipe->prev = NULL;
 	exec_t_pipe(test_pipe);
 }

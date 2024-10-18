@@ -6,12 +6,11 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:44:02 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/17 14:24:08 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:44:34 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "first_test.h"
-#include <time.h>
 
 t_command	*gen_cmd(char *cmd, char **big_param, void *redir, void *next)
 {
@@ -42,23 +41,23 @@ t_redirection	*gen_redir(char *type, char *file, void *next)
 
 void	exec_t_pipe(t_pipe *test_pipe)
 {
-	int		pipe_fd[2];
 	int		status;
 	pid_t	pid;
+	pid_t	wpid;
 	t_pipe	*voyager_one;
 
 	voyager_one = test_pipe;
 	while (voyager_one)
 	{
-		if (voyager_one->next)
-			if (create_pipe(pipe_fd) == -1)
-				exit(1);
-		pid = create_child(test_pipe->cmd, pipe_fd, test_pipe->next);
-		if (voyager_one->next)
-			close(pipe_fd[1]);
+		if (voyager_one->prev == NULL)
+			pid = first_in_line(voyager_one->cmd);
+		else if (voyager_one->next == NULL)
+			pid = last_in_line(voyager_one->cmd);
+		else
+			pid = intermediate_cmd(voyager_one->cmd);
 		voyager_one = voyager_one->next;
 	}
-	while (wait(NULL) > 0)
-	{
-	}
+	wpid = waitpid(pid, &status, WUNTRACED);
+	while (wpid > 0 && (!WIFEXITED(status) && WIFSIGNALED(status)))
+		wpid = waitpid(pid, &status, WUNTRACED);
 }
