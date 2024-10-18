@@ -6,10 +6,10 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:36:22 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/18 11:57:26 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:38:02 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../first_test.h"
 
-void	change_stdout(int pipe_fd[2]);
+void	change_stdout(int *pipe_fd);

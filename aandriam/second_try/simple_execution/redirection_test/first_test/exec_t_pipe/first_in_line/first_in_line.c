@@ -6,12 +6,12 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:36:11 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/18 11:57:11 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:38:13 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../exec_t_pipe.h"
 
-void	change_stdout(int pipe_fd[2])
+void	change_stdout(int *pipe_fd)
 {
 }
