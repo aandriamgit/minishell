@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:27:34 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/19 17:54:26 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/19 18:08:32 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_execve_lol(char *cmd, char **args)
 	char	*mini_cmd;
 
 	mini_cmd = ft_strjoin("/", cmd);
-	path = test(getenv("PATH"), mini_cmd);
+	path = test_path(getenv("PATH"), mini_cmd);
 }
 
 void	exec_cmd(t_command *cmd, int input_fd, int output_fd)

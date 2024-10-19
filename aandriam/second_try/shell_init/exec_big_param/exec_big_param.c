@@ -6,13 +6,13 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:48:49 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/16 06:49:58 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/19 18:06:53 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../shell_init.h"
 
-char	*test(char *path, char *input)
+char	*test_path(char *path, char *input)
 {
 	char	**res;
 	char	*tmp;

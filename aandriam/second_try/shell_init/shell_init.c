@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/16 07:10:04 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/19 18:08:14 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	exec_big_param(char **big_param)
 	char	*cmd;
 
 	cmd = ft_strjoin("/", big_param[0]);
-	path = test(getenv("PATH"), cmd);
+	path = test_path(getenv("PATH"), cmd);
 	if (!path)
 	{
 		ft_putstr_fd("error : command not found: ", 1);
