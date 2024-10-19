@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:27:34 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/19 18:08:32 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/19 18:25:32 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,6 @@ void	create_pipe(int *pipe_fd)
 		error_protocol("create pipe fail");
 }
 
-void	ft_execve_lol(char *cmd, char **args)
-{
-	char	*path;
-	char	*mini_cmd;
-
-	mini_cmd = ft_strjoin("/", cmd);
-	path = test_path(getenv("PATH"), mini_cmd);
-}
-
 void	exec_cmd(t_command *cmd, int input_fd, int output_fd)
 {
 	if (input_fd != 0)
@@ -45,5 +36,6 @@ void	exec_cmd(t_command *cmd, int input_fd, int output_fd)
 		dup2(output_fd, STDOUT_FILENO);
 		close(output_fd);
 	}
+	exec_redir(cmd->redir);
 	ft_execve_lol(cmd->cmd, cmd->args);
 }
