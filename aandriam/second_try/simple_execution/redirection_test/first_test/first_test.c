@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:44:02 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/18 11:44:34 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/19 16:58:57 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,23 @@ t_redirection	*gen_redir(char *type, char *file, void *next)
 void	exec_t_pipe(t_pipe *test_pipe)
 {
 	int		status;
+	int		pipe_fd[2];
 	pid_t	pid;
 	pid_t	wpid;
-	t_pipe	*voyager_one;
+	int		input_fd;
 
-	voyager_one = test_pipe;
-	while (voyager_one)
+	input_fd = 0;
+	while (test_pipe)
 	{
-		if (voyager_one->prev == NULL)
-			pid = first_in_line(voyager_one->cmd);
-		else if (voyager_one->next == NULL)
-			pid = last_in_line(voyager_one->cmd);
-		else
-			pid = intermediate_cmd(voyager_one->cmd);
-		voyager_one = voyager_one->next;
+		create_pipe(pipe_fd);
+		pid = fork();
+		if (pid == 0)
+			exec_cmd(test_pipe->cmd, input_fd, pipe_fd[1]);
+		else if (pid < 0)
+			error_protocol("fork fail");
+		close(pipe_fd[1]);
+		input_fd = pipe_fd[0];
+		test_pipe = test_pipe->next;
 	}
 	wpid = waitpid(pid, &status, WUNTRACED);
 	while (wpid > 0 && (!WIFEXITED(status) && WIFSIGNALED(status)))

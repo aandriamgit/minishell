@@ -5,64 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 13:51:58 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/18 11:57:44 by aandriam         ###   ########.fr       */
+/*   Created: 2024/10/19 16:27:34 by aandriam          #+#    #+#             */
+/*   Updated: 2024/10/19 17:54:26 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec_t_pipe.h"
+#include "../first_test.h"
 
-// {
-// 	if (pipe(pipe_fd) == -1)
-// 	{
-// 		perror("create_pipe");
-// 		return (-1);
-// 	}
-// 	return (0);
-// }
-//
-// pid_t	create_child(t_command *cmd, int *pipe_fd, t_pipe *next)
-// {
-// 	pid_t	pid;
-//
-// 	pid = fork();
-// 	if (pid < 0)
-// 	{
-// 		perror("create_child");
-// 		exit(1);
-// 	}
-// 	if (pid == 0)
-// 	{
-// 		if (!is_last(next))
-// 			dup2(pipe_fd[1], STDOUT_FILENO);
-// 		if (cmd->next)
-// 			dup2(pipe_fd[0], STDIN_FILENO);
-// 		close(pipe_fd[0]);
-// 		close(pipe_fd[1]);
-// 		handle_cmd(cmd);
-// 	}
-// 	return (pid);
-// }
-
-pid_t	first_in_line(t_command *cmd)
+void	error_protocol(char *str)
 {
-	pid_t	pid;
-	int		pipe_fd[2];
+	perror(str);
+	exit(EXIT_FAILURE);
+}
 
+void	create_pipe(int *pipe_fd)
+{
 	if (pipe(pipe_fd) == -1)
+		error_protocol("create pipe fail");
+}
+
+void	ft_execve_lol(char *cmd, char **args)
+{
+	char	*path;
+	char	*mini_cmd;
+
+	mini_cmd = ft_strjoin("/", cmd);
+	path = test(getenv("PATH"), mini_cmd);
+}
+
+void	exec_cmd(t_command *cmd, int input_fd, int output_fd)
+{
+	if (input_fd != 0)
 	{
-		perror("pipe");
-		return (-1);
+		dup2(input_fd, STDIN_FILENO);
+		close(input_fd);
 	}
-	change_stdout(pipe_fd);
-	pid = fork();
-	if (pid < 0)
+	if (output_fd != 1)
 	{
-		perror("fork");
-		exit(1);
+		dup2(output_fd, STDOUT_FILENO);
+		close(output_fd);
 	}
-	if (pid == 0)
-	{
-	}
-	return (pid);
+	ft_execve_lol(cmd->cmd, cmd->args);
 }
