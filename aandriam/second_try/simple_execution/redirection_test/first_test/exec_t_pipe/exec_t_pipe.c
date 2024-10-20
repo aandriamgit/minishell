@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:27:34 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/20 16:32:45 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/20 16:34:44 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,4 @@ void	handle_cmd(t_pipe test_pipe, t_command *cmd, int input_fd,
 	}
 	handle_redir(cmd->redir);
 	ft_execve_lol(cmd->cmd, cmd->args);
-	exit(0);
 }
