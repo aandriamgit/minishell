@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:44:02 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/20 10:56:54 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/20 12:30:16 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,26 @@ void	exec_t_pipe(t_pipe *test_pipe)
 	wpid = waitpid(pid, &status, WUNTRACED);
 	while (wpid > 0 && (!WIFEXITED(status) && WIFSIGNALED(status)))
 		wpid = waitpid(pid, &status, WUNTRACED);
+}
+
+void	free_redir(t_redirection *redir)
+{
+	while (redir)
+	{
+		free(redir->type);
+		free(redir->file);
+		redir = redir->next;
+	}
+}
+
+void	free_t_pipe(t_pipe *test_pipe)
+{
+	while (test_pipe)
+	{
+		free_redir(test_pipe->cmd->redir);
+		free(test_pipe->cmd->redir);
+		ft_free_all(&test_pipe->cmd->args);
+		free(test_pipe->cmd);
+		test_pipe = test_pipe->next;
+	}
 }

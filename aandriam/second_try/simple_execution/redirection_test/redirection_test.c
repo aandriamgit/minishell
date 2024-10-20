@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:52:58 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/18 11:22:53 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/20 12:31:15 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,6 @@ void	first_test(char *cmd, char *type, char *file)
 	test_pipe->next = NULL;
 	test_pipe->prev = NULL;
 	exec_t_pipe(test_pipe);
+	free_t_pipe(test_pipe);
+	free(test_pipe);
 }

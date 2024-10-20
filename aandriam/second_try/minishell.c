@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:12:29 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/17 12:50:03 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/20 11:27:56 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,7 @@ void	simple_execution(t_vars *vars)
 			redirection_test(vars);
 	}
 	else
-	{
 		ft_putstr_fd("not my job\n", 1);
-	}
 }
 
 int	main(int argc, char **argv, char **env)

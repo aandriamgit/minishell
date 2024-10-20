@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:32:43 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/17 10:25:32 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/20 15:35:22 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,11 @@ void	redirection_test(t_vars *vars)
 {
 	(void)vars;
 	ft_putstr_fd("redirection test with 'cat < input.txt'\n", 1);
-	first_test("cat", "<", "input.txt");
+	first_test(ft_strdup("cat"), ft_strdup("<"), ft_strdup("input.txt"));
+	ft_putstr_fd("\nredirection test with 'ls < not_existing_file.txt'\n", 1);
+	first_test(ft_strdup("ls"), ft_strdup("<"),
+		ft_strdup("not_existing_file.txt"));
+	ft_putstr_fd("\nredirection test with 'cat < no_permission.txt'\n", 1);
+	first_test(ft_strdup("cat"), ft_strdup("<"),
+		ft_strdup("no_permission.txt"));
 }
