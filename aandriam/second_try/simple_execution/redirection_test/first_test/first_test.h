@@ -6,13 +6,12 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:07:51 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/20 10:14:22 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/20 10:58:10 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../redirection_test.h"
 
-void	create_pipe(int *pipe_fd, t_pipe test_pipe);
 void	handle_cmd(t_pipe test_pipe, t_command *cmd, int input_fd,
 			int output_fd);
 void	error_protocol(char *str);

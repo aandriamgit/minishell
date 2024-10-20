@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:44:02 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/20 10:20:02 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/20 10:56:54 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,16 @@ void	exec_t_pipe(t_pipe *test_pipe)
 	input_fd = 0;
 	while (test_pipe)
 	{
-		// create_pipe(pipe_fd, *test_pipe);
-		if (!test_pipe->prev)
-			return ;
-		if (!test_pipe->next)
-			return ;
-		if (pipe(pipe_fd) == -1)
-			error_protocol("create pipe fail");
-		ft_putstr_fd("pourquoi ? what?\n", 1);
+		if (test_pipe->prev || test_pipe->next)
+			if (pipe(pipe_fd) == -1)
+				error_protocol("create pipe fail");
 		pid = fork();
 		if (pid == 0)
 			handle_cmd(*test_pipe, test_pipe->cmd, input_fd, pipe_fd[1]);
 		else if (pid < 0)
 			error_protocol("fork fail");
-		close(pipe_fd[1]);
+		if (test_pipe->prev)
+			close(pipe_fd[1]);
 		input_fd = pipe_fd[0];
 		test_pipe = test_pipe->next;
 	}
