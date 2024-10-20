@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*   handle_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 18:21:34 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/19 18:26:08 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/20 09:52:51 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,27 +47,30 @@ void	ft_execve_lol(char *cmd, char **args)
 	mini_cmd = ft_strjoin("/", cmd);
 	path = test_path_lol(getenv("PATH"), mini_cmd);
 	if (path)
-	{
-		ft_putstr_fd("le code est arriver jusqu'ici \n", 1);
-		return ;
 		execve(path, args, NULL);
-	}
 	else
 	{
 		ft_putstr_fd("error : command not found: ", 1);
 		ft_putstr_fd(cmd, 1);
 		ft_putstr_fd("\n", 1);
 		free(path);
+		free(mini_cmd);
 		return ;
 	}
 }
 
-void	exec_redir(t_redirection *redir)
+void	handle_redir(t_redirection *redir)
 {
-	ft_putstr_fd("type is : ", 1);
-	ft_putstr_fd(redir->type, 1);
-	ft_putstr_fd("\n", 1);
-	ft_putstr_fd("file is : ", 1);
-	ft_putstr_fd(redir->file, 1);
-	ft_putstr_fd("\n", 1);
+	while (redir)
+	{
+		if (ft_strncmp(redir->type, "<") == 0)
+			input_redir(redir->file);
+		else if (ft_strncmp(redir->type, ">") == 0)
+			output_redir(redir->file);
+		else if (ft_strncmp(redir->type, ">>") == 0)
+			append_redir(redir->file);
+		else if (ft_strncmp(redir->type, "<<") == 0)
+			heredoc_redir(redir->file);
+		redir = redir->next;
+	}
 }

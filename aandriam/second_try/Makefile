@@ -6,7 +6,7 @@
 #    By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 16:14:24 by aandriam          #+#    #+#              #
-#    Updated: 2024/10/19 18:28:37 by aandriam         ###   ########.fr        #
+#    Updated: 2024/10/20 09:22:49 by aandriam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,8 @@ SRCS = minishell.c \
 	   ./simple_execution/redirection_test/redirection_test.c \
 	   ./simple_execution/redirection_test/first_test/exec_t_pipe/exec_t_pipe.c \
 	   ./simple_execution/redirection_test/first_test/first_test.c \
-	   ./simple_execution/redirection_test/first_test/exec_t_pipe/exec_cmd.c \
-	   ./simple_execution/redirection_test/first_test/exec_t_pipe/exec_t_pipe.c \
+	   ./simple_execution/redirection_test/first_test/exec_t_pipe/handle_redir/handle_redir.c \
+	   ./simple_execution/redirection_test/first_test/exec_t_pipe/handle_cmd.c \
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
