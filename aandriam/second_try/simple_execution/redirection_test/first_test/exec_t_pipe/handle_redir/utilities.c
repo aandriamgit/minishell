@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_execution.h                                 :+:      :+:    :+:   */
+/*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 08:53:13 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/21 16:57:01 by aandriam         ###   ########.fr       */
+/*   Created: 2024/10/21 14:00:06 by aandriam          #+#    #+#             */
+/*   Updated: 2024/10/21 14:39:42 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIMPLE_EXECUTION_H
-# define SIMPLE_EXECUTION_H
+#include "../../first_test.h"
 
-# include "../minishell.h"
+char	*get_file_dir(char *file)
+{
+	char	*res;
+	char	*lol;
 
-void	first_test(char *cmd, char *type, char *file);
-void	input_redir_test(char *str);
-void	output_redir_test(char *str);
-void	append_redir_test(char *str);
-void	multi_redir_test(char *str);
-void	exec_combined_redir(char *cmd, char *first_redir, char *next_redir);
-
-#endif
+	lol = ft_strrchr(file, '/');
+	if (!lol)
+		return (NULL);
+	lol++;
+	res = ft_substr(file, 0, (ft_strlen(file) - ft_strlen(lol)));
+	return (res);
+}

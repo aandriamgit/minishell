@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:56:13 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/15 17:59:49 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/21 11:47:18 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ void	ft_add_history(char *input, t_vars *vars)
 		ft_putstr_fd(input, fd);
 		ft_putstr_fd("\n", fd);
 		add_history(input);
+		close(fd);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:16:14 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/16 13:18:14 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/21 11:43:15 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <unistd.h>
 
 void	ft_putstr_fd(char *s, int fd);
-char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
@@ -33,5 +32,6 @@ char	*ft_strdup(const char *s);
 void	ft_execve(char *cmd, char **argv);
 char	**ft_split(char const *s, char c);
 void	ft_free_all(char ***argv);
+char	*ft_strrchr(const char *s, int c);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 16:14:24 by aandriam          #+#    #+#              #
-#    Updated: 2024/10/20 16:01:03 by aandriam         ###   ########.fr        #
+#    Updated: 2024/10/21 17:11:16 by aandriam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS = minishell.c \
 	   ./lib/ft_strlen.c \
 	   ./lib/ft_substr.c \
 	   ./lib/ft_strjoin.c \
+	   ./lib/ft_strrchr.c \
 	   ./lib/ft_strncmp.c \
 	   ./lib/ft_free_all.c \
 	   ./lib/ft_putstr_fd.c \
@@ -35,6 +36,8 @@ SRCS = minishell.c \
 	   ./simple_execution/redirection_test/redirection_test.c \
 	   ./simple_execution/redirection_test/first_test/exec_t_pipe/exec_t_pipe.c \
 	   ./simple_execution/redirection_test/first_test/first_test.c \
+	   ./simple_execution/redirection_test/multi_redir_test/multi_redir_test.c \
+	   ./simple_execution/redirection_test/first_test/exec_t_pipe/handle_redir/utilities.c \
 	   ./simple_execution/redirection_test/first_test/exec_t_pipe/handle_redir/handle_redir.c \
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

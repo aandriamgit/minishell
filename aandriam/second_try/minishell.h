@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:13:12 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/20 16:22:57 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/21 10:58:47 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void						ft_add_history(char *input, t_vars *vars);
 int							is_special(t_vars *vars);
 void						pipe_test(t_vars *vars);
 void						redirection_test(t_vars *vars);
-char	*test_path(char *path, char *input);
+char						*test_path(char *path, char *input);
+void						ft_execve_lol(char *cmd, char **argv);
 
 #endif

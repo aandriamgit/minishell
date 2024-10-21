@@ -6,11 +6,11 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:45:26 by aandriam          #+#    #+#             */
-/*   Updated: 2024/09/24 15:45:40 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:30:01 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "lib.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
