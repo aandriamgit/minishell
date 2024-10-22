@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:27:34 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/20 16:34:44 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:30:36 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	handle_redir(t_redirection *redir)
 			output_redir(redir->file);
 		if (ft_strncmp(redir->type, ">>") == 0)
 			append_redir(redir->file);
-		if (ft_strncmp(redir->type, "<<") == 0)
-			heredoc_redir(redir->file);
 		redir = redir->next;
 	}
 }
@@ -55,7 +53,7 @@ void	handle_redir(t_redirection *redir)
 void	handle_cmd(t_pipe test_pipe, t_command *cmd, int input_fd,
 		int output_fd)
 {
-	if (test_pipe.prev && input_fd != 0)
+	if ((test_pipe.prev && input_fd != 0))
 	{
 		dup2(input_fd, STDIN_FILENO);
 		close(input_fd);

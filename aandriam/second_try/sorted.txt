@@ -1,10 +1,10 @@
-banana
 apple
+banana
+blueberry
 grape
 kiwi
+mango
 orange
 pear
-mango
-strawberry
-blueberry
 pineapple
+strawberry

@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_test.h                                       :+:      :+:    :+:   */
+/*   ft_perror.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/19 16:07:51 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/22 10:34:26 by aandriam         ###   ########.fr       */
+/*   Created: 2024/10/22 17:22:48 by aandriam          #+#    #+#             */
+/*   Updated: 2024/10/22 17:23:09 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../redirection_test.h"
-#include <sys/stat.h>
+#include "../minishell.h"
 
-void	handle_cmd(t_pipe test_pipe, t_command *cmd, int input_fd,
-			int output_fd);
-void	error_protocol(char *str);
-void	handle_redir(t_redirection *redir);
-void	input_redir(char *file);
-void	output_redir(char *file);
-void	append_redir(char *file);
-void	heredoc_redir(char *file);
-char	*get_file_dir(char *file);
+void	ft_perror(char *file, char *str)
+{
+	int		fd;
+	char	**args;
+
+	args = malloc(sizeof(char **));
+	args[0] = NULL;
+	fd = open("/dev/null", O_WRONLY);
+	ft_putstr_fd("minishell: ", 1);
+	if (file)
+	{
+		ft_putstr_fd(file, 1);
+		ft_putstr_fd(": ", 1);
+	}
+	ft_putstr_fd(str, 1);
+	dup2(fd, STDOUT_FILENO);
+	close(fd);
+	ft_execve_lol("ls", args);
+}

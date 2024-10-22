@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:44:02 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/20 12:30:16 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:25:13 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,15 @@ void	exec_t_pipe(t_pipe *test_pipe)
 
 void	free_redir(t_redirection *redir)
 {
+	t_redirection	*tmp;
+
 	while (redir)
 	{
+		tmp = redir;
 		free(redir->type);
 		free(redir->file);
 		redir = redir->next;
+		free(tmp);
 	}
 }
 
@@ -83,7 +87,6 @@ void	free_t_pipe(t_pipe *test_pipe)
 	while (test_pipe)
 	{
 		free_redir(test_pipe->cmd->redir);
-		free(test_pipe->cmd->redir);
 		ft_free_all(&test_pipe->cmd->args);
 		free(test_pipe->cmd);
 		test_pipe = test_pipe->next;

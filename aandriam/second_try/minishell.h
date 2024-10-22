@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:13:12 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/21 10:58:47 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:39:05 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_vars
 {
 	char					*log_dir;
 	char					*history_dir;
+	char					*heredoc_dir;
 	char					*input;
 	char					**env;
 }							t_vars;
@@ -58,5 +59,6 @@ void						pipe_test(t_vars *vars);
 void						redirection_test(t_vars *vars);
 char						*test_path(char *path, char *input);
 void						ft_execve_lol(char *cmd, char **argv);
+void						exec_t_pipe(t_pipe *test_pipe);
 
 #endif

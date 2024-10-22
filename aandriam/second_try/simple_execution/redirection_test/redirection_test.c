@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:52:58 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/21 16:57:58 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/22 11:16:45 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	input_redir_test(char *str)
 		ft_strdup("/not/a/directory/test.txt"));
 	ft_putstr_fd("\nredirection test with 'cat < /root'\n", 1);
 	first_test(ft_strdup("cat"), ft_strdup("<"), ft_strdup("/root"));
+	ft_putstr_fd("\nredirection test with 'cat < simple_execution'\n", 1);
+	first_test(ft_strdup("cat"), ft_strdup("<"), ft_strdup("simple_execution"));
 }
 
 void	output_redir_test(char *str)
@@ -77,6 +79,8 @@ void	output_redir_test(char *str)
 		1);
 	first_test(ft_strdup("ls"), ft_strdup(">"),
 		ft_strdup("not/a/directory/test.txt"));
+	ft_putstr_fd("\nredirection test with 'ls > simple_execution'\n", 1);
+	first_test(ft_strdup("ls"), ft_strdup(">"), ft_strdup("simple_execution"));
 }
 
 void	append_redir_test(char *str)
@@ -85,8 +89,7 @@ void	append_redir_test(char *str)
 	ft_putstr_fd("redirection test with 'ls >> output_append.txt'\n", 1);
 	first_test(ft_strdup("ls"), ft_strdup(">>"),
 		ft_strdup("output_append.txt"));
-	ft_putstr_fd("\nredirection test with 'ls >> simple_execution/output_append.txt\n",
-		1);
+	ft_putstr_fd("\nredir test 'ls >> simple_execution/output_append.txt\n", 1);
 	first_test(ft_strdup("ls"), ft_strdup(">>"),
 		ft_strdup("simple_execution/output_append.txt"));
 	ft_putstr_fd("\nredirection test with 'ls >> /root/test.txt'\n", 1);
@@ -106,5 +109,20 @@ void	multi_redir_test(char *str)
 	ft_putstr_fd("redirection test with 'sort < unsorted.txt > sorted.txt'\n",
 		1);
 	exec_combined_redir(ft_strdup("sort"), ft_strdup("< unsorted.txt"),
-		ft_strdup("sorted.txt"));
+		ft_strdup("> sorted.txt"));
+	ft_putstr_fd("\nredir test 'sort < unsorted.txt >> append_sorted.txt'\n",
+		1);
+	exec_combined_redir(ft_strdup("sort"), ft_strdup("< unsorted.txt"),
+		ft_strdup(">> append_sorted.txt"));
+	ft_putstr_fd("\nredir test 'echo bonjour >> file_one.txt > file_two.txt'\n",
+		1);
+	exec_combined_redir(ft_strdup("echo bonjour"), ft_strdup(">> file_one.txt"),
+		ft_strdup("> file_two.txt"));
+	ft_putstr_fd("\nredir test 'cat < not_existing_file.txt > cantexist.txt'\n",
+		1);
+	exec_combined_redir(ft_strdup("cat"), ft_strdup("< not_existing_file.txt"),
+		ft_strdup("> cantexist.txt"));
+	ft_putstr_fd("\nredir test 'cat < no_permission.txt > cantexist.txt'\n", 1);
+	exec_combined_redir(ft_strdup("cat"), ft_strdup("< no_permission.txt"),
+		ft_strdup("> cantexist.txt"));
 }

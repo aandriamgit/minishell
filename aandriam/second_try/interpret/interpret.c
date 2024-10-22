@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:56:13 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/21 11:47:18 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:49:15 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	exit_protocol(t_vars *vars, char **input)
 {
 	free(vars->history_dir);
 	free(vars->log_dir);
+	free(vars->heredoc_dir);
 	free(*input);
 	exit(0);
 }

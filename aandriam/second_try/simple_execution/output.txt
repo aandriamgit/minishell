@@ -1,5 +1,8 @@
 Makefile
+append_sorted.txt
 empty.txt
+file_one.txt
+file_two.txt
 get_next_line
 input.txt
 interpret
@@ -13,4 +16,5 @@ output_append.txt
 readline.supp
 shell_init
 simple_execution
+sorted.txt
 unsorted.txt

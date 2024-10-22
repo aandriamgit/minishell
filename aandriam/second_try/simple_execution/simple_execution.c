@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:32:43 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/21 16:42:51 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:34:23 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	pipe_test(t_vars *vars)
 
 void	redirection_test(t_vars *vars)
 {
-	(void)vars;
-	input_redir_test("\n []-------------------[]\ninit tests for redirection '<'\n []-------------------[]\n\n");
-	output_redir_test("\n []-------------------[]\ninit tests for redirection '>'\n []-------------------[]\n");
-	append_redir_test("\n []-------------------[]\ninit tests for redirection '>>'\n []-------------------[]\n\n");
-	multi_redir_test("\n []-------------------[]\ninit tests for combined redirections\n []-------------------[]\n\n");
+	input_redir_test("\n []---[]\ninput tests '<'\n []---[]\n\n");
+	output_redir_test("\n []---[]\noutput tests '>'\n []---[]\n");
+	append_redir_test("\n []---[]\nappend tests '>>'\n []---[]\n\n");
+	heredoc_redir_test("\n []---[]\nheredoc tests '<<'\n []---[]\n\n", vars);
+	multi_redir_test("\n []---[]\ncombined redir tests\n []---[]\n\n");
 }

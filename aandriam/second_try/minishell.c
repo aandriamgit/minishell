@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:12:29 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/20 11:27:56 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:36:14 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	shell_init(t_vars *vars, char **env)
 {
 	char	**big_param;
+	int		fd_history;
 
 	vars_init(vars, env);
 	big_param_init(&big_param, *vars);
@@ -29,7 +30,8 @@ void	shell_init(t_vars *vars, char **env)
 	}
 	else
 		exec_big_param(big_param);
-	open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
+	fd_history = open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
+	close(fd_history);
 	add_prev_history(vars);
 	ft_free_all(&big_param);
 }
@@ -43,8 +45,15 @@ void	interpret(char **input, t_vars *vars)
 	free(prompt);
 	if (access(vars->history_dir, F_OK) == 0)
 		ft_add_history(*input, vars);
+	else if (access(vars->log_dir, F_OK) == -1)
+	{
+		perror("please dont mess with the minishell_log\n");
+		vars = NULL;
+		return ;
+	}
 	else
 	{
+		perror("please dont mess with the history\n");
 		open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
 		ft_add_history(*input, vars);
 	}

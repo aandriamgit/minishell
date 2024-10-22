@@ -6,17 +6,17 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/19 18:08:14 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:36:53 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include "shell_init.h"
 
 void	vars_init(t_vars *vars, char **env)
 {
 	vars->log_dir = ft_strjoin(getenv("HOME"), "/.minishell_log");
 	vars->history_dir = ft_strjoin(vars->log_dir, "/.minishell_history");
+	vars->heredoc_dir = ft_strjoin(vars->log_dir, "/.oh_heredoc");
 	vars->env = env;
 }
 
