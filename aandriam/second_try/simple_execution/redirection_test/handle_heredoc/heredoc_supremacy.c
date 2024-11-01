@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:49:16 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/22 18:39:52 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:07:52 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ void	init_heredoc(t_vars *vars, char *eof)
 		input_heredoc = readline(">");
 		if (!input_heredoc || ft_strncmp(input_heredoc, eof) == 0)
 		{
+			if (!input_heredoc)
+			{
+				ft_putstr_fd("Minishell: warning: here-document delimited by end-of-file (wanted `",
+					1);
+				ft_putstr_fd(eof, 1);
+				ft_putstr_fd("\')\n", 1);
+			}
 			free(eof);
 			close(fd_heredoc);
 			return ;

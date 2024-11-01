@@ -1,5 +1,6 @@
 Makefile
 append_sorted.txt
+cantexist.txt
 empty.txt
 file_one.txt
 file_two.txt
