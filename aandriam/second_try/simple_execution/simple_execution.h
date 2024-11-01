@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:53:13 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/22 18:32:16 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/01 09:34:45 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void	heredoc_supremacy(t_pipe *test_pipe, t_vars *vars);
 void	init_heredoc(t_vars *vars, char *eof);
 char	*get_eof(t_pipe *test_pipe);
 void	purified_from_heredoc(t_pipe **test_pipe, char *heredoc_dir);
+void	one_pipe_test(char *str);
 
 #endif

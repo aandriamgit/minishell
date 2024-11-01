@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:13:12 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/22 18:39:05 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/01 09:12:41 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void						redirection_test(t_vars *vars);
 char						*test_path(char *path, char *input);
 void						ft_execve_lol(char *cmd, char **argv);
 void						exec_t_pipe(t_pipe *test_pipe);
+void						global_test(t_vars *vars);
 
 #endif

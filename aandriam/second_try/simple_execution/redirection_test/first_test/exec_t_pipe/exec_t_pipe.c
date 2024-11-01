@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:27:34 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/22 16:30:36 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/01 16:34:23 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@ void	ft_execve_lol(char *cmd, char **argv)
 {
 	char	*path;
 	char	*mini_cmd;
+	char	*tmp;
 
 	mini_cmd = ft_strjoin("/", cmd);
 	path = test_path(getenv("PATH"), mini_cmd);
 	if (!path)
 	{
-		ft_putstr_fd("error : command not found: ", 1);
-		ft_putstr_fd(cmd, 1);
-		ft_putstr_fd("\n", 1);
-		return ;
+		tmp = ft_strjoin(cmd, "\n");
+		ft_perror("error : command not found", tmp);
 	}
 	else
 		execve(path, argv, NULL);
@@ -53,7 +52,7 @@ void	handle_redir(t_redirection *redir)
 void	handle_cmd(t_pipe test_pipe, t_command *cmd, int input_fd,
 		int output_fd)
 {
-	if ((test_pipe.prev && input_fd != 0))
+	if (test_pipe.prev && input_fd != 0)
 	{
 		dup2(input_fd, STDIN_FILENO);
 		close(input_fd);

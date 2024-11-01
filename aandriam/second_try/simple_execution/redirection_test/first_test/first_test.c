@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:44:02 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/22 16:25:13 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/01 13:29:55 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ t_redirection	*gen_redir(char *type, char *file, void *next)
 
 void	exec_t_pipe(t_pipe *test_pipe)
 {
-	int		status;
 	int		pipe_fd[2];
 	pid_t	pid;
-	pid_t	wpid;
 	int		input_fd;
 
 	input_fd = 0;
@@ -58,14 +56,15 @@ void	exec_t_pipe(t_pipe *test_pipe)
 			handle_cmd(*test_pipe, test_pipe->cmd, input_fd, pipe_fd[1]);
 		else if (pid < 0)
 			error_protocol("fork fail");
-		if (test_pipe->prev)
+		if (test_pipe->next)
 			close(pipe_fd[1]);
+		if (input_fd != 0)
+			close(input_fd);
 		input_fd = pipe_fd[0];
 		test_pipe = test_pipe->next;
 	}
-	wpid = waitpid(pid, &status, WUNTRACED);
-	while (wpid > 0 && (!WIFEXITED(status) && WIFSIGNALED(status)))
-		wpid = waitpid(pid, &status, WUNTRACED);
+	while (wait(NULL) > 0)
+		;
 }
 
 void	free_redir(t_redirection *redir)
