@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:53:13 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/01 09:34:45 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:38:04 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ void	init_heredoc(t_vars *vars, char *eof);
 char	*get_eof(t_pipe *test_pipe);
 void	purified_from_heredoc(t_pipe **test_pipe, char *heredoc_dir);
 void	one_pipe_test(char *str);
+void	free_test_no_redir(char *str);
+void	show_errors(void);
 
 #endif

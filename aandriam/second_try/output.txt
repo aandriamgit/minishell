@@ -12,6 +12,7 @@ minishell
 minishell.c
 minishell.h
 no_permission.txt
+one
 output.txt
 output_append.txt
 readline.supp

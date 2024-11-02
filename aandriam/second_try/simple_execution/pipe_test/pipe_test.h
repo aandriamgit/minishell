@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:33:28 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/01 17:50:51 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:37:55 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,3 +19,5 @@ void	free_t_pipe_again(t_pipe **p_test);
 int		init_test(t_pipe **p_test);
 void	just_do_it(t_pipe *p_test);
 void	add_input(t_pipe **p_test, char *input);
+char	*get_err_dir(void);
+void	finish_errors(char **tmp, char **res);

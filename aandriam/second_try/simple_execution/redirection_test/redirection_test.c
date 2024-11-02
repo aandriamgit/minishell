@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:52:58 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/22 11:16:45 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:39:29 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	first_test(char *cmd, char *type, char *file)
 	exec_t_pipe(test_pipe);
 	free_t_pipe(test_pipe);
 	free(test_pipe);
+	show_errors();
 }
 
 void	input_redir_test(char *str)

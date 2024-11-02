@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:27:34 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/01 16:34:23 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/02 13:24:34 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_execve_lol(char *cmd, char **argv)
 	if (!path)
 	{
 		tmp = ft_strjoin(cmd, "\n");
-		ft_perror("error : command not found", tmp);
+		ft_perror("command not found", tmp);
 	}
 	else
 		execve(path, argv, NULL);

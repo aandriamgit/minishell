@@ -6,12 +6,11 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 09:21:29 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/22 17:22:39 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/02 13:13:38 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../first_test.h"
-
 
 void	input_redir(char *file)
 {

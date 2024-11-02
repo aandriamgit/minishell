@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:32:43 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/01 13:10:05 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/02 12:37:54 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	pipe_test(t_vars *vars)
 {
 	(void)vars;
 	one_pipe_test("\n []---[]\none pipe test\n []---[]\n\n");
+	free_test_no_redir("\n []---[]\nfree pipe test\n []---[]\n\n");
 }
 
 void	global_test(t_vars *vars)

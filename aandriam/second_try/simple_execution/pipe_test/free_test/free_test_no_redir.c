@@ -6,11 +6,48 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:05:29 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/01 18:15:06 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:27:36 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipe_test.h"
+#include "../pipe_test.h"
+
+void	show_errors(void)
+{
+	char	*res;
+	char	*tmp;
+	char	**args;
+	int		pid;
+
+	tmp = ft_strjoin(getenv("HOME"), "/.minishell_log");
+	res = ft_strjoin(tmp, "/.err_log");
+	pid = fork();
+	if (pid == 0)
+	{
+		args = malloc(sizeof(char *) * 3);
+		args[0] = ft_strdup("cat");
+		args[1] = res;
+		args[2] = NULL;
+		if (execve("/bin/cat", args, NULL) == -1)
+			ft_perror(NULL, "error execve");
+	}
+	else if (pid > 0)
+	{
+		wait(NULL);
+		finish_errors(&tmp, &res);
+	}
+}
+
+void	init_err(void)
+{
+	int		fd;
+	char	*lol;
+
+	lol = get_err_dir();
+	fd = open(lol, O_WRONLY | O_TRUNC | O_CREAT, 0755);
+	free(lol);
+	close(fd);
+}
 
 int	init_test(t_pipe **p_test)
 {
@@ -18,6 +55,7 @@ int	init_test(t_pipe **p_test)
 	char	*tmp;
 	char	**splited;
 
+	init_err();
 	ft_putstr_fd("\nyou can type ''NULL'' or ctrl+D to valide\n", 1);
 	tmp = readline("your cmd > ");
 	if (!tmp)
@@ -28,7 +66,7 @@ int	init_test(t_pipe **p_test)
 		return (0);
 	}
 	splited = ft_split(tmp, ' ');
-	if (splited[1][0] == '"')
+	if (splited[1] && splited[1][0] == '"')
 	{
 		input = ft_substr(splited[1], 1, (ft_strlen(splited[1]) - 2));
 		free(splited[1]);
@@ -45,6 +83,7 @@ void	just_do_it(t_pipe *p_test)
 	exec_t_pipe(p_test);
 	free_t_pipe(p_test);
 	free_t_pipe_again(&p_test);
+	show_errors();
 }
 
 void	add_input(t_pipe **p_test, char *input)

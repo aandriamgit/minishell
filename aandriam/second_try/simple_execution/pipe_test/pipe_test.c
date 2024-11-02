@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:32:26 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/01 17:51:03 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/02 18:13:51 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,30 @@ void	simple_test(char *first, char *second)
 	if (p_test && q_test)
 	{
 		add_pipe_next(&p_test, &q_test);
-		exec_t_pipe(p_test);
-		free_t_pipe(p_test);
-		free_t_pipe_again(&p_test);
+		ft_print_pipe(p_test);
+		just_do_it(p_test);
 	}
 	else
 		return ;
 }
 
-void	free_test_no_redir(void)
+void	free_test_no_redir(char *str)
 {
 	char	*input;
 	t_pipe	*p_test;
 
+	ft_putstr_fd(str, 1);
+	ft_putstr_fd("\nyou can input custom prompt, no redir\n", 1);
 	if (init_test(&p_test))
 	{
 		while (1)
 		{
 			input = readline("your cmd > ");
-			if (!input || ft_strncmp(input, "NULL\n") == 0)
+			if (!input || ft_strncmp(input, "NULL") == 0)
 			{
 				if (input)
 					free(input);
+				ft_print_pipe(p_test);
 				just_do_it(p_test);
 				return ;
 			}
@@ -65,6 +67,4 @@ void	one_pipe_test(char *str)
 	simple_test("echo hello", "wc -c");
 	ft_putstr_fd("\npipe test with 'echo ''hello'' | non_existent_cmd'\n", 1);
 	simple_test("echo hello", "non_existent_cmd");
-	ft_putstr_fd("\nyou can input custom prompt, no redir\n", 1);
-	free_test_no_redir();
 }

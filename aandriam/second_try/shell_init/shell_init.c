@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/22 16:36:53 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:05:31 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	vars_init(t_vars *vars, char **env)
 	vars->log_dir = ft_strjoin(getenv("HOME"), "/.minishell_log");
 	vars->history_dir = ft_strjoin(vars->log_dir, "/.minishell_history");
 	vars->heredoc_dir = ft_strjoin(vars->log_dir, "/.oh_heredoc");
+	vars->err = ft_strjoin(vars->log_dir, "/.err_log");
 	vars->env = env;
 }
 
@@ -30,11 +31,25 @@ void	big_param_init(char ***big_param, t_vars vars)
 	(*big_param)[2] = NULL;
 }
 
+void	gen_dir(t_vars *vars)
+{
+	int	fd_history;
+	int	fd_err;
+
+	fd_err = open(vars->err, O_WRONLY | O_TRUNC | O_CREAT, 0755);
+	fd_history = open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
+	close(fd_history);
+	close(fd_err);
+}
+
 void	add_prev_history(t_vars *vars)
 {
 	char	*prev;
 	int		fd;
+	int		fd_err;
 
+	fd_err = open(vars->err, O_WRONLY | O_TRUNC | O_CREAT, 0755);
+	close(fd_err);
 	fd = open(vars->history_dir, O_RDONLY);
 	prev = get_next_line(fd);
 	if (!prev)

@@ -6,7 +6,7 @@
 #    By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 16:14:24 by aandriam          #+#    #+#              #
-#    Updated: 2024/11/01 17:07:52 by aandriam         ###   ########.fr        #
+#    Updated: 2024/11/02 18:07:12 by aandriam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS = minishell.c \
 	   ./lib/ft_putstr_fd.c \
 	   ./lib/ft_putnbr_fd.c \
 	   ./lib/ft_putchar_fd.c \
+	   ./lib/ft_print_pipe.c \
 	   ./shell_init/shell_init.c \
 	   ./shell_init/exec_big_param/exec_big_param.c \
 	   ./interpret/interpret.c \
@@ -39,7 +40,8 @@ SRCS = minishell.c \
 	   ./simple_execution/redirection_test/first_test/first_test.c \
 	   ./simple_execution/pipe_test/pipe_test.c \
 	   ./simple_execution/pipe_test/simple_test.c \
-	   ./simple_execution/pipe_test/free_test_no_redir.c \
+	   ./simple_execution/pipe_test/free_test/show_errors.c \
+	   ./simple_execution/pipe_test/free_test/free_test_no_redir.c \
 	   ./simple_execution/redirection_test/handle_heredoc/handle_heredoc.c \
 	   ./simple_execution/redirection_test/handle_heredoc/heredoc_supremacy.c \
 	   ./simple_execution/redirection_test/handle_heredoc/simple_test_heredoc.c \
