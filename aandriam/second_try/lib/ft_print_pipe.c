@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 17:53:01 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/02 18:12:48 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/02 18:19:29 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_print_pipe(t_pipe *tmp)
 {
 	t_pipe	*voyager_one;
 
-	ft_putstr_fd("(--( ", 1);
+	ft_putstr_fd("()--() ", 1);
 	voyager_one = tmp;
 	while (voyager_one)
 	{
@@ -59,6 +59,6 @@ void	ft_print_pipe(t_pipe *tmp)
 		if (voyager_one)
 			ft_putstr_fd("| ", 1);
 	}
-	ft_putstr_fd(")--) ", 1);
+	ft_putstr_fd("()--() ", 1);
 	ft_putstr_fd("\n", 1);
 }
