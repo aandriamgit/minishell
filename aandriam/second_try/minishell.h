@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:13:12 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/02 18:06:27 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/04 12:27:06 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_vars
 	char					*log_dir;
 	char					*history_dir;
 	char					*heredoc_dir;
+	char					*heredoc_log;
 	char					*input;
 	char					**env;
 	char					*err;

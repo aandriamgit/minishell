@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/02 17:05:31 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/04 08:52:34 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	vars_init(t_vars *vars, char **env)
 {
 	vars->log_dir = ft_strjoin(getenv("HOME"), "/.minishell_log");
 	vars->history_dir = ft_strjoin(vars->log_dir, "/.minishell_history");
-	vars->heredoc_dir = ft_strjoin(vars->log_dir, "/.oh_heredoc");
+	vars->heredoc_dir = ft_strjoin(vars->log_dir, "/.heredoc_dir");
 	vars->err = ft_strjoin(vars->log_dir, "/.err_log");
 	vars->env = env;
 }

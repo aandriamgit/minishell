@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:04:06 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/22 18:39:09 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/04 12:43:21 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,28 @@ int	have_heredoc(t_pipe *test_pipe)
 
 void	heredoc_supremacy(t_pipe *test_pipe, t_vars *vars)
 {
-	int		fd_heredoc;
 	char	*eof;
+	int		nb;
 
+	nb = 1;
+	remove_heredoc_dir(vars);
 	while (have_heredoc(test_pipe))
 	{
-		if (access(vars->log_dir, F_OK) == 0)
+		if (access(vars->heredoc_dir, F_OK) == 0)
 		{
-			fd_heredoc = open(vars->heredoc_dir, O_WRONLY | O_TRUNC | O_CREAT,
-					0755);
-			close(fd_heredoc);
+			eof = get_eof(test_pipe);
+			init_heredoc(vars, eof);
+			purified_from_heredoc(&test_pipe, vars->heredoc_dir, nb);
 		}
 		else
-			perror("please dont mess with the minishell_log\n");
-		eof = get_eof(test_pipe);
-		init_heredoc(vars, eof);
-		purified_from_heredoc(&test_pipe, vars->heredoc_dir);
+		{
+			gen_heredoc_dir(vars);
+			eof = get_eof(test_pipe);
+			init_heredoc(vars, eof);
+			purified_from_heredoc(&test_pipe, vars->heredoc_dir, nb);
+		}
+		nb++;
 	}
 	exec_t_pipe(test_pipe);
+	remove_heredoc_dir(vars);
 }

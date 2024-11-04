@@ -6,7 +6,7 @@
 #    By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 16:14:24 by aandriam          #+#    #+#              #
-#    Updated: 2024/11/02 18:07:12 by aandriam         ###   ########.fr        #
+#    Updated: 2024/11/04 11:31:03 by aandriam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,12 +29,18 @@ SRCS = minishell.c \
 	   ./lib/ft_putnbr_fd.c \
 	   ./lib/ft_putchar_fd.c \
 	   ./lib/ft_print_pipe.c \
+	   ./lib/ft_itoa.c \
 	   ./shell_init/shell_init.c \
 	   ./shell_init/exec_big_param/exec_big_param.c \
 	   ./interpret/interpret.c \
 	   ./get_next_line/get_next_line.c \
 	   ./get_next_line/get_next_line_utils.c \
 	   ./simple_execution/simple_execution.c \
+	   ./simple_execution/redirection_test/handle_heredoc/heredoc_supremacy/get_eof.c \
+	   ./simple_execution/redirection_test/handle_heredoc/heredoc_supremacy/init_heredoc.c \
+	   ./simple_execution/redirection_test/handle_heredoc/heredoc_supremacy/gen_heredoc_dir.c \
+	   ./simple_execution/redirection_test/handle_heredoc/heredoc_supremacy/purified_from_heredoc.c \
+	   ./simple_execution/redirection_test/handle_heredoc/heredoc_supremacy/remove_heredoc_dir.c \
 	   ./simple_execution/redirection_test/redirection_test.c \
 	   ./simple_execution/redirection_test/first_test/exec_t_pipe/exec_t_pipe.c \
 	   ./simple_execution/redirection_test/first_test/first_test.c \
@@ -43,7 +49,6 @@ SRCS = minishell.c \
 	   ./simple_execution/pipe_test/free_test/show_errors.c \
 	   ./simple_execution/pipe_test/free_test/free_test_no_redir.c \
 	   ./simple_execution/redirection_test/handle_heredoc/handle_heredoc.c \
-	   ./simple_execution/redirection_test/handle_heredoc/heredoc_supremacy.c \
 	   ./simple_execution/redirection_test/handle_heredoc/simple_test_heredoc.c \
 	   ./simple_execution/redirection_test/multi_redir_test/multi_redir_test.c \
 	   ./simple_execution/redirection_test/first_test/exec_t_pipe/handle_redir/utilities.c \
