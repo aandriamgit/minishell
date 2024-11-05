@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:00:11 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/04 12:43:16 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:04:31 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	purified_from_heredoc(t_pipe **test_pipe, char *heredoc_dir, int nb)
 			lol->type = ft_strdup("<");
 			free(lol->file);
 			lol->file = getting_nb(heredoc_dir, nb);
+			return ;
 		}
 		voyager_one = voyager_one->next;
 	}

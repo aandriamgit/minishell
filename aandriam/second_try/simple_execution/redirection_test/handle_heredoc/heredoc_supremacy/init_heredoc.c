@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:03:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/04 13:24:00 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:00:15 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	init_heredoc(t_vars *vars, char *eof)
 	heredoc_nb = init_lol(&fd_heredoc, vars);
 	while (1)
 	{
-		input_heredoc = readline(">");
+		input_heredoc = readline("> ");
 		if (!input_heredoc || ft_strncmp(input_heredoc, eof) == 0)
 		{
 			if (!input_heredoc)

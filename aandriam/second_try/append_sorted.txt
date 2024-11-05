@@ -608,3 +608,13 @@ orange
 pear
 pineapple
 strawberry
+apple
+banana
+blueberry
+grape
+kiwi
+mango
+orange
+pear
+pineapple
+strawberry

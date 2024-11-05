@@ -5,6 +5,7 @@ empty.txt
 file_one.txt
 file_two.txt
 get_next_line
+ici
 input.txt
 interpret
 lib
@@ -12,12 +13,14 @@ minishell
 minishell.c
 minishell.h
 no_permission.txt
+one
 output.txt
 output_append.txt
 readline.supp
 shell_init
 simple_execution
 sorted.txt
+test
 unsorted.txt
 Makefile
 append_sorted.txt
@@ -26,6 +29,7 @@ empty.txt
 file_one.txt
 file_two.txt
 get_next_line
+ici
 input.txt
 interpret
 lib
@@ -33,10 +37,12 @@ minishell
 minishell.c
 minishell.h
 no_permission.txt
+one
 output.txt
 output_append.txt
 readline.supp
 shell_init
 simple_execution
 sorted.txt
+test
 unsorted.txt

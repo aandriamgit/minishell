@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:01:08 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/04 10:01:30 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:51:19 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	*get_eof(t_pipe *test_pipe)
 				lol = lol->next;
 			}
 			res = ft_strdup(lol->file);
+			return (res);
 		}
 		voyager_one = voyager_one->next;
 	}
