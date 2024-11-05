@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:32:43 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/02 12:37:54 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:47:32 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	is_special(t_vars *vars)
 
 void	pipe_test(t_vars *vars)
 {
-	(void)vars;
-	one_pipe_test("\n []---[]\none pipe test\n []---[]\n\n");
-	free_test_no_redir("\n []---[]\nfree pipe test\n []---[]\n\n");
+	one_pipe_test("\n []---[]\none pipe test\n []---[]\n\n", vars);
+	free_test_no_redir("\n []---[]\nfree pipe test\n []---[]\n\n", vars);
+	free_test_w_redir("\n []---[]\nfree pipe test(2)\n []---[]\n\n", vars);
 }
 
 void	global_test(t_vars *vars)

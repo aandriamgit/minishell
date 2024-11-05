@@ -6,13 +6,13 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:32:26 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/02 18:13:51 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:49:07 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipe_test.h"
 
-void	simple_test(char *first, char *second)
+void	simple_test(char *first, char *second, t_vars *vars)
 {
 	t_pipe	*p_test;
 	t_pipe	*q_test;
@@ -29,13 +29,13 @@ void	simple_test(char *first, char *second)
 	{
 		add_pipe_next(&p_test, &q_test);
 		ft_print_pipe(p_test);
-		just_do_it(p_test);
+		just_do_it(p_test, vars);
 	}
 	else
 		return ;
 }
 
-void	free_test_no_redir(char *str)
+void	free_test_no_redir(char *str, t_vars *vars)
 {
 	char	*input;
 	t_pipe	*p_test;
@@ -52,7 +52,7 @@ void	free_test_no_redir(char *str)
 				if (input)
 					free(input);
 				ft_print_pipe(p_test);
-				just_do_it(p_test);
+				just_do_it(p_test, vars);
 				return ;
 			}
 			add_input(&p_test, input);
@@ -60,11 +60,35 @@ void	free_test_no_redir(char *str)
 	}
 }
 
-void	one_pipe_test(char *str)
+void	free_test_w_redir(char *str, t_vars *vars)
+{
+	char	*input;
+	t_pipe	*p_test;
+
+	ft_putstr_fd(str, 1);
+	ft_putstr_fd("\nyou can input custom prompt, with redir\n", 1);
+	init_err(vars);
+	p_test = NULL;
+	while (1)
+	{
+		input = readline("your cmd > ");
+		if (!input || ft_strncmp(input, "NULL") == 0)
+		{
+			if (input)
+				free(input);
+			ft_print_pipe(p_test);
+			just_do_it(p_test, vars);
+			return ;
+		}
+		add_input_w_redir(input, &p_test);
+	}
+}
+
+void	one_pipe_test(char *str, t_vars *vars)
 {
 	ft_putstr_fd(str, 1);
 	ft_putstr_fd("pipe test with 'echo ''hello'' | wc -c'\n", 1);
-	simple_test("echo hello", "wc -c");
+	simple_test("echo hello", "wc -c", vars);
 	ft_putstr_fd("\npipe test with 'echo ''hello'' | non_existent_cmd'\n", 1);
-	simple_test("echo hello", "non_existent_cmd");
+	simple_test("echo hello", "non_existent_cmd", vars);
 }

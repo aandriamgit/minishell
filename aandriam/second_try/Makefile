@@ -6,7 +6,7 @@
 #    By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 16:14:24 by aandriam          #+#    #+#              #
-#    Updated: 2024/11/04 11:31:03 by aandriam         ###   ########.fr        #
+#    Updated: 2024/11/05 15:44:10 by aandriam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS = minishell.c \
 	   ./simple_execution/pipe_test/simple_test.c \
 	   ./simple_execution/pipe_test/free_test/show_errors.c \
 	   ./simple_execution/pipe_test/free_test/free_test_no_redir.c \
+	   ./simple_execution/pipe_test/free_test/free_test_w_redir.c \
 	   ./simple_execution/redirection_test/handle_heredoc/handle_heredoc.c \
 	   ./simple_execution/redirection_test/handle_heredoc/simple_test_heredoc.c \
 	   ./simple_execution/redirection_test/multi_redir_test/multi_redir_test.c \

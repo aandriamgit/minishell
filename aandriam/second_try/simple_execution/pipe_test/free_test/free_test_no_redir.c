@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:05:29 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/02 17:27:36 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:45:28 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	show_errors(void)
 	}
 }
 
-void	init_err(void)
+static void	init_error(void)
 {
 	int		fd;
 	char	*lol;
@@ -55,7 +55,7 @@ int	init_test(t_pipe **p_test)
 	char	*tmp;
 	char	**splited;
 
-	init_err();
+	init_error();
 	ft_putstr_fd("\nyou can type ''NULL'' or ctrl+D to valide\n", 1);
 	tmp = readline("your cmd > ");
 	if (!tmp)
@@ -78,9 +78,9 @@ int	init_test(t_pipe **p_test)
 	return (1);
 }
 
-void	just_do_it(t_pipe *p_test)
+void	just_do_it(t_pipe *p_test, t_vars *vars)
 {
-	exec_t_pipe(p_test);
+	heredoc_supremacy(p_test, vars);
 	free_t_pipe(p_test);
 	free_t_pipe_again(&p_test);
 	show_errors();

@@ -5,6 +5,7 @@ empty.txt
 file_one.txt
 file_two.txt
 get_next_line
+ici
 input.txt
 interpret
 lib
@@ -19,4 +20,5 @@ readline.supp
 shell_init
 simple_execution
 sorted.txt
+test
 unsorted.txt
