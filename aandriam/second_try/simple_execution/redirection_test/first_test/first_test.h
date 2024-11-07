@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:07:51 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/22 10:34:26 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:31:06 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,3 +22,5 @@ void	output_redir(char *file);
 void	append_redir(char *file);
 void	heredoc_redir(char *file);
 char	*get_file_dir(char *file);
+void	ft_echo(t_command *cmd);
+void	ft_cd(t_command *cmd);

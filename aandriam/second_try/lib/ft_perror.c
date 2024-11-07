@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:22:48 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/02 16:20:57 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:13:47 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,15 @@ void	ft_perror(char *file, char *str)
 	args = malloc(sizeof(char **));
 	args[0] = NULL;
 	fd = open("/dev/null", O_WRONLY);
-	ft_putstr_fd("minishell: ", err);
+	if (file || str)
+		ft_putstr_fd("\033[38;2;243;139;168m[minishell]\033[0m ", err);
 	if (file)
 	{
 		ft_putstr_fd(file, err);
 		ft_putstr_fd(": ", err);
 	}
-	ft_putstr_fd(str, err);
+	if (str)
+		ft_putstr_fd(str, err);
 	close(err);
 	dup2(fd, STDOUT_FILENO);
 	close(fd);

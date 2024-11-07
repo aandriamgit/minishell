@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:27:34 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/02 13:24:34 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:34:08 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@ void	ft_execve_lol(char *cmd, char **argv)
 		execve(path, argv, NULL);
 }
 
-void	error_protocol(char *str)
-{
-	perror(str);
-	exit(EXIT_FAILURE);
-}
-
 void	handle_redir(t_redirection *redir)
 {
 	while (redir)
@@ -47,6 +41,43 @@ void	handle_redir(t_redirection *redir)
 			append_redir(redir->file);
 		redir = redir->next;
 	}
+}
+
+int	is_built_ins(t_command *cmd)
+{
+	if (ft_strncmp(cmd->args[0], "echo") == 0)
+		return (1);
+	else if (ft_strncmp(cmd->args[0], "cd") == 0)
+		return (1);
+	else if (ft_strncmp(cmd->args[0], "pwd") == 0)
+		return (1);
+	else if (ft_strncmp(cmd->args[0], "export") == 0)
+		return (1);
+	else if (ft_strncmp(cmd->args[0], "unset") == 0)
+		return (1);
+	else if (ft_strncmp(cmd->args[0], "env") == 0)
+		return (1);
+	else if (ft_strncmp(cmd->args[0], "exit") == 0)
+		return (1);
+	return (0);
+}
+
+void	built_ins(t_command *cmd)
+{
+	if (ft_strncmp(cmd->args[0], "echo") == 0)
+		ft_echo(cmd);
+	else if (ft_strncmp(cmd->args[0], "cd") == 0)
+		ft_cd(cmd);
+	// else if (ft_strncmp(cmd->args[0], "pwd") == 0)
+	// 	ft_pwd(cmd);
+	// else if (ft_strncmp(cmd->args[0], "export") == 0)
+	// 	ft_export(cmd);
+	// else if (ft_strncmp(cmd->args[0], "unset") == 0)
+	// 	ft_unset(cmd);
+	// else if (ft_strncmp(cmd->args[0], "env") == 0)
+	// 	ft_env(cmd);
+	// else
+	// 	ft_exit(cmd);
 }
 
 void	handle_cmd(t_pipe test_pipe, t_command *cmd, int input_fd,
@@ -63,5 +94,8 @@ void	handle_cmd(t_pipe test_pipe, t_command *cmd, int input_fd,
 		close(output_fd);
 	}
 	handle_redir(cmd->redir);
-	ft_execve_lol(cmd->cmd, cmd->args);
+	if (is_built_ins(cmd))
+		built_ins(cmd);
+	else
+		ft_execve_lol(cmd->cmd, cmd->args);
 }

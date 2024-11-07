@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:12:29 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/05 13:26:13 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:09:03 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	interpret(char **input, t_vars *vars)
 	char	*prompt;
 
 	prompt = nice_prompt();
-
 	*input = readline(prompt);
 	free(prompt);
 	if (access(vars->history_dir, F_OK) == 0)

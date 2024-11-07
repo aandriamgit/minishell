@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:44:02 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/01 13:29:55 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:28:18 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void	exec_t_pipe(t_pipe *test_pipe)
 	{
 		if (test_pipe->prev || test_pipe->next)
 			if (pipe(pipe_fd) == -1)
-				error_protocol("create pipe fail");
+				ft_perror("pipe error", NULL);
 		pid = fork();
 		if (pid == 0)
 			handle_cmd(*test_pipe, test_pipe->cmd, input_fd, pipe_fd[1]);
 		else if (pid < 0)
-			error_protocol("fork fail");
+			ft_perror("fork error", NULL);
 		if (test_pipe->next)
 			close(pipe_fd[1]);
 		if (input_fd != 0)
