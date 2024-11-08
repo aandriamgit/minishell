@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   ft_echo_chill.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 14:25:55 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/08 10:42:59 by aandriam         ###   ########.fr       */
+/*   Created: 2024/11/08 10:40:54 by aandriam          #+#    #+#             */
+/*   Updated: 2024/11/08 10:43:03 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../first_test.h"
 
-void	with_flag(char **args)
+static void	with_flag(char **args)
 {
 	char	**tab;
 	int		i;
@@ -28,7 +28,7 @@ void	with_flag(char **args)
 	}
 }
 
-void	ft_echo(t_command *cmd)
+void	ft_echo_chill(t_command *cmd)
 {
 	char	**tab;
 	int		i;
@@ -48,5 +48,4 @@ void	ft_echo(t_command *cmd)
 		}
 		ft_putstr_fd("\n", STDOUT_FILENO);
 	}
-	ft_perror(NULL, NULL);
 }

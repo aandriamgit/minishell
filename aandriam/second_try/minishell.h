@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:13:12 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/04 12:27:06 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/08 10:31:27 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "get_next_line/get_next_line.h"
 # include "lib/lib.h"
+# include <sys/stat.h>
 
 typedef struct s_redirection
 {
@@ -62,7 +63,7 @@ void						redirection_test(t_vars *vars);
 char						*test_path(char *path, char *input);
 void						ft_execve_lol(char *cmd, char **argv);
 void						exec_t_pipe(t_pipe *test_pipe);
-void						global_test(t_vars *vars);
+void						custom_prompt(t_vars *vars);
 void						gen_dir(t_vars *vars);
 void						ft_print_pipe(t_pipe *tmp);
 

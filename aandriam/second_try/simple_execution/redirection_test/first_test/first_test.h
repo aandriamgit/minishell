@@ -6,12 +6,11 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:07:51 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/07 15:31:06 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:00:00 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../redirection_test.h"
-#include <sys/stat.h>
 
 void	handle_cmd(t_pipe test_pipe, t_command *cmd, int input_fd,
 			int output_fd);
@@ -24,3 +23,7 @@ void	heredoc_redir(char *file);
 char	*get_file_dir(char *file);
 void	ft_echo(t_command *cmd);
 void	ft_cd(t_command *cmd);
+void	w_pipe(t_pipe *test_pipe);
+void	no_pipe(t_pipe *test_pipe);
+void	ft_echo_chill(t_command *cmd);
+void	ft_cd_chill(t_command *cmd);

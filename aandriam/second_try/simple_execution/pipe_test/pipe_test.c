@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:32:26 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/05 16:49:07 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/08 09:17:10 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	free_test_w_redir(char *str, t_vars *vars)
 
 	ft_putstr_fd(str, 1);
 	ft_putstr_fd("\nyou can input custom prompt, with redir\n", 1);
+	ft_putstr_fd("\n[]type ''NULL'' or ctrl+D to valide[]\n", 1);
 	init_err(vars);
 	p_test = NULL;
 	while (1)

@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:16:14 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/04 11:30:41 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/08 10:58:38 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ void	ft_free_all(char ***argv);
 char	*ft_strrchr(const char *s, int c);
 void	ft_perror(char *file, char *str);
 char	*ft_itoa(int n);
+void	ft_perror_fork(char *file, char *str);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 16:14:24 by aandriam          #+#    #+#              #
-#    Updated: 2024/11/07 15:32:21 by aandriam         ###   ########.fr        #
+#    Updated: 2024/11/08 11:40:02 by aandriam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ OBJ_DIR = .obj
 SRCS = minishell.c \
 	   ./lib/ft_split.c \
 	   ./lib/ft_perror.c \
+	   ./lib/ft_perror_fork.c \
 	   ./lib/ft_execve.c \
 	   ./lib/ft_strdup.c \
 	   ./lib/ft_strlen.c \
@@ -44,6 +45,7 @@ SRCS = minishell.c \
 	   ./simple_execution/redirection_test/redirection_test.c \
 	   ./simple_execution/redirection_test/first_test/exec_t_pipe/exec_t_pipe.c \
 	   ./simple_execution/redirection_test/first_test/first_test.c \
+	   ./simple_execution/redirection_test/first_test/exec_t_pipe/extras.c \
 	   ./simple_execution/pipe_test/pipe_test.c \
 	   ./simple_execution/pipe_test/simple_test.c \
 	   ./simple_execution/pipe_test/free_test/show_errors.c \
@@ -52,6 +54,8 @@ SRCS = minishell.c \
 	   ./simple_execution/redirection_test/handle_heredoc/handle_heredoc.c \
 	   ./simple_execution/redirection_test/handle_heredoc/simple_test_heredoc.c \
 	   ./simple_execution/redirection_test/multi_redir_test/multi_redir_test.c \
+	   ./simple_execution/redirection_test/first_test/exec_t_pipe/no_pipe/ft_echo_chill.c \
+	   ./simple_execution/redirection_test/first_test/exec_t_pipe/no_pipe/ft_cd_chill.c \
 	   ./simple_execution/redirection_test/first_test/exec_t_pipe/handle_redir/utilities.c \
 	   ./simple_execution/redirection_test/first_test/exec_t_pipe/handle_redir/handle_redir.c \
 	   ./simple_execution/redirection_test/first_test/exec_t_pipe/built_ins/ft_echo.c \

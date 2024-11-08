@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_perror.c                                        :+:      :+:    :+:   */
+/*   ft_perror_fork.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 17:22:48 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/08 09:01:27 by aandriam         ###   ########.fr       */
+/*   Created: 2024/11/08 10:50:36 by aandriam          #+#    #+#             */
+/*   Updated: 2024/11/08 10:58:00 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*get_err_dir(void)
+static char	*get_err_dir(void)
 {
 	char	*res;
 	char	*tmp;
@@ -23,7 +23,7 @@ char	*get_err_dir(void)
 	return (res);
 }
 
-void	ft_perror(char *file, char *str)
+static void	extras(char *file, char *str)
 {
 	int		fd;
 	int		err;
@@ -50,4 +50,17 @@ void	ft_perror(char *file, char *str)
 	close(fd);
 	ft_execve_lol("ls", args);
 	ft_putstr_fd("smt went wrong", err);
+}
+
+void	ft_perror_fork(char *file, char *str)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == 0)
+		extras(file, str);
+	else if (pid < 0)
+		ft_perror("fork error\n", NULL);
+	else
+		wait(NULL);
 }
