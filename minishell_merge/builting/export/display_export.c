@@ -6,15 +6,15 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:48:05 by mravelon          #+#    #+#             */
-/*   Updated: 2024/10/17 14:58:12 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:29:16 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void mini_display(char *tmp)
+void	mini_display(char *tmp)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tmp[i])
@@ -38,10 +38,10 @@ void mini_display(char *tmp)
 	}
 }
 
-void display_export_list(t_list **list)
+void	display_export_list(t_list **list)
 {
-	t_list *tmp;
-	
+	t_list	*tmp;
+
 	tmp = *list;
 	while (tmp)
 	{

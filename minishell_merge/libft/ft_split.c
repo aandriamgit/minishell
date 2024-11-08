@@ -3,97 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 15:37:58 by mravelon          #+#    #+#             */
-/*   Updated: 2024/10/17 16:15:07 by mravelon         ###   ########.fr       */
+/*   Created: 2024/09/22 15:32:37 by aandriam          #+#    #+#             */
+/*   Updated: 2024/09/22 15:32:53 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "../minishell.h"
+#include "../minishell.h"
 
-void initiat(int **i, int **j, int **start, int **end)
+static int	ft_count_words(const char *s, char c)
 {
-	*i = 0;
-	*j = 0;
-	*start = 0;
-	*end = 0;
-}
-
-
-
-int count_bloc(char *str, char c)
-{
-	int i;
-	int count;
+	size_t	result;
+	size_t	i;
 
 	i = 0;
-	count = 0;
-	while (str[i] == c)
-		i++;
-	while (str[i])
+	result = 0;
+	while (s[i] != '\0')
 	{
-		if (str[i] != c)
+		if (s[i] != c)
 		{
-			count++;
-			while (str[i] != c && str[i])
-					i++;
+			result++;
+			while (s[i] != c && s[i] != '\0')
+				i++;
+			if (s[i] == '\0' && s[i - 1] != c)
+				return (result);
 		}
-		while(str[i] == c && str[i])
-			i++;
+		i++;
 	}
-	return (count);
+	return (result);
 }
 
-
-char	**ft_split(char *str, char c)
+char	**ft_split(char const *s, char c)
 {
-	char **res;
-	int i;
-	int j;
-	int start;
+	char	**spliteds;
+	size_t	i;
+	size_t	j;
+	size_t	start;
 
 	i = 0;
 	j = 0;
-	start = 0;
-	res = malloc(sizeof(char *) * (count_bloc(str, c) + 1));
-	if (!res)
+	spliteds = malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
+	if (spliteds == 0)
 		return (NULL);
-	while (str[i] == c)
-		i++;
-	while (str[i])
+	spliteds[ft_count_words(s, c)] = NULL;
+	while (s[i] != '\0')
 	{
-		if (str[i] != c)
+		if (s[i] != c)
 		{
 			start = i;
-			while (str[i] != c && str[i])
+			while (s[i] != c && s[i] != '\0')
 				i++;
-			res[j] = ft_substr(str, start, i - 1);
-			j++;
+			spliteds[j++] = ft_substr(s, start, (i - start));
 		}
-		while (str[i] == c && str[i])
-			i++;
+		if (s[i++] == '\0')
+			return (spliteds);
 	}
-	res[j] = NULL;
-	return (res);
+	return (spliteds);
 }
-
-
-/*int	main(int argc, char **argv)
-{
-	char **res;
-	int i;
-
-	i = 0;
-	res = NULL;
-	if(argc == 2)
-	{
-		res = ft_split(argv[1], ' ');
-		while (res[i])
-		{
-			printf("res[%d] = %s\n", i, res[i]);
-			i++;
-		}
-	}
-	return (1);
-}*/

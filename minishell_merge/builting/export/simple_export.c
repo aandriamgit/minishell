@@ -6,17 +6,17 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 10:37:14 by mravelon          #+#    #+#             */
-/*   Updated: 2024/10/17 14:54:28 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:30:10 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-t_list   *duplicate_export(t_list *env)
+t_list	*duplicate_export(t_list *env)
 {
-	int i;
-	t_list *export;
-	t_list *tmp;
+	int		i;
+	t_list	*export;
+	t_list	*tmp;
 
 	i = 0;
 	export = NULL;
@@ -32,7 +32,7 @@ t_list   *duplicate_export(t_list *env)
 
 void	simple_export(t_list *env)
 {
-	t_list *export;
+	t_list	*export;
 
 	export = duplicate_export(env);
 	ordered_list(&export);

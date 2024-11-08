@@ -6,15 +6,15 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:09:30 by mravelon          #+#    #+#             */
-/*   Updated: 2024/10/11 14:40:40 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:41:53 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int check_assignation(char *str)
+int	check_assignation(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -26,10 +26,9 @@ int check_assignation(char *str)
 	return (0);
 }
 
-
 t_list	*creat_bloc_of_list(char *str)
 {
-	t_list *list;
+	t_list	*list;
 
 	list = malloc(sizeof(t_list));
 	if (!list)

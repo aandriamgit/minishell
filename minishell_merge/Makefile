@@ -1,5 +1,7 @@
 NAME = minishell
 
+OBJ_DIR = obj
+
 SRC = minishell.c\
 	  ./builting/env/env.c\
 	  ./libft/ft_strlen.c\
@@ -28,16 +30,23 @@ SRC = minishell.c\
 	  ./interpret/interpret.c \
 	  ./handler/handler.c \
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 CFLAGS = -Wall -Wextra -Werror -g
 
-all : $(NAME)
+$(OBJ_DIR)/%.o: %.c
+	mkdir -p $(OBJ_DIR)/$(dir $<)
+	cc $(CFLAGS) -c $< -o $@
 
 $(NAME):$(OBJ)
 		cc $(FLAGS) $(OBJ) -lreadline -o $(NAME)
+
+all : $(NAME)
+
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ) $(OBJ_DIR)
+
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
+
 re: fclean all
