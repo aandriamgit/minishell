@@ -6,10 +6,11 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:12:29 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/08 09:04:49 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:58:55 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "lib/lib.h"
 #include "minishell.h"
 
 void	shell_init(t_vars *vars, char **env)
