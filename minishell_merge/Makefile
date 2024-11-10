@@ -28,7 +28,6 @@ SRC = minishell.c\
 	  ./get_next_line/get_next_line.c \
 	  ./get_next_line/get_next_line_utils.c \
 	  ./interpret/interpret.c \
-	  ./handler/handler.c \
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 

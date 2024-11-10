@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handler.c                                          :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 16:53:01 by mravelon          #+#    #+#             */
-/*   Updated: 2024/10/17 17:02:54 by mravelon         ###   ########.fr       */
+/*   Created: 2024/11/08 14:18:38 by mravelon          #+#    #+#             */
+/*   Updated: 2024/11/09 13:36:25 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#ifndef PARSING_H
+# define PARSING_H
 
-char	*nice_prompt_lol(void)
-{
-	char	*res;
-	char	*tmp;
-	char	buffer[1024];
+# include <stdlib.h>
+# include <unistd.h>
 
-	getcwd(buffer, 1024);
-	tmp = ft_strjoin("\033[38;2;166;227;161m╭\033[38;2;148;226;213m ", buffer);
-	res = ft_strjoin(tmp, "\033[38;2;137;180;250m  \033[0m");
-	free(tmp);
-	return (res);
-}
+void	check_input(char **str);
+void	formating(char **str);
+
+#endif
