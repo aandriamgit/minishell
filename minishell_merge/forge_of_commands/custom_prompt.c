@@ -6,19 +6,22 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:42:32 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/10 18:07:56 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/13 09:27:43 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "forge_of_commands.h"
 
-static void	extras(char **splited, char **input, t_redirection_a **to_add,
+static void	extras(char ***splited, char **input, t_redirection_a **to_add,
 		t_redirection_a **res)
 {
-	splited = ft_split_a(*input, ' ');
+	char	**lol;
+
+	lol = *splited;
+	lol = ft_split_a(*input, ' ');
 	free(*input);
-	*to_add = gen_redir(ft_strdup_a(splited[0]), ft_strdup_a(splited[1]), NULL);
-	ft_free_tab(&splited);
+	*to_add = gen_redir(ft_strdup_a(lol[0]), ft_strdup_a(lol[1]), NULL);
+	ft_free_tab(&lol);
 	add_redir_end(res, to_add);
 }
 
@@ -45,7 +48,7 @@ static t_redirection_a	*getting_redir(void)
 			}
 			return (res);
 		}
-		extras(splited, &input, &to_add, &res);
+		extras(&splited, &input, &to_add, &res);
 	}
 }
 
@@ -71,6 +74,7 @@ void	custom_prompt(t_vars *vars, t_pipe_a **pipe_a)
 {
 	char	*input;
 
+	(void)vars;
 	ft_putstr_fd_a("\n\n[]--[]u can input custom prompt[]--[]\n\n", 1);
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:01:24 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/11 15:52:40 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/13 09:17:46 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ int		check_list(t_list **env, char *str);
 int		unset(t_list **environement, char *str);
 int		check_by_list(t_list **env, char *str);
 int		compare_param(char *parameter, char *str);
-
-char	*ft_substr(char *str, int start, int end);
-int		ft_strlen(const char *str);
-int		ft_strcmp(char *first, char *second);
-char	**ft_split(char *s, char c);
 
 int		check_assignation(char *str);
 t_list	*creat_bloc_of_list(char *str);

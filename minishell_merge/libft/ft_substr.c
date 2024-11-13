@@ -6,13 +6,13 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:53:44 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/08 15:40:18 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/13 09:41:30 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "lib.h"
 
-char	*ft_substr(char *str, int start, int end)
+char	*ft_substr(const char *str, int start, int end)
 {
 	char	*new;
 	size_t	i;

@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:21:46 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/12 15:47:21 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/13 09:56:28 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void			ft_perror_fork(char *file, char *str, t_vars *vars);
 void			ft_execve_row(char *cmd, char **argv);
 void			ft_execve_fork(char *cmd, char **argv);
 void			ft_free_tab(char ***argv);
+void			ft_free_t_list(t_list **env);
 t_command_a		*gen_cmd(char *cmd, char **big_param, void *redir, void *next);
 t_pipe_a		*gen_pipe_a(t_command_a *cmd, t_pipe_a *prev, t_pipe_a *next);
 t_redirection_a	*gen_redir(char *type, char *file, void *next);

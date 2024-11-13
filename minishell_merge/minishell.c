@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/13 09:00:18 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/13 09:44:56 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	handler(int signum)
 static void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
 {
 	char	**big_param;
+	int		fd;
 
 	*input = NULL;
 	*env_cpy = duplicate_env(env);
@@ -47,44 +48,47 @@ static void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
 		if (access(vars->history_dir, F_OK) == 0)
 			add_prev_history(vars);
 		else
-			open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
+		{
+			fd = open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
+			close(fd);
+		}
 		return ;
 	}
 	else
 		exec_big_param(big_param);
-	open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
+	fd = open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
+	close(fd);
 	add_prev_history(vars);
 	ft_free_all(&big_param);
 }
 
-static void	interpret(char **input, t_vars *vars, t_pipe *cmd)
+static void	interpret(char **input, t_vars *vars, t_pipe **cmd)
 {
 	char	*prompt;
-	int		fd;
 
 	prompt = nice_prompt();
 	*input = readline(prompt);
 	free(prompt);
 	if (*input == NULL)
+	{
 		exit_protocol(vars, input);
+		return ;
+	}
 	if (access(vars->history_dir, F_OK) == 0)
 		ft_add_history(*input, vars);
 	else
-	{
-		fd = open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
 		ft_add_history(*input, vars);
-	}
 	unclosed_quote(input);
 	vars->input = *input;
 	formating(input);
-	close(fd);
+	(void)cmd;
 }
 
-static void	forge_of_commands(t_pipe *cmd, t_vars *vars)
+static void	forge_of_commands(t_pipe **cmd, t_vars *vars)
 {
 	t_pipe_a	*pipe_a;
 
-	pipe_a = convert_t_pipe_a(cmd);
+	pipe_a = convert_t_pipe_a(*cmd);
 	init_stderr(vars->stderr_a);
 	if (ft_strncmp_a(vars->input, "custom_prompt") == 0)
 		custom_prompt(vars, &pipe_a);
@@ -96,7 +100,7 @@ int	main(int argc, char **argv, char **env)
 {
 	t_list	*env_cpy;
 	t_vars	vars;
-	t_pipe	cmd;
+	t_pipe	*cmd;
 	char	*input;
 
 	(void)argv;
