@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:25:37 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/10 14:55:30 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/13 07:54:51 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	extras(char *file, char *str, t_vars *vars)
 	char	*err_dir;
 	char	**args;
 
-	err_dir = vars->err_dir;
+	err_dir = vars->stderr_a->dir;
 	err = open(err_dir, O_WRONLY | O_APPEND);
 	free(err_dir);
 	args = malloc(sizeof(char **));
@@ -61,7 +61,7 @@ void	ft_perror_row(char *file, char *str, t_vars *vars)
 	char	*err_dir;
 	char	**args;
 
-	err_dir = vars->err_dir;
+	err_dir = vars->stderr_a->dir;
 	err = open(err_dir, O_WRONLY | O_APPEND);
 	args = malloc(sizeof(char **));
 	args[0] = NULL;
@@ -79,5 +79,5 @@ void	ft_perror_row(char *file, char *str, t_vars *vars)
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
 	ft_execve_row("ls", args);
-	ft_putstr_fd_a("smt went wrong", err);
+	ft_putstr_fd_a("smt went wrong in ft_execve_row\n", err);
 }

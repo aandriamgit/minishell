@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 08:55:38 by aandriam          #+#    #+#             */
-/*   Updated: 2024/04/16 10:55:48 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:54:36 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ static char	*draw_the_line(char *buffer)
 		return (NULL);
 	if (have_nl(buffer) == 'n')
 	{
-		new_line = ft_substr(buffer, 0, ft_strlen(buffer));
+		new_line = ft_substr_a(buffer, 0, ft_strlen_a(buffer));
 		return (new_line);
 	}
 	while (buffer[i] != '\n')
 		i++;
-	new_line = ft_substr(buffer, 0, (i + 1));
+	new_line = ft_substr_a(buffer, 0, (i + 1));
 	return (new_line);
 }
 
@@ -83,7 +83,7 @@ static char	*purification(char *buffer)
 	}
 	while (buffer[i] != '\n')
 		i++;
-	new_buff = ft_substr(buffer, (i + 1), ft_strlen(buffer));
+	new_buff = ft_substr_a(buffer, (i + 1), ft_strlen_a(buffer));
 	free(buffer);
 	buffer = NULL;
 	return (new_buff);

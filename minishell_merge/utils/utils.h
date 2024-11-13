@@ -6,12 +6,14 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:21:46 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/10 18:07:09 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:47:21 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../get_next_line/get_next_line.h"
 #include "../shell_init/shell_init.h"
 #include "lib/lib.h"
+#include <sys/stat.h>
 
 void			ft_perror_row(char *file, char *str, t_vars *vars);
 void			ft_perror_fork(char *file, char *str, t_vars *vars);
@@ -24,3 +26,4 @@ t_redirection_a	*gen_redir(char *type, char *file, void *next);
 void			add_redir_end(t_redirection_a **res, t_redirection_a **to_add);
 void			add_pipe_end(t_pipe_a **p_test, t_pipe_a **to_add);
 void			ft_print_pipe_a(t_pipe_a *tmp);
+void			ft_execve_path(char *cmd, char **argv, t_vars *vars);

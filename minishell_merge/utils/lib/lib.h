@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:33:52 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/10 17:40:06 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/12 06:48:37 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,3 +24,6 @@ char	**ft_split_a(char const *s, char c);
 char	*ft_substr_a(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen_a(const char *s);
 char	*ft_strdup_a(const char *s);
+char	*ft_strjoin_a(char const *s1, char const *s2);
+char	*ft_itoa_a(int n);
+char	*ft_strrchr_a(const char *s, int c);

@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   binary_tree.c                                      :+:      :+:    :+:   */
+/*   exec_built_ins_n.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 13:34:06 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/09 13:46:36 by aandriam         ###   ########.fr       */
+/*   Created: 2024/11/13 08:41:15 by aandriam          #+#    #+#             */
+/*   Updated: 2024/11/13 08:51:43 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "binary_tree.h"
+#include "../exec_t_pipe_a.h"
 
-t_pipe	*binary_tree(char *format_cmd)
-{
-	t_pipe	*cmd;
-
-	cmd = down_pipe(format_cmd);
-	return (cmd);
-}
+void	ft_cd_n(t_command_a *cmd, t_vars *vars);
+void	ft_echo_n(t_command_a *cmd);

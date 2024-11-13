@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:00:16 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/10 15:27:12 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:46:55 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,48 @@ void	ft_execve_row(char *cmd, char **argv)
 		ft_putstr_fd_a("error fork ft_execve_row\n", 1);
 		exit(1);
 	}
+}
+
+static char	*test_path(char *path, char *input)
+{
+	char	**res;
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	res = ft_split_a(path, ':');
+	while (res[i])
+	{
+		tmp = ft_strjoin_a(res[i], input);
+		if ((access(tmp, X_OK)) == 0)
+		{
+			ft_free_tab(&res);
+			free(input);
+			input = NULL;
+			return (tmp);
+		}
+		free(tmp);
+		i++;
+	}
+	free(input);
+	ft_free_tab(&res);
+	input = NULL;
+	return (NULL);
+}
+
+void	ft_execve_path(char *cmd, char **argv, t_vars *vars)
+{
+	char	*path;
+	char	*mini_cmd;
+	char	*tmp;
+
+	mini_cmd = ft_strjoin_a("/", cmd);
+	path = test_path(getenv("PATH"), mini_cmd);
+	if (!path)
+	{
+		tmp = ft_strjoin_a(cmd, "\n");
+		ft_perror_row("command not found", tmp, vars);
+	}
+	else
+		execve(path, argv, NULL);
 }

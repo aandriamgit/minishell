@@ -6,13 +6,14 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/10 18:18:47 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:23:53 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line/get_next_line.h"
 #include "minishell.h"
 
-void	handler(int signum)
+static void	handler(int signum)
 {
 	char	*res;
 	char	*tmp;
@@ -32,7 +33,7 @@ void	handler(int signum)
 	}
 }
 
-void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
+static void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
 {
 	char	**big_param;
 
@@ -56,9 +57,10 @@ void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
 	ft_free_all(&big_param);
 }
 
-void	interpret(char **input, t_vars *vars, t_pipe *cmd)
+static void	interpret(char **input, t_vars *vars, t_pipe *cmd)
 {
 	char	*prompt;
+	int		fd;
 
 	prompt = nice_prompt();
 	*input = readline(prompt);
@@ -69,15 +71,16 @@ void	interpret(char **input, t_vars *vars, t_pipe *cmd)
 		ft_add_history(*input, vars);
 	else
 	{
-		open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
+		fd = open(vars->history_dir, O_WRONLY | O_APPEND | O_CREAT, 0755);
 		ft_add_history(*input, vars);
 	}
 	unclosed_quote(input);
 	vars->input = *input;
 	formating(input);
+	close(fd);
 }
 
-void	forge_of_commands(t_pipe *cmd, t_vars *vars)
+static void	forge_of_commands(t_pipe *cmd, t_vars *vars)
 {
 	t_pipe_a	*pipe_a;
 
@@ -85,10 +88,8 @@ void	forge_of_commands(t_pipe *cmd, t_vars *vars)
 	init_stderr(vars->stderr_a);
 	if (ft_strncmp_a(vars->input, "custom_prompt") == 0)
 		custom_prompt(vars, &pipe_a);
-	if (pipe_a->next)
-		multi_pipe_exec(vars, pipe_a);
-	else
-		mono_pipe_exec(vars, pipe_a);
+	heredoc_supremacy(pipe_a, vars);
+	exec_t_pipe_a(pipe_a, vars);
 }
 
 int	main(int argc, char **argv, char **env)

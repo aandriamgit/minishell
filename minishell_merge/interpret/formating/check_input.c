@@ -6,15 +6,15 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:11:12 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/08 14:21:01 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/11/13 07:38:50 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void ft_putstr(char *str, int fd)
+void	ft_putstr(char *str, int fd)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -26,8 +26,8 @@ void ft_putstr(char *str, int fd)
 
 void	check_quote(char **str)
 {
-	int i;
-	char c;
+	int		i;
+	char	c;
 
 	i = 0;
 	c = '\0';
@@ -42,14 +42,14 @@ void	check_quote(char **str)
 			if ((*str)[i] == '\0')
 			{
 				ft_putstr("unclosed quote >", 1);
-				exit (1);
+				exit(1);
 			}
 		}
 		i++;
 	}
 }
 
-int unclosed(int i, char **str)
+int	unclosed(int i, char **str)
 {
 	while ((*str)[i] && (*str)[i] == ' ')
 		i++;
@@ -63,18 +63,18 @@ int unclosed(int i, char **str)
 
 void	check_pipe(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while ((*str)[i])
 	{
 		if ((*str)[i] == '|')
-			unclosed(i + 1, str);			
+			unclosed(i + 1, str);
 		i++;
 	}
 }
 
-void check_input(char **str)
+void	check_input(char **str)
 {
 	check_quote(str);
 	check_pipe(str);

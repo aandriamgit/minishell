@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/10 16:06:57 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/11 14:22:35 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	vars_init(t_vars *vars, t_list **env_cpy)
 	vars->stderr_a = malloc(sizeof(t_stderr_a));
 	vars->stderr_a->dir = ft_strjoin(vars->log_dir, "/.stderr_a_dir");
 	vars->stderr_a->fd = 2;
+	vars->heredoc_dir = ft_strjoin(vars->log_dir, "/.heredoc_dir");
 }
 
 void	big_param_init(char ***big_param, t_vars vars)

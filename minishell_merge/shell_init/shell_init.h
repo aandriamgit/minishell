@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:46:17 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/10 17:31:34 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/12 07:40:38 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,18 @@ typedef struct s_vars
 	char					*log_dir;
 	char					*history_dir;
 	char					*input;
+	char					*heredoc_dir;
 	t_stderr_a				*stderr_a;
 	t_list					*env;
 }							t_vars;
+
+typedef struct s_redir_fd
+{
+	char					*type;
+	char					*file;
+	int						fd;
+	struct s_redir_fd		*next;
+}							t_redir_fd;
 
 char						*test(char *path, char *cmd);
 

@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:12:11 by aandriam          #+#    #+#             */
-/*   Updated: 2024/10/15 18:03:56 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:54:53 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*join_them(char *new_buff, char *temp)
 		return (NULL);
 	i = 0;
 	j = 0;
-	len = ft_strlen(new_buff) + ft_strlen(temp);
+	len = ft_strlen_a(new_buff) + ft_strlen_a(temp);
 	newbie = malloc(sizeof(char) * (len + 1));
 	if (newbie == 0)
 		return (NULL);
