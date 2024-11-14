@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:03:04 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/13 08:38:44 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:50:41 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@ static void	error_check(char **args, t_vars *vars)
 		ft_perror_row(args[1], "cd: Permission denied\n", vars);
 }
 
-static void	update_pwd_env(char *dir)
-{
-	(void)dir;
-}
-
-static void	update_oldpwd_env(char *dir)
-{
-	(void)dir;
-}
-
 void	ft_cd_w(t_command_a *cmd, t_vars *vars)
 {
 	int		i;
@@ -45,10 +35,11 @@ void	ft_cd_w(t_command_a *cmd, t_vars *vars)
 		i++;
 	if (i > 2)
 		ft_perror_row("cd", "too many arguments\n", vars);
-	error_check(tab, vars);
-	if (chdir(tab[1]) == -1)
-		ft_perror_row(tab[1], "cd: Failed to change directory\n", vars);
-	update_pwd_env(tab[1]);
-	update_oldpwd_env(tab[1]);
+	if (tab[1])
+	{
+		error_check(tab, vars);
+		if (chdir(tab[1]) == -1)
+			ft_perror_row(tab[1], "cd: Failed to change directory\n", vars);
+	}
 	ft_perror_row(NULL, NULL, vars);
 }

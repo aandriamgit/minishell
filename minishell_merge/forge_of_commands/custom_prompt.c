@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:42:32 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/13 09:27:43 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:09:59 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static t_redirection_a	*getting_redir(void)
 	}
 }
 
-static void	append_input_pipe_a(char **input, t_pipe_a **pipe_a)
+static void	append_input_pipe_a(char *input, t_pipe_a **pipe_a)
 {
 	t_pipe_a		*to_add;
 	t_command_a		*cmd;
@@ -61,12 +61,11 @@ static void	append_input_pipe_a(char **input, t_pipe_a **pipe_a)
 
 	if (input != NULL)
 	{
-		splited = ft_split_a(*input, ' ');
+		splited = ft_split_a(input, ' ');
 		redir = getting_redir();
 		cmd = gen_cmd(splited[0], splited, redir, NULL);
 		to_add = gen_pipe_a(cmd, NULL, NULL);
 		add_pipe_end(pipe_a, &to_add);
-		free(*input);
 	}
 }
 
@@ -86,6 +85,6 @@ void	custom_prompt(t_vars *vars, t_pipe_a **pipe_a)
 			ft_print_pipe_a(*pipe_a);
 			return ;
 		}
-		append_input_pipe_a(&input, pipe_a);
+		append_input_pipe_a(input, pipe_a);
 	}
 }

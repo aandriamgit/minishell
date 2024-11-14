@@ -6,11 +6,12 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/13 09:44:56 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:28:27 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line/get_next_line.h"
+#include "libft/lib.h"
 #include "minishell.h"
 
 static void	handler(int signum)
@@ -94,6 +95,7 @@ static void	forge_of_commands(t_pipe **cmd, t_vars *vars)
 		custom_prompt(vars, &pipe_a);
 	heredoc_supremacy(pipe_a, vars);
 	exec_t_pipe_a(pipe_a, vars);
+	terminus(&pipe_a, vars);
 }
 
 int	main(int argc, char **argv, char **env)

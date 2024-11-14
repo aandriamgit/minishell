@@ -18,6 +18,8 @@ SRC = minishell.c \
 	  ./utils/lib/ft_split_a.c \
 	  ./utils/lib/ft_strlen_a.c \
 	  ./utils/lib/ft_substr_a.c \
+	  ./utils/lib/ft_putnbr_fd_a.c \
+	  ./utils/lib/ft_putchar_fd_a.c \
 	  ./utils/modules/add.c \
 	  ./utils/modules/ft_execve.c \
 	  ./utils/modules/ft_free.c \
@@ -49,6 +51,7 @@ SRC = minishell.c \
 	  ./forge_of_commands/convert_t_pipe_a.c \
 	  ./forge_of_commands/init_stderr.c \
 	  ./forge_of_commands/custom_prompt.c \
+	  ./forge_of_commands/terminus.c \
 	  ./forge_of_commands/heredoc_supremacy/heredoc_supremacy.c \
 	  ./forge_of_commands/heredoc_supremacy/get_eof.c \
 	  ./forge_of_commands/heredoc_supremacy/have_heredoc.c \

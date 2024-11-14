@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:49:15 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/13 08:51:52 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:20:10 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ void	ft_echo_n(t_command_a *cmd)
 	int		i;
 
 	i = 1;
-	if (ft_strncmp_a(cmd->args[1], "-n") == 0)
-		with_flag(cmd->args);
+	if (cmd->args[1])
+	{
+		if (ft_strncmp_a(cmd->args[1], "-n") == 0)
+			with_flag(cmd->args);
+	}
 	else
 	{
 		tab = cmd->args;

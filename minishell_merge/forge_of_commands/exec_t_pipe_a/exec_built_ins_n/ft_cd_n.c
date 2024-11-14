@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:41:59 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/13 08:48:17 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:38:08 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ void	ft_cd_n(t_command_a *cmd, t_vars *vars)
 		ft_perror_fork("cd", "too many arguments\n", vars);
 		return ;
 	}
-	if (!error_check(tab[1], vars))
+	if (tab[1] && !error_check(tab[1], vars))
 		return ;
-	if (chdir(tab[1]) == -1)
+	if (tab[1] && chdir(tab[1]) == -1)
 	{
 		ft_perror_fork(tab[1], "cd: Failed to change directory\n", vars);
 		return ;

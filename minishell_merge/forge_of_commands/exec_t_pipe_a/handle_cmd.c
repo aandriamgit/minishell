@@ -6,13 +6,14 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:51:08 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/13 08:37:03 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:15:09 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec_t_pipe_a.h"
+#include <stdio.h>
 
-static void	input_redir(char *file, t_vars *vars)
+static void	input_redir_t(char *file, t_vars *vars)
 {
 	int			fd;
 	struct stat	file_stat;
@@ -33,7 +34,7 @@ static void	input_redir(char *file, t_vars *vars)
 	}
 }
 
-static void	output_redir(char *file, t_vars *vars)
+static void	output_redir_t(char *file, t_vars *vars)
 {
 	int			fd;
 	char		*dir_file;
@@ -59,7 +60,7 @@ static void	output_redir(char *file, t_vars *vars)
 	free(dir_file);
 }
 
-static void	append_redir(char *file, t_vars *vars)
+static void	append_redir_t(char *file, t_vars *vars)
 {
 	int			fd;
 	char		*dir_file;
@@ -87,33 +88,36 @@ static void	append_redir(char *file, t_vars *vars)
 
 void	handle_redir(t_redirection_a *redir, t_vars *vars)
 {
-	while (redir)
+	t_redirection_a	*voyager_one;
+
+	voyager_one = redir;
+	while (voyager_one)
 	{
-		if (ft_strncmp_a(redir->type, "<") == 0)
-			input_redir(redir->file, vars);
-		if (ft_strncmp_a(redir->type, ">") == 0)
-			output_redir(redir->file, vars);
-		if (ft_strncmp_a(redir->type, ">>") == 0)
-			append_redir(redir->file, vars);
-		redir = redir->next;
+		if (ft_strncmp_a(voyager_one->type, "<") == 0)
+			input_redir_t(voyager_one->file, vars);
+		else if (ft_strncmp_a(voyager_one->type, ">") == 0)
+			output_redir_t(voyager_one->file, vars);
+		else if (ft_strncmp_a(voyager_one->type, ">>") == 0)
+			append_redir_t(voyager_one->file, vars);
+		voyager_one = voyager_one->next;
 	}
 }
 
-void	handle_cmd(t_pipe_a *pipe_a, int input_fd, int output_fd, t_vars *vars)
+void	handle_cmd(t_pipe_a pipe_a, int input_fd, int output_fd, t_vars *vars)
 {
-	if (pipe_a->prev && input_fd != 0)
+	if (pipe_a.prev && input_fd != 0)
 	{
 		dup2(input_fd, STDIN_FILENO);
 		close(input_fd);
 	}
-	if (pipe_a->next && output_fd != 1)
+	if (pipe_a.next && output_fd != 1)
 	{
 		dup2(output_fd, STDOUT_FILENO);
 		close(output_fd);
 	}
-	handle_redir(pipe_a->cmd->redir, vars);
-	if (is_built_ins(pipe_a->cmd))
-		exec_built_ins_w(pipe_a->cmd, vars);
+	handle_redir(pipe_a.cmd->redir, vars);
+	if (is_built_ins(pipe_a.cmd))
+		exec_built_ins_w(pipe_a.cmd, vars);
 	else
-		ft_execve_path(pipe_a->cmd->cmd, pipe_a->cmd->args, vars);
+		ft_execve_path(pipe_a.cmd->cmd, pipe_a.cmd->args, vars);
 }
