@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:11:52 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/14 15:27:31 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/15 12:07:24 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	w_pipe(t_pipe_a *pipe_a, t_vars *vars)
 	input_fd = 0;
 	while (pipe_a)
 	{
-		if (pipe_a->prev != NULL || pipe_a->next != NULL)
+		if (pipe_a->prev || pipe_a->next)
 			if (pipe(pipe_fd) == -1)
 				ft_perror_row("pipe error", NULL, vars);
 		pid = fork();

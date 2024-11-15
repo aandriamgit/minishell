@@ -6,11 +6,11 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:41:15 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/13 08:51:43 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:43:56 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../exec_t_pipe_a.h"
 
 void	ft_cd_n(t_command_a *cmd, t_vars *vars);
-void	ft_echo_n(t_command_a *cmd);
+void	ft_echo_n(t_command_a *cmd, t_vars *vars);

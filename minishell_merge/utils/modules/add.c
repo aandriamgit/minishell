@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 17:07:40 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/13 09:38:20 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/15 12:27:48 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ void	add_pipe_end(t_pipe_a **p_test, t_pipe_a **to_add)
 {
 	t_pipe_a	*voyager_one;
 	t_pipe_a	*tmp;
+	t_pipe_a	*tmp_add;
 
+	tmp_add = *to_add;
 	voyager_one = *p_test;
 	tmp = voyager_one;
 	while (voyager_one)
@@ -43,7 +45,10 @@ void	add_pipe_end(t_pipe_a **p_test, t_pipe_a **to_add)
 		voyager_one = voyager_one->next;
 	}
 	if (tmp)
-		tmp->next = *to_add;
+	{
+		tmp_add->prev = tmp;
+		tmp->next = tmp_add;
+	}
 	else
 		*p_test = *to_add;
 }

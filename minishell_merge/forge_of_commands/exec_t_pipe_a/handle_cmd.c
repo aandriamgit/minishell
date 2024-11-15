@@ -6,12 +6,11 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:51:08 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/14 15:15:09 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/15 12:28:27 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec_t_pipe_a.h"
-#include <stdio.h>
 
 static void	input_redir_t(char *file, t_vars *vars)
 {
@@ -26,7 +25,7 @@ static void	input_redir_t(char *file, t_vars *vars)
 		ft_perror_row(file, "is a directory\n", vars);
 	else
 	{
-		fd = open(file, O_RDONLY, vars);
+		fd = open(file, O_RDONLY);
 		if (fd == -1)
 			ft_perror_row(NULL, "error while creating the file\n", vars);
 		dup2(fd, STDIN_FILENO);

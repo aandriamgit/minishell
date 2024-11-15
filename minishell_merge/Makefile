@@ -70,7 +70,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 CFLAGS = -Wall -Wextra -Werror -g
 
 $(OBJ_DIR)/%.o: %.c
-	mkdir -p $(OBJ_DIR)/$(dir $<)
+	@mkdir -p $(OBJ_DIR)/$(dir $<)
 	cc $(CFLAGS) -c $< -o $@
 
 $(NAME):$(OBJ)
