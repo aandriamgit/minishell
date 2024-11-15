@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:25:37 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/14 15:41:36 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/15 12:49:33 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,14 @@ static void	extras(char *file, char *str, t_vars *vars)
 	fd = open("/dev/null", O_WRONLY);
 	if (file || str)
 		ft_putstr_fd_a("[minishell] ", err);
-	if (file)
-	{
-		ft_putstr_fd_a(file, err);
-		ft_putstr_fd_a(": ", err);
-	}
+	ft_putstr_fd_a(file, err);
 	if (str)
-		ft_putstr_fd_a(str, err);
+		ft_putstr_fd_a(": ", err);
+	ft_putstr_fd_a(str, err);
 	close(err);
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
 	ft_execve_row("/bin/ls", args);
-	ft_putstr_fd_a("smt went wrong", err);
 }
 
 void	ft_perror_fork(char *file, char *str, t_vars *vars)
