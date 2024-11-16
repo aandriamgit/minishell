@@ -45,7 +45,7 @@ SRC = minishell.c \
 	  ./get_next_line/get_next_line.c \
 	  ./get_next_line/get_next_line_utils.c \
 	  ./interpret/interpret.c \
-	  ./interpret/unclosed_quote/unclosed_quote.c \
+	  ./interpret/unclosed_quote.c \
 	  ./interpret/formating/formating.c \
 	  ./interpret/formating/check_input.c \
 	  ./forge_of_commands/convert_t_pipe_a.c \
@@ -62,8 +62,10 @@ SRC = minishell.c \
 	  ./forge_of_commands/exec_t_pipe_a/handle_cmd.c \
 	  ./forge_of_commands/exec_t_pipe_a/exec_built_ins_n/ft_cd_n.c \
 	  ./forge_of_commands/exec_t_pipe_a/exec_built_ins_n/ft_echo_n.c \
+	  ./forge_of_commands/exec_t_pipe_a/exec_built_ins_n/ft_pwd_n.c \
 	  ./forge_of_commands/exec_t_pipe_a/exec_built_ins_w/ft_cd_w.c \
 	  ./forge_of_commands/exec_t_pipe_a/exec_built_ins_w/ft_echo_w.c \
+	  ./forge_of_commands/exec_t_pipe_a/exec_built_ins_w/ft_pwd_w.c \
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 

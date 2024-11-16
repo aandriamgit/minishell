@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unclosed_quote.c                                   :+:      :+:    :+:   */
+/*   ft_pwd_n.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 17:53:35 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/13 09:21:10 by aandriam         ###   ########.fr       */
+/*   Created: 2024/11/15 13:04:54 by aandriam          #+#    #+#             */
+/*   Updated: 2024/11/15 13:09:49 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../utils/utils.h"
-#include "../interpret.h"
+#include "exec_built_ins_n.h"
 
-void	unclosed_quote(char **input)
+void	ft_pwd_n(t_command_a *cmd, t_vars *vars)
 {
-	char	*cpy;
-	int		i;
+	char	buffer[1024];
+	int		save_fd;
 
-	cpy = *input;
-	i = 0;
-	while (cpy[i])
-	{
-		if (cpy[i] == 34 || cpy[i] == 39)
-		{
-			ft_putstr_fd_a("work still on progress\n", STDOUT_FILENO);
-		}
-		i++;
-	}
+	(void)cmd;
+	save_fd = dup(STDOUT_FILENO);
+	getcwd(buffer, 1024);
+	handle_redir(cmd->redir, vars);
+	ft_putstr_fd_a(buffer, STDOUT_FILENO);
+	ft_putstr_fd_a("\n", STDOUT_FILENO);
+	dup2(save_fd, STDOUT_FILENO);
+	close(save_fd);
 }

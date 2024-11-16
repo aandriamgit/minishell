@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:56:13 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/13 09:56:31 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/16 11:39:11 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	exit_protocol(t_vars *vars, char **input)
 	free(vars->heredoc_dir);
 	free(vars->stderr_a->dir);
 	free(vars->stderr_a);
+	free(vars->quote_dir);
 	free(*input);
 	ft_free_t_list(&vars->env);
 	exit(0);

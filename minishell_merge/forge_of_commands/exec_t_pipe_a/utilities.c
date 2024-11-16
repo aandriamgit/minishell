@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:25:25 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/14 17:44:08 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/15 14:47:00 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	exec_built_ins_w(t_command_a *cmd, t_vars *vars)
 		ft_echo_w(cmd, vars);
 	else if (ft_strncmp_a(cmd->args[0], "cd") == 0)
 		ft_cd_w(cmd, vars);
+	else if (ft_strncmp_a(cmd->args[0], "pwd") == 0)
+		ft_pwd_w(cmd, vars);
 }
 
 void	exec_built_ins_n(t_command_a *cmd, t_vars *vars)
@@ -60,4 +62,6 @@ void	exec_built_ins_n(t_command_a *cmd, t_vars *vars)
 		ft_echo_n(cmd, vars);
 	else if (ft_strncmp_a(cmd->args[0], "cd") == 0)
 		ft_cd_n(cmd, vars);
+	else if (ft_strncmp_a(cmd->args[0], "pwd") == 0)
+		ft_pwd_n(cmd, vars);
 }

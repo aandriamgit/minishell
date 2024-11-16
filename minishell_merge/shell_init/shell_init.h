@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:46:17 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/12 07:40:38 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/16 11:37:50 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_vars
 	char					*history_dir;
 	char					*input;
 	char					*heredoc_dir;
+	char					*quote_dir;
 	t_stderr_a				*stderr_a;
 	t_list					*env;
 }							t_vars;

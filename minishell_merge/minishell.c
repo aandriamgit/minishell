@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/14 15:28:27 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/16 11:21:58 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ static void	interpret(char **input, t_vars *vars, t_pipe **cmd)
 		exit_protocol(vars, input);
 		return ;
 	}
+	unclosed_quote(input, vars);
 	if (access(vars->history_dir, F_OK) == 0)
 		ft_add_history(*input, vars);
 	else
 		ft_add_history(*input, vars);
-	unclosed_quote(input);
 	vars->input = *input;
 	formating(input);
 	(void)cmd;
