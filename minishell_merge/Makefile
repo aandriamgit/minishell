@@ -45,7 +45,8 @@ SRC = minishell.c \
 	  ./get_next_line/get_next_line.c \
 	  ./get_next_line/get_next_line_utils.c \
 	  ./interpret/interpret.c \
-	  ./interpret/unclosed_quote.c \
+	  ./interpret/unclosed_quote/uptade_input.c \
+	  ./interpret/unclosed_quote/unclosed_quote.c \
 	  ./interpret/formating/formating.c \
 	  ./interpret/formating/check_input.c \
 	  ./forge_of_commands/convert_t_pipe_a.c \

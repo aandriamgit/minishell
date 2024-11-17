@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:56:13 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/16 11:39:11 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/17 15:54:24 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,19 @@ void	exit_protocol(t_vars *vars, char **input)
 
 char	*nice_prompt(void)
 {
-	char	*res;
 	char	*tmp;
+	char	*lol;
 	char	buffer[1024];
 
 	getcwd(buffer, 1024);
-	tmp = ft_strjoin("\033[38;2;166;227;161m╭\033[38;2;148;226;213m ", buffer);
-	res = ft_strjoin(tmp, "\033[38;2;137;180;250m \n╰ \033[0m");
-	free(tmp);
-	return (res);
+	lol = ft_strdup("\001\033[38;2;166;227;161m\022");
+	tmp = ft_strjoin_free_a(lol, "\001╭\002\001\033[38;2;148;226;213m\002 ");
+	tmp = ft_strjoin_free_a(tmp, buffer);
+	tmp = ft_strjoin_free_a(tmp, "\001\033[38;2;137;180;250m\002  \n");
+	tmp = ft_strjoin_free_a(tmp, "\001\033[38;2;137;180;250m\002");
+	tmp = ft_strjoin_free_a(tmp, "\001╰\002\001\002\001\002\001\002");
+	tmp = ft_strjoin_free_a(tmp, "\001\002\001\033[0m\002 ");
+	return (tmp);
 }
 
 void	ft_add_history(char *input, t_vars *vars)

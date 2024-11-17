@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:33:52 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/13 13:29:18 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/17 13:21:35 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,4 @@ char	*ft_itoa_a(int n);
 char	*ft_strrchr_a(const char *s, int c);
 void	ft_putnbr_fd_a(int n, int fd);
 void	ft_putchar_fd_a(char c, int fd);
+char	*ft_strjoin_free_a(char *s1, char const *s2);

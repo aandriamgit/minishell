@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/16 11:38:23 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/11/17 15:47:23 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,62 @@ void	big_param_init(char ***big_param, t_vars vars)
 	(*big_param)[2] = NULL;
 }
 
+static void	finding_quote(char **prev, char quote, int fd)
+{
+	int		i;
+	char	*tmp;
+	char	*lol;
+
+	lol = ft_strjoin_free_a(*prev, "\n");
+	tmp = get_next_line(fd);
+	while (tmp)
+	{
+		i = 0;
+		while (tmp[i])
+		{
+			if (tmp[i] == quote)
+			{
+				lol = ft_strjoin_free_a(lol, tmp);
+				free(tmp);
+				*prev = lol;
+				return ;
+			}
+			i++;
+		}
+		lol = ft_strjoin_free_a(lol, tmp);
+		free(tmp);
+		tmp = get_next_line(fd);
+	}
+}
+
+static void	clean_prev(char **prev, int fd)
+{
+	int		i;
+	char	*str;
+	char	quote;
+
+	i = 0;
+	str = *prev;
+	while (str[i])
+	{
+		if (str[i] == 34 || str[i] == 39)
+		{
+			quote = str[i];
+			i++;
+			while (str[i] != quote)
+			{
+				if (!str[i])
+				{
+					finding_quote(prev, quote, fd);
+					return ;
+				}
+				i++;
+			}
+		}
+		i++;
+	}
+}
+
 void	add_prev_history(t_vars *vars)
 {
 	char	*prev;
@@ -45,6 +101,7 @@ void	add_prev_history(t_vars *vars)
 	if (!prev)
 		return ;
 	prev[ft_strlen(prev) - 1] = '\0';
+	clean_prev(&prev, fd);
 	add_history(prev);
 	while (prev)
 	{
@@ -53,6 +110,7 @@ void	add_prev_history(t_vars *vars)
 		if (!prev)
 			return ;
 		prev[ft_strlen(prev) - 1] = '\0';
+		clean_prev(&prev, fd);
 		add_history(prev);
 	}
 	close(fd);
