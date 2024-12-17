@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:28:12 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/13 09:42:03 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:29:41 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_free_t_pipe_a(t_pipe_a *pipe_a)
 	while (pipe_a)
 	{
 		free_redir(pipe_a->cmd->redir);
-		ft_free_tab(&pipe_a->cmd->args);
+		/* ft_free_tab(&pipe_a->cmd->args); */
 		free(pipe_a->cmd);
 		pipe_a = pipe_a->next;
 	}

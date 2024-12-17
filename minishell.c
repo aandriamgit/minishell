@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/17 14:08:15 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:08:38 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static void	interpret(char **input, t_vars *vars, t_pipe **cmd)
 	{
 		ft_putstr_fd_a("exit\n", 1);
 		exit_protocol(vars, input, 0);
-		exit(0);
 	}
 	if (access(vars->history_dir, F_OK) == 0)
 		ft_add_history(*input, vars);
@@ -83,6 +82,7 @@ static void	interpret(char **input, t_vars *vars, t_pipe **cmd)
 	check_input(input);
 	formating(input, vars->env);
 	*cmd = gen_pipe(input);
+	vars->cmd = *cmd;
 }
 
 static void	forge_of_commands(t_pipe **cmd, t_vars *vars)

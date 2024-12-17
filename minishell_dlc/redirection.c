@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:42:13 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/15 13:51:45 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:55:03 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_redir *redirection(char **str)
 				i++;
 			i++;
 		}
-		if ((*str)[i] == '>' || (*str)[i] == '<')
+		else if ((*str)[i] == '>' || (*str)[i] == '<')
 		{
 			remove_replace(str, i, &redir);
 			i = 0;

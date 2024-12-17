@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:46:17 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/17 12:09:00 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:21:58 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_vars
 	int						*pipe_fd_err;
 	t_list					*env;
 	t_pipe_a				*t_pipe_a;
+	t_pipe					*cmd;
 }							t_vars;
 
 typedef struct s_redir_fd

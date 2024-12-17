@@ -6,76 +6,61 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:59:32 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/16 18:07:08 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:29:57 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
+#include "../../utils/utils.h"
 
-void free_arg(char ***str)
+void	free_cmd(t_cmd *x)
 {
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	if (*str)
+	if (x)
 	{
-		while ((*str)[i])
-		{
-			free((*str)[i]);
-			i++;
-		}
-		free(*str);
+		if (x->arg)
+			ft_free_tab(&x->arg);
+		if (x->cmd)
+			free(x->cmd);
 	}
 }
 
-void	free_cmd(t_cmd **x)
-{
-	t_cmd *y;
-
-	y = *x;
-	if (y)
-	{
-		if (y->arg)
-			free_arg(&(y->arg));
-		if (y->cmd)
-			free(y->cmd);
-	}
-}
-
-void	free_redir(t_redir **x)
+void	free_redir(t_redir *x)
 {
 	t_redir *y;
+	t_redir *z;
 
-	y = *x;
+	y = x;
 	if (x)
 	{
 		while (y)
 		{
+			z = y;
 			if (y->file)
 				free(y->file);
 			if (y->type)
 				free(y->file);
 			y = y->next;	
+			free(z);
 		}
-		free(y);
 	}
 }
 
 void	free_pipe(t_pipe **x)
 {
 	t_pipe *y;
+	t_pipe *z;
 
 	y = *x;
+	z = y;
 	if (y)
 	{
 		while (y)
 		{
-			free_redir(&(y->redir));
-			free_cmd(&(y->cmd));
-			free(y);
+			z = y;
+			free_redir(y->redir);
+			free_cmd(y->cmd);
 			y = y->next;
+			free(z);
 		}
 	}
 }

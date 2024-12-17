@@ -6,12 +6,12 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:39:45 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/16 14:09:59 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:20:02 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
-#include <stdio.h>
+#include "../../utils/utils.h"
 
 int	count_arg(char **str)
 {
@@ -36,6 +36,8 @@ t_cmd *creat_bloc_cmd(char *str)
 		return (NULL);
 	cmd = malloc(sizeof(t_cmd));
 	split = simple_split(str, ' ');
+	if (check_quotes(split[0]) == 1)
+		rm_quote(&split[0]);
 	cmd->cmd = ft_strdup_p(split[0]);
 	cmd->arg = malloc(sizeof(char *) * (count_arg(split) + 1));
 	if (!(cmd->arg))
@@ -44,12 +46,15 @@ t_cmd *creat_bloc_cmd(char *str)
 	{
 		while (split[i])
 		{
+			if (check_quotes(split[i]) == 1)
+				rm_quote(&split[i]);
 			cmd->arg[j] = ft_strdup_p(split[i]);
 			j++;
 			i++;
 		}
 		cmd->arg[j] = NULL;
 	}
+	ft_free_tab(&split);
 	return (cmd);
 }
 

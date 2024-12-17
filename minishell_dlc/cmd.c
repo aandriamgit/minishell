@@ -6,11 +6,12 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:29:03 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/15 14:15:06 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:13:13 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include "../utils/utils.h"
 
 t_pipe	*gen_pipe(char **str)
 {
@@ -23,12 +24,10 @@ t_pipe	*gen_pipe(char **str)
 	split = split_pipe((*str), '|');
 	while (split[i])
 	{
-		if (check_quotes(split[i]) == 1)
-			rm_quote(&split[i]);
 		creat_chain_of_pipe(&p, creat_bloc_pipe(&split[i]));
 		i++;
 	}
-	free(split);
+	ft_free_tab(&split);
 	free(*str);
 	(*str) = NULL;
 	return (p);
