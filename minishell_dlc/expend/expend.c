@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:54:34 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/12 16:55:31 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:40:21 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ static void	mini_expend(char **str, t_list *env)
 	t_list	*voyager_one;
 
 	tmp = *str;
-	
-	if (tmp && tmp[1] && tmp[1] != '"')
+	if (tmp && tmp[1] != '"')
 	{
 		to_replace = ft_strdup_ap("");
 		voyager_one = env;
@@ -76,13 +75,29 @@ static void	mini_expend(char **str, t_list *env)
 	}
 }
 
+int count_pp(char **str)
+{
+	int i;
+
+	i = 0;
+	if (str != NULL)
+	{
+		while (str[i])
+			i++;
+	}
+	return(i);
+}
+
 void	expend(char	**str, t_list *env)
 {
 	char	**splited_a;
 	char	*new;
 
 	splited_a = ft_split_aa(*str, '$');
-	mini_expend(&splited_a[1], env);
+	if (count_pp(splited_a) == 1)
+		mini_expend(&splited_a[0], env);
+	else
+		mini_expend(&splited_a[1], env);
 	new = ft_strjoin_space(&splited_a);
 	free(*str);
 	*str = new;

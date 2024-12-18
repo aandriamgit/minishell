@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:32:52 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/18 14:31:18 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:56:52 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void modify_str(char **str, t_list *env_cp)
 			if (split[i][0] == '\"')
 				ex_quote(&split[i], env_cp);
 			else if (split[i][0] == '$')
-				simple_expend(&split[i], env_cp);
+				expend(&split[i], env_cp);
 			else
 				expend(&split[i], env_cp);
 		}
