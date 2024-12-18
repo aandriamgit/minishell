@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:25:12 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/04 10:09:42 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:16:27 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static int	is_numeric(char *arg)
 			return (0);
 		i++;
 	}
-	if (i == 1)
-		return (0);
 	return (1);
 }
 
@@ -34,11 +32,16 @@ static void	good_bye(t_command_a *cmd, t_vars *vars)
 {
 	int	nbr;
 
-	nbr = ft_atoi_a(cmd->args[1]);
-	if (nbr >= 0 && nbr <= 255)
-		ft_perror_exit(NULL, NULL, vars, nbr);
+	if (cmd->args[1])
+	{
+		nbr = ft_atoi_a(cmd->args[1]);
+		if (nbr >= 0 && nbr <= 255)
+			ft_perror_exit(NULL, NULL, vars, nbr);
+		else
+			ft_perror_exit(NULL, NULL, vars, (nbr % 256));
+	}
 	else
-		ft_perror_exit(NULL, NULL, vars, (nbr % 256));
+		ft_perror_exit(NULL, NULL, vars, 0);
 }
 
 static void	extras(t_command_a *cmd, t_vars *vars)
@@ -53,7 +56,7 @@ static void	extras(t_command_a *cmd, t_vars *vars)
 			show_errors(vars);
 			ft_perror_exit(NULL, NULL, vars, 2);
 		}
-		if (cmd->args[2])
+		else if (cmd->args[2])
 			ft_perror_soft("exit", "too many arguments\n", vars, 1);
 		else
 			good_bye(cmd, vars);

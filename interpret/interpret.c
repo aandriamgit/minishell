@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:56:13 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/17 17:41:17 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:02:06 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ void	exit_protocol(t_vars *vars, char **input, int nbr)
 	exit(nbr);
 }
 
+static char	*emergency_prompt(void)
+{
+	char	*res;
+
+	res = ft_strdup_a("emergency_prompt> ");
+	return (res);
+}
+
 char	*nice_prompt(t_vars *vars)
 {
 	char	*tmp;
@@ -44,19 +52,24 @@ char	*nice_prompt(t_vars *vars)
 	char	buffer[1024];
 
 	(void)vars;
-	getcwd(buffer, 1024);
-	if (!vars->exit_code_int)
-		vars->exit_code_int = download_exit_code(vars);
-	lol = ft_strdup_a("\001\033[38;2;166;227;161m\022");
-	tmp = ft_strjoin_free_a(lol, "\001╭\002\001\033[38;2;148;226;213m\002 ");
-	tmp = ft_strjoin_free_a(tmp, buffer);
-	tmp = ft_strjoin_free_a(tmp, "\001\033[38;2;137;180;250m\002  \n");
-	if (!vars->exit_code_int)
-		tmp = ft_strjoin_free_a(tmp, "\001\033[38;2;137;180;250m\002");
+	if (getcwd(buffer, 1024))
+	{
+		if (!vars->exit_code_int)
+			vars->exit_code_int = download_exit_code(vars);
+		lol = ft_strdup_a("\001\033[38;2;166;227;161m\022");
+		tmp = ft_strjoin_free_a(lol,
+				"\001╭\002\001\033[38;2;148;226;213m\002 ");
+		tmp = ft_strjoin_free_a(tmp, buffer);
+		tmp = ft_strjoin_free_a(tmp, "\001\033[38;2;137;180;250m\002  \n");
+		if (!vars->exit_code_int)
+			tmp = ft_strjoin_free_a(tmp, "\001\033[38;2;137;180;250m\002");
+		else
+			tmp = ft_strjoin_free_a(tmp, "\001\033[38;2;243;139;168m\002");
+		tmp = ft_strjoin_free_a(tmp, "\001╰\002");
+		tmp = ft_strjoin_free_a(tmp, "\001\002\001\033[0m\002 ");
+	}
 	else
-		tmp = ft_strjoin_free_a(tmp, "\001\033[38;2;243;139;168m\002");
-	tmp = ft_strjoin_free_a(tmp, "\001╰\002");
-	tmp = ft_strjoin_free_a(tmp, "\001\002\001\033[0m\002 ");
+		tmp = emergency_prompt();
 	return (tmp);
 }
 

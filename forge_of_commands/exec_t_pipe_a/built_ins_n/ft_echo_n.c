@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:10:06 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/05 13:27:57 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:34:21 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static void	with_flag(char **args)
 
 	tab = args;
 	i = 2;
+	while (is_valid_flag_n(args[i]))
+		i++;
 	while (tab[i])
 	{
 		ft_putstr_fd_a(tab[i], STDOUT_FILENO);

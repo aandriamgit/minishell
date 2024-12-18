@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:59:07 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/16 16:56:47 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 11:09:30 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,20 @@
 
 void	ft_pwd_w(t_command_a *cmd, t_vars *vars)
 {
-	(void)cmd;
-	(void)vars;
-	ft_putstr_fd_a("work still on progress\n", 1);
-	ft_perror_exit(NULL, NULL, vars, 127);
+	char	buffer[1024];
+
+	if (cmd->args[1] && cmd->args[1][0] == '-')
+		ft_perror_exit(cmd->args[1], "invalid option\n", vars, 1);
+	else
+	{
+		if (getcwd(buffer, 1024))
+		{
+			ft_putstr_fd_a(buffer, STDOUT_FILENO);
+			ft_putstr_fd_a("\n", STDOUT_FILENO);
+		}
+		else
+		{
+		}
+	}
+	ft_perror_exit(NULL, NULL, vars, 0);
 }
