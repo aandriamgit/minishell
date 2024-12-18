@@ -6,18 +6,19 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:42:13 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/17 15:55:03 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/18 10:20:42 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "parsing.h"
+#include <stdio.h>
 
 void	ft_trim(int start, int end, char **str)
 {
-	char *new;
-	int i;
-	int j;
+	char	*new;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -41,7 +42,7 @@ void	ft_trim(int start, int end, char **str)
 	free(new);
 }
 
-void make_type(int *i, char *str, char **type)
+void	make_type(int *i, char *str, char **type)
 {
 	if (str[*i] == str[*i + 1])
 	{
@@ -59,11 +60,11 @@ void make_type(int *i, char *str, char **type)
 
 void	remove_replace(char **str, int i, t_redir **redir)
 {
-	int start;
-	char *type;
-	char *file;
-	int c;
-	char *tmp;
+	int		start;
+	char	*type;
+	char	*file;
+	int		c;
+	char	*tmp;
 
 	type = NULL;
 	file = NULL;
@@ -80,13 +81,14 @@ void	remove_replace(char **str, int i, t_redir **redir)
 	free(*str);
 	*str = ft_strdup_p(tmp);
 	free(tmp);
+	free(file);
 }
 
-t_redir *redirection(char **str)
+t_redir	*redirection(char **str)
 {
-	int i;
-	t_redir *redir;
-	char c;
+	int		i;
+	t_redir	*redir;
+	char	c;
 
 	c = '\0';
 	i = 0;

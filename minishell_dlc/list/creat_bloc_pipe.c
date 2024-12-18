@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:29:22 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/06 13:43:59 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/18 09:25:20 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_pipe	*creat_bloc_pipe(char **str)
 {
-	t_pipe *p;
+	t_pipe	*p;
 
 	p = malloc(sizeof(t_pipe));
 	if (!p)
@@ -27,8 +27,8 @@ t_pipe	*creat_bloc_pipe(char **str)
 
 void	creat_chain_of_pipe(t_pipe **old_list, t_pipe *new_list)
 {
-	t_pipe *tmp;
-	
+	t_pipe	*tmp;
+
 	tmp = NULL;
 	if (!(*old_list))
 		*old_list = new_list;

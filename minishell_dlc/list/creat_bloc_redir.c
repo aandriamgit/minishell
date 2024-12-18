@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:51:48 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/15 14:20:19 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/18 10:27:54 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_redir	*creat_bloc_redir(char *type, char *file)
 {
-	t_redir *redir;
+	t_redir	*redir;
 
 	redir = malloc(sizeof(t_redir));
 	if (!redir)
@@ -22,15 +22,19 @@ t_redir	*creat_bloc_redir(char *type, char *file)
 	redir->type = ft_strdup_p(type);
 	if (check_quotes(file) == 1)
 		rm_quote(&file);
-	redir->file = ft_strdup_p(file);
+	if (file[0] == '\0')
+		redir->file = NULL;
+	else
+		redir->file = ft_strdup_p(file);
 	redir->next = NULL;
+	free(type);
 	return (redir);
 }
 
-void creat_chain_of_redir(t_redir **old_list, t_redir *new_list)
+void	creat_chain_of_redir(t_redir **old_list, t_redir *new_list)
 {
-	t_redir *tmp;
-	
+	t_redir	*tmp;
+
 	tmp = NULL;
 	if (!(*old_list))
 		*old_list = new_list;

@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:22:27 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/17 14:09:52 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 08:22:36 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	relative_path(t_pipe_a *pipe_a, t_vars *vars)
 		else if (S_ISDIR(file_stat.st_mode))
 			ft_perror_exit(lol, "is a directory\n", vars, 1);
 		else
-			execve(pipe_a->cmd->cmd, pipe_a->cmd->args, vars->env_cpy);
+			execve(pipe_a->cmd->cmd, pipe_a->cmd->args, ft_gen_env(vars->env));
 	}
 	else
 		ft_perror_exit(pipe_a->cmd->cmd, "command not found\n", vars, 127);
@@ -53,7 +53,7 @@ static void	absolute_path(t_pipe_a *pipe_a, t_vars *vars)
 	else if (S_ISDIR(file_stat.st_mode))
 		ft_perror_exit(lol, "is a directory\n", vars, 1);
 	else
-		execve(pipe_a->cmd->cmd, pipe_a->cmd->args, vars->env_cpy);
+		execve(pipe_a->cmd->cmd, pipe_a->cmd->args, ft_gen_env(vars->env));
 }
 
 void	path_w_pipe(t_pipe_a *pipe_a, t_vars *vars)

@@ -6,10 +6,11 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:33:52 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/16 13:04:24 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 08:17:11 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../minishell_dlc/parsing.h"
 #include <fcntl.h>
 #include <readline/history.h>
 #include <readline/readline.h>
@@ -33,3 +34,4 @@ char	*ft_strjoin_free_a(char *s1, char *s2);
 int		ft_isdigit_a(int c);
 int		ft_atoi_a(const char *nptr);
 int		ft_random_int(char *str);
+char	**ft_gen_env(t_list *list);

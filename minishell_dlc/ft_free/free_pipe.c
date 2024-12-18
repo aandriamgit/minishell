@@ -6,12 +6,12 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:59:32 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/17 17:29:57 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/18 10:23:52 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
 #include "../../utils/utils.h"
+#include "../parsing.h"
 
 void	free_cmd(t_cmd *x)
 {
@@ -22,12 +22,13 @@ void	free_cmd(t_cmd *x)
 		if (x->cmd)
 			free(x->cmd);
 	}
+	free(x);
 }
 
 void	free_redir(t_redir *x)
 {
-	t_redir *y;
-	t_redir *z;
+	t_redir	*y;
+	t_redir	*z;
 
 	y = x;
 	if (x)
@@ -38,8 +39,8 @@ void	free_redir(t_redir *x)
 			if (y->file)
 				free(y->file);
 			if (y->type)
-				free(y->file);
-			y = y->next;	
+				free(y->type);
+			y = y->next;
 			free(z);
 		}
 	}
@@ -47,8 +48,8 @@ void	free_redir(t_redir *x)
 
 void	free_pipe(t_pipe **x)
 {
-	t_pipe *y;
-	t_pipe *z;
+	t_pipe	*y;
+	t_pipe	*z;
 
 	y = *x;
 	z = y;
@@ -64,4 +65,3 @@ void	free_pipe(t_pipe **x)
 		}
 	}
 }
-

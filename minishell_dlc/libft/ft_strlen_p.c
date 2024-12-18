@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:44:52 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/16 14:03:31 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/18 08:42:27 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	ft_strlen_p(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if (str[i] != '\0')
+	if (str && str[i] != '\0')
 	{
 		while (str[i])
 			i++;

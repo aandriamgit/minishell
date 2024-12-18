@@ -17,6 +17,7 @@ SRC = minishell.c \
 	  ./utils/lib/ft_atoi_a.c \
 	  ./utils/lib/ft_isdigit_a.c \
 	  ./utils/lib/ft_random_int.c \
+	  ./utils/lib/ft_gen_env.c \
 	  ./utils/modules/add.c \
 	  ./utils/modules/ft_execve.c \
 	  ./utils/modules/ft_free.c \

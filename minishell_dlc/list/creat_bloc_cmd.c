@@ -6,16 +6,16 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:39:45 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/17 17:20:02 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/18 09:19:56 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
 #include "../../utils/utils.h"
+#include "../parsing.h"
 
 int	count_arg(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -23,12 +23,12 @@ int	count_arg(char **str)
 	return (i);
 }
 
-t_cmd *creat_bloc_cmd(char *str)
+t_cmd	*creat_bloc_cmd(char *str)
 {
-	char **split;
-	t_cmd *cmd;
-	int i;
-	int j;
+	char	**split;
+	t_cmd	*cmd;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -60,8 +60,8 @@ t_cmd *creat_bloc_cmd(char *str)
 
 t_cmd	*make_cmd(char **str)
 {
-	int i;
-	t_cmd *cmd;
+	int		i;
+	t_cmd	*cmd;
 
 	cmd = NULL;
 	i = 0;

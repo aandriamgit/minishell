@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:00:16 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/17 14:14:52 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 08:19:53 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ void	ft_execve_path(t_pipe_a *pipe_a, char *cmd, char **argv, t_vars *vars)
 	if (!path)
 		ft_perror_exit(cmd, "command not found\n", vars, 127);
 	else
-		execve(path, argv, vars->env_cpy);
+		execve(path, argv, ft_gen_env(vars->env));
 }

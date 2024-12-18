@@ -6,18 +6,18 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:29:03 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/17 17:13:13 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/18 09:02:21 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "../utils/utils.h"
+#include "parsing.h"
 
 t_pipe	*gen_pipe(char **str)
 {
-	char **split;
-	int i;
-	t_pipe *p;
+	char	**split;
+	int		i;
+	t_pipe	*p;
 
 	i = 0;
 	p = NULL;

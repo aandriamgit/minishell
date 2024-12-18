@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 11:23:18 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/17 14:09:08 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 08:21:28 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	extra(t_pipe_a *pipe_a, t_vars *vars)
 
 	pid = fork();
 	if (pid == 0 && vars->env_cpy)
-		execve(pipe_a->cmd->cmd, pipe_a->cmd->args, vars->env_cpy);
+		execve(pipe_a->cmd->cmd, pipe_a->cmd->args, ft_gen_env(vars->env));
 	else if (pid < 0)
 		ft_perror_soft("fork error", "no_pipe", vars, 1);
 	else

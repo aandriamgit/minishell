@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:34:53 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/15 22:32:34 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 10:05:31 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,20 +92,41 @@ static void	append_redir_n(char *file, t_vars *vars, int *flag)
 	}
 }
 
+static int	syntax_error_check(t_redirection_a *redir, t_vars *vars, int *flag)
+{
+	t_redirection_a	*voyager_one;
+
+	voyager_one = redir;
+	while (voyager_one)
+	{
+		if (voyager_one->file == NULL || voyager_one->file[0] == '\0')
+		{
+			*flag = 0;
+			ft_perror_soft("syntax error", "unexpected token\n", vars, 2);
+			return (0);
+		}
+		voyager_one = voyager_one->next;
+	}
+	return (1);
+}
+
 void	handle_redir(t_redirection_a *redir, t_vars *vars, int *flag)
 {
 	t_redirection_a	*voyager_one;
 
 	voyager_one = redir;
 	*flag = 1;
-	while (voyager_one && *flag)
+	if (syntax_error_check(redir, vars, flag))
 	{
-		if (ft_strncmp_a(voyager_one->type, "<") == 0)
-			input_redir_n(voyager_one->file, vars, flag);
-		else if (ft_strncmp_a(voyager_one->type, ">") == 0)
-			output_redir_n(voyager_one->file, vars, flag);
-		else if (ft_strncmp_a(voyager_one->type, ">>") == 0)
-			append_redir_n(voyager_one->file, vars, flag);
-		voyager_one = voyager_one->next;
+		while (voyager_one && *flag)
+		{
+			if (ft_strncmp_a(voyager_one->type, "<") == 0)
+				input_redir_n(voyager_one->file, vars, flag);
+			else if (ft_strncmp_a(voyager_one->type, ">") == 0)
+				output_redir_n(voyager_one->file, vars, flag);
+			else if (ft_strncmp_a(voyager_one->type, ">>") == 0)
+				append_redir_n(voyager_one->file, vars, flag);
+			voyager_one = voyager_one->next;
+		}
 	}
 }

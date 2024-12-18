@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:52:41 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/04 14:42:07 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 09:34:25 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	*get_file_dir(char *file)
 
 int	is_built_ins(t_command_a *cmd)
 {
+	if (cmd->args[0] == NULL)
+		return (0);
 	if (ft_strncmp_a(cmd->args[0], "echo") == 0)
 		return (1);
 	else if (ft_strncmp_a(cmd->args[0], "cd") == 0)
