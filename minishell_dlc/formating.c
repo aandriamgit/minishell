@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:32:52 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/10 14:48:44 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:31:18 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	formating(char **str, t_list *env_cp)
 	int i;
 
 	i = 0;
-	split = simple_split(*str, ' ');
+	split = split_quote(*str, ' ');
 	while (split[i])
 	{
 		if (check(split[i]) == 1)

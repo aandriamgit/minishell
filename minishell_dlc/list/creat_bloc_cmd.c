@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:39:45 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/18 09:19:56 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:34:53 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_cmd	*creat_bloc_cmd(char *str)
 	if (!str)
 		return (NULL);
 	cmd = malloc(sizeof(t_cmd));
-	split = simple_split(str, ' ');
+	split = split_quote(str, ' ');
 	if (check_quotes(split[0]) == 1)
 		rm_quote(&split[0]);
 	cmd->cmd = ft_strdup_p(split[0]);
@@ -45,7 +45,7 @@ t_cmd	*creat_bloc_cmd(char *str)
 	else
 	{
 		while (split[i])
-		{
+		{	
 			if (check_quotes(split[i]) == 1)
 				rm_quote(&split[i]);
 			cmd->arg[j] = ft_strdup_p(split[i]);

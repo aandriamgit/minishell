@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:59:32 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/18 10:23:52 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:58:08 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,12 @@ void	free_pipe(t_pipe **x)
 		{
 			z = y;
 			free_redir(y->redir);
+			y->redir = NULL;
 			free_cmd(y->cmd);
+			y->cmd = NULL;
 			y = y->next;
 			free(z);
 		}
 	}
+	*x = NULL;
 }

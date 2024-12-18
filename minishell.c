@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/17 17:08:38 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:21:32 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,11 @@ static void	forge_of_commands(t_pipe **cmd, t_vars *vars)
 			heredoc_supremacy(pipe_a, vars);
 			exec_t_pipe_a(pipe_a, vars);
 			terminus((void *)&pipe_a, vars);
+			if (vars->cmd)
+			{
+				free_pipe(cmd);
+				vars->cmd = NULL;
+			}
 		}
 	}
 }

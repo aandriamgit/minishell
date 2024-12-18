@@ -109,7 +109,8 @@ SRC = minishell.c \
 	  ./minishell_dlc/split_pipe.c \
 	  ./minishell_dlc/rm_quote.c\
 	  ./minishell_dlc/ft_free/free_pipe.c\
-	  
+	  ./minishell_dlc/split_quote.c\
+
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 CFLAGS = -Wall -Wextra -Werror -g

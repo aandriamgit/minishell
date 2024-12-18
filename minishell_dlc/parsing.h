@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:49:49 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/16 15:01:50 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:05:20 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ char **split_pipe(char *str, char c);
 int	check_quotes(char *str);
 void	rm_quote(char **str);
 void	free_pipe(t_pipe **x);
+char **split_quote(char *str, char c);
 //builtings
 t_list	*duplicate_env(char **env);
 void	display_env_list(t_list *list);

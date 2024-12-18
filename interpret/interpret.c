@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:56:13 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/18 12:02:06 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:17:16 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ void	free_vars(t_vars *vars)
 		vars->input = NULL;
 	}
 	ft_free_t_list(&vars->env);
-	free_pipe(&vars->cmd);
+	if (vars->cmd)
+	{
+		free_pipe(&vars->cmd);
+		vars->cmd = NULL;
+	}
 }
 
 void	exit_protocol(t_vars *vars, char **input, int nbr)

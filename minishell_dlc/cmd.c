@@ -6,12 +6,13 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:29:03 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/18 09:02:21 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:32:53 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../utils/utils.h"
 #include "parsing.h"
+#include <stdio.h>
 
 t_pipe	*gen_pipe(char **str)
 {

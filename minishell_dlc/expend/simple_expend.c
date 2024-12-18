@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:54:34 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/12 16:56:59 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:15:01 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	simple_expend(char **str, t_list *env)
 	char	*tmp;
 	t_list	*voyager_one;
 
+	printf("str = %s\n", *str);
 	tmp = *str;
 	if (tmp[0] == '$')
 		tmp++;
@@ -67,6 +68,7 @@ void	simple_expend(char **str, t_list *env)
 		{
 			if (found_it(tmp, voyager_one->cmd))
 			{
+				printf("str  ===   %s\n", *str);
 				replace_it(&to_replace, voyager_one->cmd);
 				break ;
 			}
