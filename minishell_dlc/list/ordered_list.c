@@ -6,11 +6,12 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:16:36 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/28 14:09:38 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:38:14 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
+#include "../../minishell.h"
 
 void	ordered_list(t_list **list)
 {
@@ -23,7 +24,7 @@ void	ordered_list(t_list **list)
 	c = 0;
 	while (tmp && tmp->next)
 	{
-		c = ft_strcmp_p(tmp->arg, tmp->next->arg);
+		c = ft_strncmp_a(tmp->arg, tmp->next->arg);
 		if (c > 0)
 		{
 			stock = tmp->arg;

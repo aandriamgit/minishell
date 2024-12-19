@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   free_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 14:51:30 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/19 14:13:13 by mravelon         ###   ########.fr       */
+/*   Created: 2024/12/19 14:49:02 by mravelon          #+#    #+#             */
+/*   Updated: 2024/12/19 16:50:12 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../parsing.h"
+#include "../parsing.h"
 
-t_list   *duplicate_env(char **env)
+void free_node_list(t_list **list)
 {
-	int i;
-	t_list *environement;
+	t_list *tmp;
 
-	i = 0;
-	environement = NULL;
-	while (env[i])
+	tmp = *list;
+	if (tmp->arg)
 	{
-		creat_chain_of_list(&environement, creat_bloc_of_list(env[i]));
-		i++;
+		free(tmp->arg);
+		tmp->arg = NULL;
 	}
-	return (environement);
+	if(tmp->cmd)
+	{
+		free(tmp->cmd);
+		tmp->cmd = NULL;
+	}
+	if(tmp->parameter)
+	{
+		free(tmp->parameter);
+		tmp->parameter = NULL;
+	}
+	free(tmp);
+	tmp = NULL;
 }

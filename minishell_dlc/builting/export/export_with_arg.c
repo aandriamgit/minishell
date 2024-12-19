@@ -6,11 +6,12 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:02:31 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/18 15:41:13 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:28:13 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../parsing.h"
+#include "../../../utils/utils.h"
 
 void	export_with_arg(t_list **env, char *arg)
 {
@@ -25,4 +26,5 @@ void	export_with_arg(t_list **env, char *arg)
 			creat_chain_of_list(env, creat_bloc_of_list(splited_arg[i]));
 		i++;
 	}
+	ft_free_tab(&splited_arg);
 }

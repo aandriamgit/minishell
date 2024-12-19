@@ -6,11 +6,12 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 13:18:27 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/12 17:00:26 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:35:26 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../parsing.h"
+#include "../../../minishell.h"
 
 int	compare_param(char *parameter, char *str)
 {
@@ -40,13 +41,13 @@ int	check_by_list(t_list **env, char *str)
 			if (prev)
 			{
 				prev->next = tmp->next;
-				free(tmp);
+				free_node_list(&tmp);
 			}
 			else
 			{
 				prev = tmp;
 				tmp = tmp->next;
-				free(prev);
+				free_node_list(&prev);
 			}
 			return (0);
 		}
@@ -73,5 +74,6 @@ int	unset_p(t_list **environement, char *str)
 		check_by_list(environement, splited_str[i]);
 		i++;
 	}
+	ft_free_tab(&splited_str);
 	return (0);
 }

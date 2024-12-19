@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/18 15:21:32 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:37:32 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "interpret/interpret.h"
 #include "minishell.h"
 #include "minishell_dlc/parsing.h"
+#include <stdio.h>
 
 static void	handler(int signum)
 {
@@ -45,6 +46,7 @@ static void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
 	*env_cpy = duplicate_env(env);
 	vars_init(vars, env_cpy);
 	vars->input = NULL;
+	vars->cmd = NULL;
 	vars->env_cpy = env;
 	big_param_init(&big_param, *vars);
 	if (access(vars->log_dir, F_OK) == 0)
@@ -116,6 +118,10 @@ static void	forge_of_commands(t_pipe **cmd, t_vars *vars)
 int	main(int argc, char **argv, char **env)
 {
 	t_list	*env_cpy;
+	t_list	*exp;
+	t_list *tmp;
+	tmp = NULL;
+	exp = NULL;
 	t_vars	vars;
 	t_pipe	*cmd;
 	char	*input;

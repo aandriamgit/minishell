@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:56:13 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/18 15:17:16 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:36:12 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	free_vars(t_vars *vars)
 void	exit_protocol(t_vars *vars, char **input, int nbr)
 {
 	free_vars(vars);
-	free(*input);
+	if (*input != NULL)
+		free(*input);
 	exit(nbr);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:28:12 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/17 17:29:41 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:54:18 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	ft_free_t_list(t_list **env)
 			free(tmp->parameter);
 		if (tmp->arg)
 			free(tmp->arg);
+		if (tmp->cmd)
+			free(tmp->cmd);
 		free(tmp);
 	}
 }

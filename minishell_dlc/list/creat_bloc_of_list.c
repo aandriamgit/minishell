@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:09:30 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/29 16:54:07 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:15:51 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int check_assignation(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if ((str[i] == '=') && (str[i + 1] != '\0'))
+		if (str[i] == '=')
 			return (1);
 		i++;
 	}
@@ -53,7 +53,7 @@ t_list	*creat_bloc_of_list(char *str)
 	list = malloc(sizeof(t_list));
 	if (!list)
 		return (NULL);
-	list->cmd = str;
+	list->cmd = ft_strdup_p(str);
 	list->arg = creat_arg(str);
 	list->assignation = check_assignation(str);
 	if (list->assignation == 1)

@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:29:35 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/01 16:15:52 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:31:35 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char *bloc(char *str)
 int check_list(t_list **env, char *str)
 {
 	t_list *tmp;
+	t_list *prev;
 	t_list *c;
 
 	tmp = *env;
@@ -71,16 +72,18 @@ int check_list(t_list **env, char *str)
 	while (tmp)
 	{
 		if (compare_content(tmp->arg, str) == 1)
+		{
+			prev = tmp;
 			tmp = tmp->next;
+		}
 		else 
 		{
-			tmp->arg = str;
 			if (check_exp(str) == 1)
 			{
 				if (tmp != NULL)
 				{
-					free(tmp);
-					tmp = creat_bloc_of_list(str);
+					unset_p(env, tmp->arg);
+					creat_chain_of_list(env, creat_bloc_of_list(str));
 				}
 			}
 			tmp->assignation = check_assignation(str);
