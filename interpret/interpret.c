@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:56:13 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/18 15:17:16 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:39:06 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	free_vars(t_vars *vars)
 void	exit_protocol(t_vars *vars, char **input, int nbr)
 {
 	free_vars(vars);
+	close_all_fds();
 	free(*input);
 	exit(nbr);
 }
@@ -85,9 +86,13 @@ void	ft_add_history(char *input, t_vars *vars)
 	{
 		fd = open(vars->history_dir, O_RDWR | O_APPEND);
 		if (fd == -1)
+		{
+			close(fd);
 			exit(1);
+		}
 		ft_putstr_fd_a(input, fd);
 		ft_putstr_fd_a("\n", fd);
 		add_history(input);
+		close(fd);
 	}
 }

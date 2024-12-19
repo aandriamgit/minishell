@@ -27,6 +27,7 @@ SRC = minishell.c \
 	  ./utils/modules/exit_code.c \
 	  ./utils/modules/ft_perror/ft_perror.c \
 	  ./utils/modules/ft_perror/gen_fd.c \
+	  ./utils/modules/close_all_fds.c \
 	  ./utils/modules/ft_perror/custom_error/custom_error.c \
 	  ./utils/modules/ft_perror/custom_error/custom_extras.c \
 	  ./shell_init/shell_init.c \

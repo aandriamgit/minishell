@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:21:46 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/18 08:03:26 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:20:37 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,4 @@ void			custom_nosuchfileordir(char *file, char *str, t_vars *vars,
 					int err);
 void			custom_permission_denied(char *file, char *str, t_vars *vars,
 					int err);
+void			close_all_fds(void);

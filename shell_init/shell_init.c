@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/18 15:24:15 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:23:50 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ void	add_prev_history(t_vars *vars)
 		free(prev);
 		prev = get_next_line(fd);
 		if (!prev)
+		{
+			close(fd);
 			return ;
+		}
 		prev[ft_strlen_a(prev) - 1] = '\0';
 		add_history(prev);
 	}
