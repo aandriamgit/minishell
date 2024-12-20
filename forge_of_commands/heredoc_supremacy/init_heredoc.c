@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:03:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/11/11 15:59:02 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:53:08 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,19 @@ void	init_heredoc(t_vars *vars, char *eof)
 			free(eof);
 			close(fd_heredoc);
 			free(heredoc_nb);
+			if (input_heredoc)
+			{
+				free(input_heredoc);
+				input_heredoc = NULL;
+			}
 			return ;
 		}
 		ft_putstr_fd_a(input_heredoc, fd_heredoc);
 		ft_putstr_fd_a("\n", fd_heredoc);
+		if (input_heredoc)
+		{
+			free(input_heredoc);
+			input_heredoc = NULL;
+		}
 	}
 }
