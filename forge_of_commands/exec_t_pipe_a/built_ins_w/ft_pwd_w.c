@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:59:07 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/18 11:09:30 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:53:04 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ void	ft_pwd_w(t_command_a *cmd, t_vars *vars)
 		{
 			ft_putstr_fd_a(buffer, STDOUT_FILENO);
 			ft_putstr_fd_a("\n", STDOUT_FILENO);
-		}
-		else
-		{
 		}
 	}
 	ft_perror_exit(NULL, NULL, vars, 0);

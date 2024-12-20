@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:09:45 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/18 09:49:32 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:31:37 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	w_pipe(t_pipe_a *pipe_a, t_vars *vars)
 			ft_perror_exit("waitpid", "w_pipe\n", vars, 1);
 		if (WIFEXITED(status))
 			vars->exit_code_int = WEXITSTATUS(status);
+		if (WIFSIGNALED(status))
+			vars->exit_code_int = WTERMSIG(status);
 		pipe_a = pipe_a->next;
 	}
 }
@@ -38,6 +40,8 @@ int	handle_child_exit_no_pipe(pid_t child_pid, t_vars *vars)
 		ft_perror_soft("waitpid", "handle_child_exit_no_pipe", vars, 1);
 		return (-1);
 	}
+	if (WIFSIGNALED(status))
+		return (WTERMSIG(status));
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	return (-1);
@@ -58,8 +62,12 @@ static void	extra(t_pipe_a *pipe_a, t_vars *vars)
 		{
 			pid = fork();
 			if (pid == 0)
+			{
+				signal(SIGQUIT, SIG_DFL);
+				signal(SIGINT, SIG_DFL);
 				ft_execve_path(pipe_a, pipe_a->cmd->cmd, pipe_a->cmd->args,
 					vars);
+			}
 			else if (pid < 0)
 				ft_perror_soft("fork error", "no_pipe", vars, 1);
 			else

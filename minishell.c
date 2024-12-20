@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/19 16:04:00 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:23:04 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,12 @@
 #include "minishell.h"
 #include "minishell_dlc/parsing.h"
 
-static void	handler(int signum)
-{
-	char	buffer[1024];
-	char	*lol;
-	char	*res;
-	char	*tmp;
-
-	getcwd(buffer, 1024);
-	tmp = ft_strjoin_a("\033[38;2;166;227;161m╭\033[38;2;148;226;213m ",
-			buffer);
-	res = ft_strjoin_a(tmp, "\033[38;2;137;180;250m  \033[0m");
-	lol = ft_strjoin_free_a(res, "\n\001\033[38;2;243;139;168m\002\001╰\002");
-	lol = ft_strjoin_free_a(lol, "\001\002\001\033[0m\002 ");
-	if (signum == SIGINT)
-	{
-		upload_exit_code(130);
-		printf("\n%s", lol);
-		rl_replace_line("", 1);
-		rl_redisplay();
-	}
-}
-
 static void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
 {
 	char	**big_param;
 
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, handler);
 	*input = NULL;
 	*env_cpy = duplicate_env(env);
 	vars_init(vars, env_cpy);
@@ -124,8 +104,6 @@ int	main(int argc, char **argv, char **env)
 	if (argc == 1)
 	{
 		shell_init(&vars, &env_cpy, &input, env);
-		signal(SIGQUIT, SIG_IGN);
-		signal(SIGINT, handler);
 		while (1)
 		{
 			interpret(&input, &vars, &cmd);
