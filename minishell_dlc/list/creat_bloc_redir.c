@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:51:48 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/18 10:27:54 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/21 12:00:47 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_redir	*creat_bloc_redir(char *type, char *file)
 	if (!redir)
 		return (NULL);
 	redir->type = ft_strdup_p(type);
-	if (check_quotes(file) == 1)
-		rm_quote(&file);
+	/*if (check_quotes(file) == 1)
+		rm_quote(&file);*/
 	if (file[0] == '\0')
 		redir->file = NULL;
 	else

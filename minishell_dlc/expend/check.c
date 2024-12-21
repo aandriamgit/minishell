@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:36:38 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/20 16:54:29 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/21 11:55:58 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int check_bloc(char *str)
 				if ((i > 0) && (str[i - 1] == '<' || str[i - 1] == '>'))
 				{
 					x = str[i - 1];
-					if (str[i - 2] == x)
+					//if (str[i - 2] == x)
 						return (1);
-					else
-						return (0);
+					/*else
+						return (0);*/
 				}
 			}
 			else
@@ -52,10 +52,10 @@ int	check_her(char *s1, char *s2, int flag)
 	x = '\0';
 	if (s2[0] == '$')
 	{
-		if (s1[c - 1] == '<' && flag > 0)
+		if ((s1[c - 1] == '<' || s1[c - 1] == '>') && flag > 0)
 		{
 			x = s1[c - 1];
-			if (s1[c - 2] == x)
+		//	if (s1[c - 2] == x)
 				return (1);
 		}
 		else
