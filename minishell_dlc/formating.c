@@ -6,12 +6,11 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:32:52 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/20 16:38:38 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:06:11 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include <stdio.h>
 
 static int check(char *str)
 {
@@ -75,4 +74,4 @@ void	formating(char **str, t_list *env_cp)
 	free(*str);
 	*str = join_with_space(split);
 	free_split(&split);
-}
+}	

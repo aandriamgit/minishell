@@ -6,12 +6,11 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:17:53 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/18 14:21:01 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:11:25 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include <stdio.h>
 
 static int count_x(char *str, char c)
 {
@@ -24,10 +23,10 @@ static int count_x(char *str, char c)
 	count = 0;
 	while (str[i])
 	{
-		if (str[i] && str[i] != c)
+		if (str[i] && (str[i] != c && str[i] != '\t'))
 		{
 			count++;
-			while (str[i] && str[i] != c)
+			while (str[i] && (str[i] != c && str[i] != '\t' ))
 			{
 				if (str[i] == '\'' || str[i] == '\"')
 				{
@@ -62,7 +61,7 @@ char **split_quote(char *str, char c)
 		return (NULL);
 	while(str[i])
 	{
-		if (str[i] != c)
+		if (str[i] != c && str[i] != '\t')
 		{
 			start = i;
 			if (str[i] == '\'' || str[i] == '\"')
@@ -73,7 +72,7 @@ char **split_quote(char *str, char c)
 					i++;
 			}
 			i++;
-			while (str[i] && str[i] != c)
+			while (str[i] && (str[i] != c && str[i] != '\t'))
 			{
 				if (str[i] == '\'' || str[i] == '\"')
 				{
