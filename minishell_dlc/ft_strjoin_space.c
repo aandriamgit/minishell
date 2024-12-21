@@ -6,11 +6,12 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:54:01 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/03 14:10:09 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:18:13 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include <stdio.h>
 
 static int	ft_count(char **str)
 {
@@ -28,6 +29,7 @@ static int	ft_count(char **str)
 			count++;
 			j++;
 		}
+		j = 0;
 		i++;
 	}
 	return (count);

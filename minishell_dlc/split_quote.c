@@ -6,11 +6,12 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:17:53 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/21 14:11:25 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:41:43 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
+#include <stdio.h>
 
 static int count_x(char *str, char c)
 {
@@ -23,10 +24,10 @@ static int count_x(char *str, char c)
 	count = 0;
 	while (str[i])
 	{
-		if (str[i] && (str[i] != c && str[i] != '\t'))
+		if (str[i] && (str[i] != c))
 		{
 			count++;
-			while (str[i] && (str[i] != c && str[i] != '\t' ))
+			while (str[i] && (str[i] != c))
 			{
 				if (str[i] == '\'' || str[i] == '\"')
 				{
@@ -38,8 +39,7 @@ static int count_x(char *str, char c)
 				i++;
 			}
 		}
-		else
-			i++;
+		i++;
 	}
 	return (count);
 }
@@ -56,12 +56,14 @@ char **split_quote(char *str, char c)
 	j = 0;
 	x = '\0';
 	start = 0;
+	printf("str = %s\n", str);
+	printf("hollllllaaaaan\n");
 	new = malloc (sizeof(char *) * (count_x(str, c) + 1));
 	if (!new)
 		return (NULL);
 	while(str[i])
 	{
-		if (str[i] != c && str[i] != '\t')
+		if (str[i] != c)
 		{
 			start = i;
 			if (str[i] == '\'' || str[i] == '\"')
@@ -72,7 +74,7 @@ char **split_quote(char *str, char c)
 					i++;
 			}
 			i++;
-			while (str[i] && (str[i] != c && str[i] != '\t'))
+			while (str[i] && (str[i] != c))
 			{
 				if (str[i] == '\'' || str[i] == '\"')
 				{

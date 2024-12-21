@@ -6,21 +6,19 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:36:38 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/21 11:55:58 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:12:52 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
+#include <stdio.h>
 
 int check_bloc(char *str)
 {
 	int i;
-	char x;
 
 	i = 0;
-	x = '\0';
 
-			printf("str = %s\n", str);
 	if (str != NULL)
 	{
 		while (str[i])
@@ -28,15 +26,8 @@ int check_bloc(char *str)
 			if (str[i] == '$')
 			{
 				if ((i > 0) && (str[i - 1] == '<' || str[i - 1] == '>'))
-				{
-					x = str[i - 1];
-					//if (str[i - 2] == x)
 						return (1);
-					/*else
-						return (0);*/
-				}
 			}
-			else
 				i++;
 		}
 	}
