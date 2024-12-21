@@ -6,14 +6,14 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 12:55:03 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/20 15:44:13 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:49:26 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../built_ins_w/built_ins_w.h"
 #include "../exec_t_pipe_a.h"
 
-static void	extras(t_pipe_a *pipe_a, int input_fd, int output_fd, t_vars *vars)
+static void	extras(t_pipe_a *pipe_a, t_vars *vars)
 {
 	signal(SIGQUIT, SIG_DFL);
 	signal(SIGINT, SIG_DFL);
@@ -43,7 +43,7 @@ static void	handle_cmd(t_pipe_a *pipe_a, int input_fd, int output_fd,
 	}
 	handle_redir(pipe_a->cmd->redir, vars, &flag);
 	if (flag)
-		extras(pipe_a, input_fd, output_fd, vars);
+		extras(pipe_a, vars);
 	else
 		ft_perror_exit(NULL, NULL, vars, 1);
 }
