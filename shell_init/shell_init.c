@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/18 15:24:15 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:40:57 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ void	add_prev_history(t_vars *vars)
 		free(prev);
 		prev = get_next_line(fd);
 		if (!prev)
+		{
+			close(fd);
 			return ;
+		}
 		prev[ft_strlen_a(prev) - 1] = '\0';
 		add_history(prev);
 	}
@@ -75,4 +78,26 @@ void	creat_files(t_vars *vars)
 	fd = open(vars->exit_code_dir, O_TRUNC | O_WRONLY | O_CREAT, 0755);
 	ft_putnbr_fd_a(0, fd);
 	close(fd);
+}
+
+void	handler(int signum)
+{
+	char	buffer[1024];
+	char	*lol;
+	char	*res;
+	char	*tmp;
+
+	getcwd(buffer, 1024);
+	tmp = ft_strjoin_a("\033[38;2;166;227;161m╭\033[38;2;148;226;213m ",
+			buffer);
+	res = ft_strjoin_a(tmp, "\033[38;2;137;180;250m  \033[0m");
+	lol = ft_strjoin_free_a(res, "\n\001\033[38;2;243;139;168m\002\001╰\002");
+	lol = ft_strjoin_free_a(lol, "\001\002\001\033[0m\002 ");
+	if (signum == SIGINT)
+	{
+		upload_exit_code(130);
+		printf("\n%s", lol);
+		rl_replace_line("", 1);
+		rl_redisplay();
+	}
 }

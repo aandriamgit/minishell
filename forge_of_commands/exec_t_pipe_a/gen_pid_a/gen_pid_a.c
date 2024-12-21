@@ -6,12 +6,24 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 12:55:03 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/17 13:23:53 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:49:26 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../built_ins_w/built_ins_w.h"
 #include "../exec_t_pipe_a.h"
+
+static void	extras(t_pipe_a *pipe_a, t_vars *vars)
+{
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, SIG_DFL);
+	if (is_built_ins(pipe_a->cmd))
+		built_ins_w(pipe_a->cmd, vars);
+	else if (pipe_a->cmd->cmd[0] == '.' || pipe_a->cmd->cmd[0] == '/')
+		path_w_pipe(pipe_a, vars);
+	else
+		ft_execve_path(pipe_a, pipe_a->cmd->cmd, pipe_a->cmd->args, vars);
+}
 
 static void	handle_cmd(t_pipe_a *pipe_a, int input_fd, int output_fd,
 		t_vars *vars)
@@ -31,14 +43,7 @@ static void	handle_cmd(t_pipe_a *pipe_a, int input_fd, int output_fd,
 	}
 	handle_redir(pipe_a->cmd->redir, vars, &flag);
 	if (flag)
-	{
-		if (is_built_ins(pipe_a->cmd))
-			built_ins_w(pipe_a->cmd, vars);
-		else if (pipe_a->cmd->cmd[0] == '.' || pipe_a->cmd->cmd[0] == '/')
-			path_w_pipe(pipe_a, vars);
-		else
-			ft_execve_path(pipe_a, pipe_a->cmd->cmd, pipe_a->cmd->args, vars);
-	}
+		extras(pipe_a, vars);
 	else
 		ft_perror_exit(NULL, NULL, vars, 1);
 }
