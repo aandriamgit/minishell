@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/21 12:06:45 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/22 12:55:27 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,13 @@ int	main(int argc, char **argv, char **env)
 {
 	t_list	*env_cpy;
 	t_list	*exp;
-	t_list *tmp;
-	tmp = NULL;
-	exp = NULL;
+	t_list	*tmp;
 	t_vars	vars;
 	t_pipe	*cmd;
 	char	*input;
 
+	tmp = NULL;
+	exp = NULL;
 	(void)argv;
 	if (argc == 1)
 	{
