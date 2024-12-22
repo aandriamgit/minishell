@@ -6,11 +6,12 @@
 /*   By: mravelon <mravelon@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:08:21 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/28 13:53:41 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:43:51 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 size_t	ft_conteur(char const *s, char c)
 {
@@ -32,6 +33,7 @@ size_t	ft_conteur(char const *s, char c)
 		while (s[i] != c && s[i] != '\0')
 			i++;
 	}
+	printf("counteur %zu\n", conteur);
 	return (conteur);
 }
 

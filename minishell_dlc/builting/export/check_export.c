@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:29:35 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/19 17:31:35 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:33:07 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int check_list(t_list **env, char *str)
 					creat_chain_of_list(env, creat_bloc_of_list(str));
 				}
 			}
-			tmp->assignation = check_assignation(str);
 			return (0);
 		}
 	}

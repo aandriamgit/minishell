@@ -6,12 +6,13 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 13:18:27 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/19 16:35:26 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:54:37 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../parsing.h"
 #include "../../../minishell.h"
+#include <stdio.h>
 
 int	compare_param(char *parameter, char *str)
 {
@@ -31,9 +32,11 @@ int	check_by_list(t_list **env, char *str)
 {
 	t_list	*tmp;
 	t_list	*prev;
+	int	i;
 
 	tmp = *env;
 	prev = NULL;
+	i = 0;
 	while (tmp)
 	{
 		if (compare_param(tmp->arg, str) == 0)
@@ -53,6 +56,7 @@ int	check_by_list(t_list **env, char *str)
 		}
 		prev = tmp;
 		tmp = tmp->next;
+		i++;
 	}
 	return (1);
 }
