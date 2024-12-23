@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:32:52 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/21 18:23:17 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/23 13:44:37 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void modify_str(char **str, t_list *env_cp)
 	int i;
 	
 	i = 0;
-	split = split_expand(*str);
+	split = split_expand_1(*str);
 	while (split[i])
 	{
 		if (check(split[i]) == 1 && split[i][0] != '\'')

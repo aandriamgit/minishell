@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:36:38 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/21 18:12:52 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/23 14:17:44 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int check_bloc(char *str)
 	int i;
 
 	i = 0;
-
 	if (str != NULL)
 	{
 		while (str[i])
@@ -46,7 +45,6 @@ int	check_her(char *s1, char *s2, int flag)
 		if ((s1[c - 1] == '<' || s1[c - 1] == '>') && flag > 0)
 		{
 			x = s1[c - 1];
-		//	if (s1[c - 2] == x)
 				return (1);
 		}
 		else

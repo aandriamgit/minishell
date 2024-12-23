@@ -6,12 +6,13 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:54:34 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/21 18:03:40 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/23 14:01:27 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dep/dep.h"
 #include "../parsing.h"
+#include <time.h>
 
 static int	found_it(char *tmp, char *parameter)
 {
@@ -93,6 +94,12 @@ void	expend(char	**str, t_list *env)
 	char	**splited_a;
 	char	*new;
 
+	if ((*str)[0] == '$' && (*str)[1] == '\0')
+	{
+		free(*str);
+		*str = ft_strdup_p("");
+		return ;
+	}
 	splited_a = ft_split_aa(*str, '$');
 	if (count_pp(splited_a) == 1)
 	{
