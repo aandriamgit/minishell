@@ -6,12 +6,18 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:17:53 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/23 15:55:28 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/23 17:43:34 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include <stdio.h>
+
+void	initialise(int *i, int *j, int *start)
+{
+	*i = 0;
+	*j = 0;
+	*start = 0;
+}
 
 void	skip_x(int *i, char *str, char c)
 {
@@ -21,10 +27,10 @@ void	skip_x(int *i, char *str, char c)
 	(*i)++;
 }
 
-static int count_x(char *str, char c)
+static int	count_x(char *str, char c)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -49,33 +55,36 @@ static int count_x(char *str, char c)
 	return (count);
 }
 
-char **split_quote(char *str, char c)
+void	mini_split_quote(char *str, int *i, char c)
 {
-	int start;
-	char **new;
-	int i;
-	int j;
+	if (str[*i] && (str[*i] == '\'' || str[*i] == '\"'))
+		skip_x(i, str, str[*i]);
+	while (str[*i] && str[*i] != c)
+	{
+		if (str[*i] && (str[*i] == '\'' || str[*i] == '\"'))
+			skip_x(i, str, str[*i]);
+		else
+			(*i)++;
+	}
+}
 
-	i = 0;
-	j = 0;
-	start = 0;
+char	**split_quote(char *str, char c)
+{
+	int		start;
+	char	**new;
+	int		i;
+	int		j;
+
+	initialise(&i, &j, &start);
 	new = malloc (sizeof(char *) * (count_x(str, c) + 1));
 	if (!new)
 		return (NULL);
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] && str[i] != c)
 		{
 			start = i;
-			if (str[i] && (str[i] == '\'' || str[i] == '\"'))
-				skip_x(&i, str, str[i]);
-			while(str[i] && str[i] != c)
-			{
-				if (str[i] && (str[i] == '\'' || str[i] == '\"'))
-					skip_x(&i, str, str[i]);
-				else
-					i++;
-			}
+			mini_split_quote(str, &i, c);
 			new[j] = ft_substr_p(start, i - 1, str);
 			j++;
 		}

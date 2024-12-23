@@ -6,16 +6,16 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:17:53 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/21 13:55:38 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:33:18 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 
-static int count_x(char *str, char c)
+static int	count_x(char *str, char c)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -33,12 +33,12 @@ static int count_x(char *str, char c)
 	return (count);
 }
 
-char **simple_split(char *str, char c)
+char	**simple_split(char *str, char c)
 {
-	int start;
-	char **new;
-	int i;
-	int j;
+	int		start;
+	char	**new;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -46,7 +46,7 @@ char **simple_split(char *str, char c)
 	new = malloc (sizeof(char *) * (count_x(str, c) + 1));
 	if (!new)
 		return (NULL);
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] != c)
 		{

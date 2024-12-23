@@ -6,17 +6,24 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:50:28 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/04 17:23:33 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:13:29 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
+void	init_join(int *i, int *j, int *k)
+{
+	*i = 0;
+	*j = 0;
+	*k = 0;
+}
+
 int	count_join(char **str)
 {
-	int i;
-	int j;
-	int count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = 0;
 	j = 0;
@@ -36,16 +43,20 @@ int	count_join(char **str)
 	return (count);
 }
 
+void	mini_join(char **new, int *k)
+{
+	(*new)[*k] = ' ';
+	(*k)++;
+}
+
 char	*join_with_space(char **str)
 {
-	int i;
-	int j;
-	int k;
-	char *new;
+	int		i;
+	int		j;
+	int		k;
+	char	*new;
 
-	k = 0;
-	j = 0;
-	i = 0;
+	init_join(&i, &j, &k);
 	new = malloc(sizeof(char) * (count_join(str) + 1));
 	if (!new)
 		return (NULL);
@@ -58,10 +69,7 @@ char	*join_with_space(char **str)
 			j++;
 		}
 		if (str[i + 1] != NULL)
-		{
-			new[k] = ' ';
-			k++;
-		}
+			mini_join(&new, &k);
 		j = 0;
 		i++;
 	}
