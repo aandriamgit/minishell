@@ -46,6 +46,7 @@ SRC = minishell.c \
 	  ./forge_of_commands/heredoc_supremacy/have_heredoc.c \
 	  ./forge_of_commands/heredoc_supremacy/init_heredoc.c \
 	  ./forge_of_commands/heredoc_supremacy/purify_from_heredoc.c \
+	  ./forge_of_commands/heredoc_supremacy/print_heredoc.c \
 	  ./forge_of_commands/exec_t_pipe_a/exec_t_pipe_a.c \
 	  ./forge_of_commands/exec_t_pipe_a/handle_redir.c \
 	  ./forge_of_commands/exec_t_pipe_a/path_no_pipe.c \

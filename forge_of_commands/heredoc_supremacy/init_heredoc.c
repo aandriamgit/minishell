@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:03:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/23 10:38:39 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/23 12:51:51 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ static void	nice_eof(char **eof, int heredoc_type)
 
 void	init_heredoc(t_vars *vars, char *eof)
 {
-	char	*input_heredoc;
 	char	*heredoc_nb;
 	int		fd_heredoc;
 	int		heredoc_type;
@@ -101,33 +100,4 @@ void	init_heredoc(t_vars *vars, char *eof)
 	ft_putstr_fd_a("::\n", 1);
 	free(heredoc_nb);
 	print_heredoc(vars, eof, heredoc_type, fd_heredoc);
-	while (1)
-	{
-		input_heredoc = readline("> ");
-		if (!input_heredoc || ft_strncmp_a(input_heredoc, eof) == 0)
-		{
-			if (!input_heredoc)
-			{
-				ft_putstr_fd_a("Minishell: warning: here-document ", 1);
-				ft_putstr_fd_a("delimited end-of-file (wanted `", 1);
-				ft_putstr_fd_a(eof, 1);
-				ft_putstr_fd_a("\')\n", 1);
-			}
-			free(eof);
-			close(fd_heredoc);
-			if (input_heredoc)
-			{
-				free(input_heredoc);
-				input_heredoc = NULL;
-			}
-			return ;
-		}
-		ft_putstr_fd_a(input_heredoc, fd_heredoc);
-		ft_putstr_fd_a("\n", fd_heredoc);
-		if (input_heredoc)
-		{
-			free(input_heredoc);
-			input_heredoc = NULL;
-		}
-	}
 }
