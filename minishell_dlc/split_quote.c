@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:17:53 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/23 13:42:35 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/23 15:55:28 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ static int count_x(char *str, char c)
 			if (str[i] && (str[i] == '\'' || str[i] == '\"'))
 				skip_x(&i, str, str[i]);
 			while (str[i] && (str[i] != c))
-				i++;
+			{
+				if (str[i] == '\'' || str[i] == '\"')
+					skip_x(&i, str, str[i]);
+				else
+					i++;
+			}
 		}
 		else
 			i++;
