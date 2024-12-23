@@ -36,6 +36,7 @@ SRC = minishell.c \
 	  ./get_next_line/get_next_line_utils.c \
 	  ./interpret/interpret.c \
 	  ./interpret/unclosed_quote.c \
+	  ./interpret/unclosed_pipe.c \
 	  ./forge_of_commands/convert_t_pipe_a.c \
 	  ./forge_of_commands/init_stderr.c \
 	  ./forge_of_commands/custom_prompt.c \
@@ -49,6 +50,7 @@ SRC = minishell.c \
 	  ./forge_of_commands/heredoc_supremacy/print_heredoc.c \
 	  ./forge_of_commands/exec_t_pipe_a/exec_t_pipe_a.c \
 	  ./forge_of_commands/exec_t_pipe_a/handle_redir.c \
+	  ./forge_of_commands/exec_t_pipe_a/ambiguous_redirect.c \
 	  ./forge_of_commands/exec_t_pipe_a/path_no_pipe.c \
 	  ./forge_of_commands/exec_t_pipe_a/gen_pid_a/gen_pid_a.c \
 	  ./forge_of_commands/exec_t_pipe_a/gen_pid_a/path_w_pipe.c \

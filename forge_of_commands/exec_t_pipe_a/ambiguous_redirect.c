@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interpret.h                                        :+:      :+:    :+:   */
+/*   ambiguous_redirect.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 17:54:59 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/23 16:46:52 by aandriam         ###   ########.fr       */
+/*   Created: 2024/12/23 15:24:07 by aandriam          #+#    #+#             */
+/*   Updated: 2024/12/23 18:21:46 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../shell_init/shell_init.h"
-#include "../utils/utils.h"
+#include "exec_t_pipe_a.h"
 
-void	exit_protocol(t_vars *vars, char **input, int nbr);
-char	*nice_prompt(t_vars *vars);
-void	ft_add_history(char *input, t_vars *vars);
-void	uptade_input(char **input, t_vars *vars);
-int		unclosed_quote(char **input, t_vars *vars);
-void	free_vars(t_vars *vars);
-int		unclosed_pipe(char **input, t_vars *vars);
+int	ambiguous_redirect(char **file, t_vars *vars, char **file_dup)
+{
+	char	*tmp_file;
+
+	tmp_file = *file;
+	if (tmp_file[0] == '$')
+	{
+	}
+	return (0);
+}

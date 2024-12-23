@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/22 12:55:27 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/23 16:47:06 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "interpret/interpret.h"
 #include "minishell.h"
 #include "minishell_dlc/parsing.h"
-#include <stdio.h>
+#include <errno.h>
 
 static void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
 {
@@ -56,7 +56,7 @@ static void	interpret(char **input, t_vars *vars, t_pipe **cmd)
 		ft_add_history(*input, vars);
 	else
 		exit_protocol(vars, input, 127);
-	if (unclosed_quote(input, vars))
+	if (unclosed_quote(input, vars) || unclosed_pipe(input, vars))
 		show_errors(vars);
 	else
 	{
@@ -98,15 +98,12 @@ static void	forge_of_commands(t_pipe **cmd, t_vars *vars)
 int	main(int argc, char **argv, char **env)
 {
 	t_list	*env_cpy;
-	t_list	*exp;
-	t_list	*tmp;
 	t_vars	vars;
 	t_pipe	*cmd;
 	char	*input;
 
-	tmp = NULL;
-	exp = NULL;
 	(void)argv;
+	cmd = NULL;
 	if (argc == 1)
 	{
 		shell_init(&vars, &env_cpy, &input, env);
@@ -120,7 +117,8 @@ int	main(int argc, char **argv, char **env)
 	}
 	else
 	{
-		perror("[minishell] too many argument's'");
+		errno = 22;
+		perror("[minishell]");
 		return (1);
 	}
 	return (0);

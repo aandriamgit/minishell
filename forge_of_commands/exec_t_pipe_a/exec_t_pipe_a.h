@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:09:25 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/17 13:23:52 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:13:33 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,3 +20,4 @@ void	gen_pid_a(t_pipe_a *pipe_a, t_vars *vars);
 void	path_no_pipe(t_pipe_a *pipe_a, t_vars *vars);
 int		handle_child_exit_no_pipe(pid_t child_pid, t_vars *vars);
 void	path_w_pipe(t_pipe_a *pipe_a, t_vars *vars);
+int		ambiguous_redirect(char **file, t_vars *vars, char **file_dup);

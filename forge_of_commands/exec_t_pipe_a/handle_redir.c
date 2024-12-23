@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:34:53 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/18 10:05:31 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:14:02 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,25 @@ static void	append_redir_n(char *file, t_vars *vars, int *flag)
 static int	syntax_error_check(t_redirection_a *redir, t_vars *vars, int *flag)
 {
 	t_redirection_a	*voyager_one;
+	char			*file_dup;
 
 	voyager_one = redir;
 	while (voyager_one)
 	{
+		file_dup = ft_strdup_a(voyager_one->file);
 		if (voyager_one->file == NULL || voyager_one->file[0] == '\0')
 		{
 			*flag = 0;
 			ft_perror_soft("syntax error", "unexpected token\n", vars, 2);
 			return (0);
 		}
+		else if (ambiguous_redirect(&voyager_one->file, vars, &file_dup))
+		{
+			*flag = 0;
+			ft_perror_soft(voyager_one->file, "ambiguous redirect\n", vars, 2);
+			return (0);
+		}
+		free(file_dup);
 		voyager_one = voyager_one->next;
 	}
 	return (1);
