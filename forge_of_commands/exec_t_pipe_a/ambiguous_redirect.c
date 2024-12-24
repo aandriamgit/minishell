@@ -6,19 +6,62 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:24:07 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/23 18:21:46 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/24 14:52:39 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec_t_pipe_a.h"
 
-int	ambiguous_redirect(char **file, t_vars *vars, char **file_dup)
+static int	check_ambiguous(char *dup_file, t_vars *vars)
 {
-	char	*tmp_file;
+	int		i;
+	char	*tmp;
 
-	tmp_file = *file;
-	if (tmp_file[0] == '$')
+	i = 0;
+	tmp = ft_strdup_a(dup_file);
+	if (tmp[0] != '"')
 	{
+		modify_str(&tmp, vars->env);
+		while (tmp[i])
+		{
+			if (tmp[i] == ' ')
+			{
+				free(tmp);
+				return (1);
+			}
+			i++;
+		}
 	}
+	free(tmp);
+	return (0);
+}
+
+int	ambiguous_redirect(char **file, t_vars *vars)
+{
+	int		i;
+	char	*dup_file;
+
+	i = 0;
+	dup_file = ft_strdup_a(*file);
+	while (dup_file[i])
+	{
+		if (dup_file[i] == '$')
+		{
+			if (check_ambiguous(dup_file, vars))
+			{
+				free(dup_file);
+				return (1);
+			}
+			else
+			{
+				rm_quote(file);
+				modify_str(file, vars->env);
+				free(dup_file);
+				return (0);
+			}
+		}
+		i++;
+	}
+	free(dup_file);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 16:31:20 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/23 18:30:30 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/24 14:47:56 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,56 +38,16 @@ static void	extra_pipe(int *i, int *res, char *str, t_vars *vars)
 	}
 }
 
-static void	extra_backslach(int *i, int *res, char *str, t_vars *vars)
+static void	extra_backslach(int *res, t_vars *vars)
 {
-	int	j;
-
-	j = *i;
-	j++;
-	*i = *i + 1;
-	if (!str[j])
-	{
-		ft_perror_soft("syntax error", "unclosed '|'\n", vars, 2);
-		*res = 1;
-		return ;
-	}
-	while (str[j] == ' ' || str[j] == '\t')
-	{
-		*i = *i + 1;
-		j++;
-		if (!str[*i])
-		{
-			ft_perror_soft("syntax error", "unclosed '|'\n", vars, 2);
-			*res = 1;
-			return ;
-		}
-	}
+	*res = 1;
+	ft_perror_soft("syntax error", "unexpected token '\\'\n", vars, 2);
 }
 
-static void	extra_semicolone(int *i, int *res, char *str, t_vars *vars)
+static void	extra_semicolone(int *res, t_vars *vars)
 {
-	int	j;
-
-	j = *i;
-	j++;
-	*i = *i + 1;
-	if (!str[j])
-	{
-		ft_perror_soft("syntax error", "unclosed '|'\n", vars, 2);
-		*res = 1;
-		return ;
-	}
-	while (str[j] == ' ' || str[j] == '\t')
-	{
-		*i = *i + 1;
-		j++;
-		if (!str[*i])
-		{
-			ft_perror_soft("syntax error", "unclosed '|'\n", vars, 2);
-			*res = 1;
-			return ;
-		}
-	}
+	*res = 1;
+	ft_perror_soft("syntax error", "unexpected token ';'\n", vars, 2);
 }
 
 int	unclosed_pipe(char **input, t_vars *vars)
@@ -104,9 +64,9 @@ int	unclosed_pipe(char **input, t_vars *vars)
 		if (str[i] == '|')
 			extra_pipe(&i, &res, str, vars);
 		else if (str[i] == '\\')
-			extra_backslach(&i, &res, str, vars);
+			extra_backslach(&res, vars);
 		else if (str[i] == ';')
-			extra_semicolone(&i, &res, str, vars);
+			extra_semicolone(&res, vars);
 		if (res)
 			return (res);
 		if (str[i])
