@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:48:05 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/28 13:44:32 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/24 12:01:13 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void mini_display(char *tmp)
 	int i;
 
 	i = 0;
+	ft_putstr_p("declare -x ", 1);
 	while (tmp[i])
 	{
 		if (tmp[i] == '=')
@@ -37,7 +38,7 @@ void mini_display(char *tmp)
 			ft_putchar_p(tmp[i], 1);
 		i++;
 	}
-	printf("\n");
+	ft_putchar_p('\n', 1);
 }
 
 void display_export_list(t_list **list)

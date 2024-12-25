@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 10:37:14 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/19 14:43:38 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/25 15:38:52 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,29 @@ t_list   *duplicate_export(t_list *env)
 	return (export);
 }
 
-void	simple_export(t_list *env)
+void check_minimum(t_list *env_cp, char *str)
 {
-	t_list *export;
+	t_list *tmp;
+	char *min;
 
-	export = duplicate_export(env);
-	ordered_list(&export);
-	display_export_list(&export);
-	ft_free_t_list(&export);
+	min = NULL;
+	tmp = env_cp;
+	while (tmp && tmp->next)
+	{
+		if ((min == NULL || (min != NULL && ft_strncmp_a(min, tmp->cmd) > 0))  && (ft_strncmp_a(tmp->cmd, str) > 0))
+		{
+			min = tmp->cmd;
+		}
+		tmp = tmp->next;
+	}
+	if (min != NULL)
+	{
+		printf("declare_x %s\n", min);
+		check_minimum(env_cp, min);
+	}
+}
+
+void	simple_export(t_list *env_cp)
+{
+	check_minimum(env_cp, "");
 }
