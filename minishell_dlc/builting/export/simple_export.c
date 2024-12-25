@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 10:37:14 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/25 15:38:52 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/25 16:23:32 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,27 @@ t_list   *duplicate_export(t_list *env)
 	return (export);
 }
 
-void check_minimum(t_list *env_cp, char *str)
+void	check_min(t_list *env, char *str)
 {
-	t_list *tmp;
 	char *min;
+	t_list *tmp;
 
 	min = NULL;
-	tmp = env_cp;
-	while (tmp && tmp->next)
+	tmp = env;
+	while (tmp)
 	{
-		if ((min == NULL || (min != NULL && ft_strncmp_a(min, tmp->cmd) > 0))  && (ft_strncmp_a(tmp->cmd, str) > 0))
-		{
+		if ((min == NULL || (min != NULL && (ft_strncmp_a(min, tmp->cmd) > 0))) && (ft_strncmp_a(tmp->cmd, str) > 0))
 			min = tmp->cmd;
-		}
 		tmp = tmp->next;
 	}
 	if (min != NULL)
 	{
 		printf("declare_x %s\n", min);
-		check_minimum(env_cp, min);
+		check_min(env, min);
 	}
 }
 
-void	simple_export(t_list *env_cp)
+void	simple_export(t_list *env)
 {
-	check_minimum(env_cp, "");
+	check_min(env, "");
 }

@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:49:49 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/25 15:27:36 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/23 11:01:05 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_cmd
 {
 	char *cmd;
 	char **arg;
+	//struct s_cmd *next;
 } t_cmd;
 
 typedef struct s_pipe 

@@ -6,15 +6,15 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:32:52 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/23 16:38:33 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/23 13:44:37 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static int	check(char *str)
+static int check(char *str)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (str[i])
@@ -26,11 +26,11 @@ static int	check(char *str)
 	return (0);
 }
 
-void	modify_str(char **str, t_list *env_cp)
+void modify_str(char **str, t_list *env_cp)
 {
-	char	**split;
-	int		i;
-
+	char **split;
+	int i;
+	
 	i = 0;
 	split = split_expand_1(*str);
 	while (split[i])
@@ -55,8 +55,8 @@ void	modify_str(char **str, t_list *env_cp)
 
 void	formating(char **str, t_list *env_cp)
 {
-	char	**split;
-	int		i;
+	char **split;
+	int i;
 
 	i = 0;
 	split = split_quote(*str, ' ');
@@ -65,7 +65,7 @@ void	formating(char **str, t_list *env_cp)
 		if (check(split[i]) == 1)
 		{
 			if (i > 0 && check_her(split[i - 1], split[i], i) == 0)
-				modify_str(&split[i], env_cp);
+						modify_str(&split[i], env_cp);
 			if (i == 0 && check_bloc(split[i]) == 0)
 				modify_str(&split[i], env_cp);
 		}
@@ -74,4 +74,4 @@ void	formating(char **str, t_list *env_cp)
 	free(*str);
 	*str = join_with_space(split);
 	free_split(&split);
-}
+}	

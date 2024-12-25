@@ -6,24 +6,17 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:34:59 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/23 18:26:59 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:32:28 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 #include "parsing.h"
 
-void	init_exp(int *i, int *j, char ***split)
+static int check(char *str)
 {
-	*i = 0;
-	*j = 0;
-	*split = NULL;
-}
-
-
-static int	check(char *str)
-{
-	int	i;
-	int	flag;
+	int i;
+	int flag;
 
 	i = 0;
 	flag = 0;
@@ -41,19 +34,26 @@ static int	check(char *str)
 
 void	check_expand(char **str, t_list *cp_env)
 {
-	int		i;
-	int		j;
-	char	**split;
-	char	**other;
-
-	init_exp(&i, &j, &split);
+	int i;
+	int j;
+	char **split;
+	char **other;
+	
+	i = 0;
+	j = 0;
+	split = NULL;
+	ft_putstr_p("here\n", 1);
 	while (str[i])
 	{
 		if (check(str[i]) == 1)
 		{
+			ft_putstr_p("here\n", 1);
 			other = split_expand(str[i]);
-			while (other[j])
+			while(other[j])
 			{
+				ft_putstr_p("other = ", 1);
+				ft_putstr_p(other[j], 1);
+				ft_putstr_p("\n", 1);
 				if (check(other[j]) == 1 && other[j][0] != '\'')
 				{
 					if (other[j][0] == '$')
