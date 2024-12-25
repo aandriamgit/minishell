@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:01:56 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/16 15:13:25 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/25 12:19:28 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,3 @@ void		exec_t_pipe_a(t_pipe_a *pipe_a, t_vars *vars);
 void		terminus(void **pipe_a, t_vars *vars);
 void		show_errors(t_vars *vars);
 void		reboot_prompt(t_vars *vars, t_pipe_a **pipe_a);
-void		custom_perror(t_vars *vars, t_pipe_a **pipe_a);

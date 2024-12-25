@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:25:12 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/18 12:16:27 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/25 20:10:25 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,20 @@
 static int	is_numeric(char *arg)
 {
 	int	i;
+	int	n;
 
-	i = 0;
-	if (arg[i] == '+' || arg[i] == '-')
-		i++;
-	while (arg[i])
+	i = -1;
+	n = (*arg == '-');
+	arg += (*arg == '-' || *arg == '+');
+	while (arg[++i])
 	{
 		if (!ft_isdigit_a(arg[i]))
 			return (0);
-		i++;
 	}
+	if ((ft_strlen_a(arg) > 19) || ((ft_strlen_a(arg) == 19) && ((n == 1
+					&& ft_strncmp_a(arg, "9223372036854775808") > 0) || (n == 0
+					&& ft_strncmp_a(arg, "9223372036854775807") > 0))))
+		return (0);
 	return (1);
 }
 
@@ -51,7 +55,7 @@ static void	extras(t_command_a *cmd, t_vars *vars)
 	{
 		if (!is_numeric(cmd->args[1]))
 		{
-			ft_perror_soft(cmd->args[1], "numeric argument required\n", vars,
+			ft_perror_soft(cmd->args[0], "numeric argument required\n", vars,
 				2);
 			show_errors(vars);
 			ft_perror_exit(NULL, NULL, vars, 2);

@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/23 16:47:06 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/25 13:20:48 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,10 @@ static void	forge_of_commands(t_pipe **cmd, t_vars *vars)
 	{
 		pipe_a = convert_t_pipe_a(*cmd);
 		init_stderr(vars);
-		if (ft_strncmp_a(vars->input, "custom_prompt") == 0)
+		if (ft_strncmp_a(vars->input, "debug_custom_prompt") == 0)
 			custom_prompt(vars, &pipe_a);
 		if (ft_strncmp_a(vars->input, "debug_mode_reboot") == 0)
 			reboot_prompt(vars, &pipe_a);
-		if (ft_strncmp_a(vars->input, "custom_perror") == 0)
-			custom_perror(vars, &pipe_a);
 		else
 		{
 			heredoc_supremacy(pipe_a, vars);

@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:46:17 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/20 15:23:03 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/25 14:32:19 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_vars
 	char					**env_cpy;
 	int						err_nbr;
 	int						custom_flag;
+	int						custom_prompt;
 	int						exit_code_int;
 	int						*pipe_fd_err;
 	t_list					*env;

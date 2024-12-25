@@ -62,6 +62,7 @@ SRC = minishell.c \
 	  ./forge_of_commands/exec_t_pipe_a/built_ins_n/ft_env_n.c \
 	  ./forge_of_commands/exec_t_pipe_a/built_ins_n/ft_export_n.c \
 	  ./forge_of_commands/exec_t_pipe_a/built_ins_n/ft_exit_n.c \
+	  ./forge_of_commands/exec_t_pipe_a/built_ins_n/custom_perror.c \
 	  ./forge_of_commands/exec_t_pipe_a/built_ins_w/built_ins_w.c \
 	  ./forge_of_commands/exec_t_pipe_a/built_ins_w/ft_echo_w.c \
 	  ./forge_of_commands/exec_t_pipe_a/built_ins_w/ft_cd_w.c \

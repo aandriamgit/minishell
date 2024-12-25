@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:42:32 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/17 09:07:36 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/25 12:19:12 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,4 @@ void	custom_prompt(t_vars *vars, t_pipe_a **pipe_a)
 		}
 		append_input_pipe_a(input, pipe_a);
 	}
-}
-
-void	custom_perror(t_vars *vars, t_pipe_a **pipe_a)
-{
-	if (vars->custom_flag)
-		vars->custom_flag = 0;
-	else
-		vars->custom_flag = 1;
-	free(*pipe_a);
-	*pipe_a = NULL;
-	vars->exit_code_int = 0;
 }

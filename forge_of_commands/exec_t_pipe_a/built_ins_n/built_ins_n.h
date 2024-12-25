@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:02:14 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/04 08:25:59 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/25 14:10:03 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,3 +19,5 @@ void	ft_unset_n(t_command_a *cmd, t_vars *vars);
 void	ft_env_n(t_command_a *cmd, t_vars *vars);
 void	ft_export_n(t_command_a *cmd, t_vars *vars);
 void	ft_exit_n(t_command_a *cmd, t_vars *vars);
+void	custom_perror(t_command_a *cmd, t_vars *vars);
+void	built_custom_prompt(t_command_a *cmd, t_vars *vars);
