@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:36:57 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/10 14:52:27 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/23 13:59:34 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,55 @@
 
 void	ex_quote(char **str, t_list *env_cp)
 {
-	char *new;
-	char c;
+	int start;
 	int i;
 	int j;
+	char *tmp;
+	char c;
 
 	i = 0;
 	j = 0;
+	tmp = NULL;
+	start = 0;
 	c = (*str)[i];
 	i++;
-	new = malloc(sizeof(char) * (ft_strlen_p(*str) - 1));
-	if (!new)
-		return ;
-	while ((*str)[i] != c)
-	{
-		new[j] = (*str)[i];
-		j++;
+	start = i;
+	while ((*str)[i] && (*str)[i] != c)
 		i++;
-	}
-	new[j] = '\0';
-	i = 0;
-	j = 0;
-	formating(&new, env_cp);
+	tmp = ft_substr_p(start, i - 1, *str);
 	free(*str);
-	*str = malloc (sizeof(char) * (ft_strlen_p(new) + 2));
+	formating(&tmp, env_cp);
+	*str = malloc(sizeof(char) * (ft_strlen_p(tmp) + 3));
 	if (!(*str))
 		return ;
+	i = 0;
 	(*str)[j] = c;
-	j++;
-	while (new[i])
+		j++;
+	while (tmp[i])
 	{
-		(*str)[j] = new[i];
+		(*str)[j] = tmp[i];
 		i++;
 		j++;
 	}
 	(*str)[j] = c;
 	j++;
 	(*str)[j] = '\0';
+	free(tmp);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

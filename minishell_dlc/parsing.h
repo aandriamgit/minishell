@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:49:49 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/20 16:36:40 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/23 11:01:05 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	free_node_list(t_list **list);
 char	*ft_getenv(char *str, t_list *env);
 int check_bloc(char *str);
 int check_her(char *s1, char *s2,int flag);
+void	skip_x(int *i, char *str, char c);
+char **split_expand_1(char *str);
 //builtings
 t_list	*duplicate_env(char **env);
 void	display_env_list(t_list *list);

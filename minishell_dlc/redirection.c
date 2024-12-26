@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:42:13 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/18 10:20:42 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/23 15:22:30 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,12 @@ void	remove_replace(char **str, int i, t_redir **redir)
 	make_type(&i, *str, &type);
 	start = i;
 	while ((*str)[i] && (*str)[i] != ' ')
-		i++;
+	{
+		if ((*str)[i] == '\'' || (*str)[i] == '\"')
+			skip_x(&i, *str, (*str)[i]);
+		else
+			i++;
+	}
 	file = ft_substr_p(start, i - 1, *str);
 	ft_trim(c, i - 1, &tmp);
 	creat_chain_of_redir(redir, creat_bloc_redir(type, file));
@@ -96,14 +101,8 @@ t_redir	*redirection(char **str)
 	while ((*str)[i])
 	{
 		if ((*str)[i] == '\'' || (*str)[i] == '\"')
-		{
-			c = (*str)[i];
-			i++;
-			while ((*str)[i] != c)
-				i++;
-			i++;
-		}
-		else if ((*str)[i] == '>' || (*str)[i] == '<')
+			skip_x(&i, *str, (*str)[i]);
+		else if ((*str)[i] && ((*str)[i] == '>' || (*str)[i] == '<'))
 		{
 			remove_replace(str, i, &redir);
 			i = 0;
