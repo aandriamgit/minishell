@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:34:53 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:33:29 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/26 17:54:32 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ static int	syntax_error_check(t_redirection_a *redir, t_vars *vars, int *flag)
 	voyager_one = redir;
 	while (voyager_one)
 	{
-		ft_putstr_fd_a(voyager_one->file, 1);
 		if (voyager_one->file == NULL || voyager_one->file[0] == '\0')
 		{
 			*flag = 0;

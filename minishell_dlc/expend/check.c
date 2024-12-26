@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:36:38 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/26 11:28:28 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/26 15:55:52 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	check_her(char *s1, char *s2, int flag)
 	c = ft_strlen_p(s1) - 1;
 	x = '\0';
 	i = 0;
+
+
 	if (s2[i] == '\'' || s2[i] == '\"')
 	{
 		x = s2[i];

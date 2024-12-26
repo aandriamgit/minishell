@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:39:45 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/26 16:10:45 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/26 18:27:44 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ t_cmd	*creat_bloc_cmd(char *str)
 	{
 		while (split[i])
 		{
-			/*if (check_quotes(split[i]) == 1)
-				rm_quote(&split[i]);*/
+			if (check_quotes(split[i]) == 1)
+				rm_quote(&split[i]);
 			cmd->arg[j] = ft_strdup_p(split[i]);
 			j++;
 			i++;
