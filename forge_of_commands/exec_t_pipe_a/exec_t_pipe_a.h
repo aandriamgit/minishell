@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_t_pipe_a.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:09:25 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/17 13:23:52 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/25 20:26:15 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,3 +20,5 @@ void	gen_pid_a(t_pipe_a *pipe_a, t_vars *vars);
 void	path_no_pipe(t_pipe_a *pipe_a, t_vars *vars);
 int		handle_child_exit_no_pipe(pid_t child_pid, t_vars *vars);
 void	path_w_pipe(t_pipe_a *pipe_a, t_vars *vars);
+int		ambiguous_redirect(char **file, t_vars *vars);
+int		is_built_ins(t_command_a *cmd);

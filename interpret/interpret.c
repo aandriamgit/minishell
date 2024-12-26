@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:56:13 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/21 12:08:30 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/25 13:16:47 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,14 @@ void	exit_protocol(t_vars *vars, char **input, int nbr)
 	exit(nbr);
 }
 
-static char	*emergency_prompt(void)
-{
-	char	*res;
-
-	res = ft_strdup_a("emergency_prompt> ");
-	return (res);
-}
-
-char	*nice_prompt(t_vars *vars)
+static char	*custom_prompt_interpret(t_vars *vars)
 {
 	char	*tmp;
 	char	*lol;
 	char	buffer[1024];
 
-	(void)vars;
 	if (getcwd(buffer, 1024))
 	{
-		if (!vars->exit_code_int)
-			vars->exit_code_int = download_exit_code(vars);
 		lol = ft_strdup_a("\001\033[38;2;166;227;161m\022");
 		tmp = ft_strjoin_free_a(lol,
 				"\001╭\002\001\033[38;2;148;226;213m\002 ");
@@ -75,7 +64,20 @@ char	*nice_prompt(t_vars *vars)
 		tmp = ft_strjoin_free_a(tmp, "\001\002\001\033[0m\002 ");
 	}
 	else
-		tmp = emergency_prompt();
+		tmp = ft_strdup_a("minishell> ");
+	return (tmp);
+}
+
+char	*nice_prompt(t_vars *vars)
+{
+	char	*tmp;
+
+	if (!vars->exit_code_int)
+		vars->exit_code_int = download_exit_code(vars);
+	if (vars->custom_prompt)
+		tmp = custom_prompt_interpret(vars);
+	else
+		tmp = ft_strdup_a("minishell> ");
 	return (tmp);
 }
 

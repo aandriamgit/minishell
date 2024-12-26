@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/21 12:06:45 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/25 13:20:48 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "interpret/interpret.h"
 #include "minishell.h"
 #include "minishell_dlc/parsing.h"
-#include <stdio.h>
+#include <errno.h>
 
 static void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
 {
@@ -56,7 +56,7 @@ static void	interpret(char **input, t_vars *vars, t_pipe **cmd)
 		ft_add_history(*input, vars);
 	else
 		exit_protocol(vars, input, 127);
-	if (unclosed_quote(input, vars))
+	if (unclosed_quote(input, vars) || unclosed_pipe(input, vars))
 		show_errors(vars);
 	else
 	{
@@ -75,12 +75,10 @@ static void	forge_of_commands(t_pipe **cmd, t_vars *vars)
 	{
 		pipe_a = convert_t_pipe_a(*cmd);
 		init_stderr(vars);
-		if (ft_strncmp_a(vars->input, "custom_prompt") == 0)
+		if (ft_strncmp_a(vars->input, "debug_custom_prompt") == 0)
 			custom_prompt(vars, &pipe_a);
 		if (ft_strncmp_a(vars->input, "debug_mode_reboot") == 0)
 			reboot_prompt(vars, &pipe_a);
-		if (ft_strncmp_a(vars->input, "custom_perror") == 0)
-			custom_perror(vars, &pipe_a);
 		else
 		{
 			heredoc_supremacy(pipe_a, vars);
@@ -98,15 +96,12 @@ static void	forge_of_commands(t_pipe **cmd, t_vars *vars)
 int	main(int argc, char **argv, char **env)
 {
 	t_list	*env_cpy;
-	t_list	*exp;
-	t_list *tmp;
-	tmp = NULL;
-	exp = NULL;
 	t_vars	vars;
 	t_pipe	*cmd;
 	char	*input;
 
 	(void)argv;
+	cmd = NULL;
 	if (argc == 1)
 	{
 		shell_init(&vars, &env_cpy, &input, env);
@@ -120,7 +115,8 @@ int	main(int argc, char **argv, char **env)
 	}
 	else
 	{
-		perror("[minishell] too many argument's'");
+		errno = 22;
+		perror("[minishell]");
 		return (1);
 	}
 	return (0);

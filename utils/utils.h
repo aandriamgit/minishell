@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:21:46 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/19 13:20:37 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/25 20:22:36 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void			ft_print_pipe_a(t_pipe_a *tmp);
 void			ft_execve_path(t_pipe_a *pipe_a, char *cmd, char **argv,
 					t_vars *vars);
 char			*get_file_dir(char *file);
-int				is_built_ins(t_command_a *cmd);
 char			*test_path(char *path, char *input);
 void			upload_exit_code(int nbr);
 int				download_exit_code(t_vars *vars);

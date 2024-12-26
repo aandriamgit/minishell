@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dep.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:57:59 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/18 17:37:42 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/25 20:23:54 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,6 @@ int	ft_strncmp_ap(const char *s1, const char *s2, size_t n)
 		return ((unsigned char)s1[i] - s2[i]);
 }
 
-/* int ft_strncmp_ap(const char *s1, const char *s2, size_t n) */
-/* { */
-/* 	size_t i; */
-/**/
-/* 	i = 0; */
-/* 	while (s1[i] && s2[i] && i < n) */
-/* 	{ */
-/* 		if ((s1[i] - s2[i]) != 0) */
-/* 			return(1); */
-/* 		i++; */
-/* 	} */
-/* 	if (i > n && s1[i] && s2[i]) */
-/* 		return(0); */
-/* 	return (s1[i] - s2[i]); */
-/* } */
-
 char	*ft_substr_ap(char const *s, unsigned int start, size_t len)
 {
 	char	*new;
@@ -92,7 +76,7 @@ char	*ft_substr_ap(char const *s, unsigned int start, size_t len)
 
 	j = 0;
 	i = 0;
-	if (start > ft_strlen_ap(s) || start < 0)
+	if (start > ft_strlen_ap(s))
 		len = 0;
 	if (len > ft_strlen_ap(s))
 		len = ft_strlen_ap(s);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpret.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 17:54:59 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/12 16:34:57 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/25 20:18:06 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,3 +19,4 @@ void	ft_add_history(char *input, t_vars *vars);
 void	uptade_input(char **input, t_vars *vars);
 int		unclosed_quote(char **input, t_vars *vars);
 void	free_vars(t_vars *vars);
+int		unclosed_pipe(char **input, t_vars *vars);

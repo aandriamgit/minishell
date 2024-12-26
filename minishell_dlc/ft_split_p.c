@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:03:37 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/28 14:00:57 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/25 11:14:33 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	skip(char *str, int *i)
 {
-	char c;
+	char	c;
 
 	c = str[*i];
 	(*i)++;
@@ -37,8 +37,8 @@ int	space(int i, char *str)
 
 int	count(char *str)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -61,20 +61,18 @@ int	count(char *str)
 	return (count);
 }
 
-char **ft_split_na(char *str)
+char	**ft_split_na(char *str)
 {
-	int i;
-	int j;
-	char **new;
-	int	start;
-	int end;
+	int		i;
+	int		j;
+	char	**new;
+	int		start;
 
 	j = 0;
-	new = malloc (sizeof(char *) * (count(str) + 1));
+	new = malloc(sizeof(char *) * (count(str) + 1));
 	if (!new)
 		return (NULL);
 	i = 0;
-	end = 0;
 	while (str[i] == ' ')
 		i++;
 	start = i;

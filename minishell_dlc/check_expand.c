@@ -6,26 +6,24 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:34:59 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/10 14:32:28 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/25 11:14:11 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "parsing.h"
 
-static int check(char *str)
+static int	check(char *str)
 {
-	int i;
-	int flag;
+	int	i;
 
 	i = 0;
-	flag = 0;
 	while (str[i])
 	{
 		if (str[i] == '\'')
 			skip(str, &i);
 		else if (str[i] == '$')
-				return (1);
+			return (1);
 		else
 			i++;
 	}
@@ -34,14 +32,12 @@ static int check(char *str)
 
 void	check_expand(char **str, t_list *cp_env)
 {
-	int i;
-	int j;
-	char **split;
-	char **other;
-	
+	int		i;
+	int		j;
+	char	**other;
+
 	i = 0;
 	j = 0;
-	split = NULL;
 	ft_putstr_p("here\n", 1);
 	while (str[i])
 	{
@@ -49,7 +45,7 @@ void	check_expand(char **str, t_list *cp_env)
 		{
 			ft_putstr_p("here\n", 1);
 			other = split_expand(str[i]);
-			while(other[j])
+			while (other[j])
 			{
 				ft_putstr_p("other = ", 1);
 				ft_putstr_p(other[j], 1);

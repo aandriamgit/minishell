@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:36:38 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/23 15:43:01 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/26 11:28:28 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int check_bloc(char *str)
 				else
 					return (0);
 			}
-				i++;
+			i++;
 		}
 	}
 	return (0);
@@ -84,8 +84,7 @@ int	check_her(char *s1, char *s2, int flag)
 		else
 			return (0);
 	}
-	else
-		if (check_bloc(s2) == 1)
-			return(1);
+	else if (check_bloc(s2) == 1)
+		return (1);
 	return (0);
 }

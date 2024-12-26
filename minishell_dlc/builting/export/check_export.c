@@ -6,15 +6,15 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:29:35 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/21 17:33:07 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/25 11:15:17 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../parsing.h"
 
-int compare_content(char *parameter, char *str)
+int	compare_content(char *parameter, char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] && str[i] != '=')
@@ -26,9 +26,9 @@ int compare_content(char *parameter, char *str)
 	return (0);
 }
 
-int check_exp(char *str)
+int	check_exp(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -40,14 +40,14 @@ int check_exp(char *str)
 	return (0);
 }
 
-char *bloc(char *str)
+char	*bloc(char *str)
 {
-	int start;
-	int i;
+	int	start;
+	int	i;
 
 	i = 0;
 	start = 0;
-	while(str[i] != '=')
+	while (str[i] != '=')
 		i++;
 	start = i + 1;
 	if (str[start] == '\0')
@@ -61,22 +61,16 @@ char *bloc(char *str)
 	return (ft_substr_p(start, i - 1, str));
 }
 
-int check_list(t_list **env, char *str)
+int	check_list(t_list **env, char *str)
 {
-	t_list *tmp;
-	t_list *prev;
-	t_list *c;
+	t_list	*tmp;
 
 	tmp = *env;
-	c = *env;
 	while (tmp)
 	{
 		if (compare_content(tmp->arg, str) == 1)
-		{
-			prev = tmp;
 			tmp = tmp->next;
-		}
-		else 
+		else
 		{
 			if (check_exp(str) == 1)
 			{
