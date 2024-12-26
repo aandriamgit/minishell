@@ -120,6 +120,7 @@ SRC = minishell.c \
 	  ./minishell_dlc/ft_getenv.c\
 	  ./minishell_dlc/expend/check.c\
 	  ./minishell_dlc/split_expand_1.c\
+	  ./minishell_dlc/split_take_quote.c\
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 

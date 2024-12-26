@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 12:51:01 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:34:09 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	vars_init(t_vars *vars, t_list **env_cpy)
 	vars->heredoc_dir = ft_strjoin_a(vars->log_dir, "/.heredoc_dir");
 	vars->exit_code_dir = ft_strjoin_a(vars->log_dir, "/.exit_code_dir");
 	vars->quote_dir = ft_strjoin_a(vars->log_dir, "/.quote_dir");
-	vars->custom_prompt = 1;
+	vars->custom_prompt = 0;
 	vars->custom_flag = 0;
 	vars->exit_code_int = 0;
 	vars->err_nbr = 0;
