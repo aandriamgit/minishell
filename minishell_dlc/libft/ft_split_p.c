@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:08:21 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/21 17:43:51 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/26 11:36:00 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ size_t	ft_conteur(char const *s, char c)
 		while (s[i] != c && s[i] != '\0')
 			i++;
 	}
-	printf("counteur %zu\n", conteur);
 	return (conteur);
 }
 
