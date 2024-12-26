@@ -6,12 +6,13 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:54:34 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/23 14:01:27 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:26:29 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dep/dep.h"
 #include "../parsing.h"
+#include "../../minishell.h"
 #include <time.h>
 
 static int	found_it(char *tmp, char *parameter)
@@ -89,27 +90,29 @@ int count_pp(char **str)
 	return(i);
 }
 
-void	expend(char	**str, t_list *env)
+void	expend(char	**str, t_list *env, t_vars	*vars)
 {
 	char	**splited_a;
 	char	*new;
+	char	*exit_code;
 
+	exit_code = gen_exit_code(vars);
+	export_with_arg(&env, exit_code);
+	free(exit_code);
 	if ((*str)[0] == '$' && (*str)[1] == '\0')
 	{
 		free(*str);
 		*str = ft_strdup_p("");
+		unset_p(&env, "?");
 		return ;
 	}
 	splited_a = ft_split_aa(*str, '$');
 	if (count_pp(splited_a) == 1)
-	{
 		mini_expend(&splited_a[0], env);
-	}
 	else
-	{
 		mini_expend(&splited_a[1], env);
-	}
 	new = ft_strjoin_space(&splited_a);
 	free(*str);
 	*str = new;
+	unset_p(&env, "?");
 }

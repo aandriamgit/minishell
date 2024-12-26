@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 10:31:50 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:30:19 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/26 13:57:27 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	extra(char **input_heredoc, int fd_heredoc, char **eof)
 
 static void	magic_expend(char **input_heredoc, t_vars *vars)
 {
-	modify_str(input_heredoc, vars->env);
+	modify_str(input_heredoc, vars->env, vars);
 	ft_putstr_fd_a("work still on progress\n", 1);
 }
 

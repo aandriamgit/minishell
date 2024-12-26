@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/25 13:20:48 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:03:49 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	interpret(char **input, t_vars *vars, t_pipe **cmd)
 	else
 	{
 		check_input(input);
-		formating(input, vars->env);
+		formating(input, vars->env, vars);
 		*cmd = gen_pipe(input);
 		vars->cmd = *cmd;
 	}
