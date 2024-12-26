@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:49:49 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/23 14:23:43 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/26 16:04:33 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_cmd				*make_cmd(char **str);
 t_cmd				*cmd(char **str);
 t_pipe				*creat_bloc_pipe(char **str);
 void				creat_chain_of_pipe(t_pipe **old_list, t_pipe *new_list);
-t_pipe				*gen_pipe(char **str);
+t_pipe				*gen_pipe(char **str, t_vars *vars);
 void				ex_quote(char **str, t_list *env_cp);
 char				**split_pipe(char *str, char c);
 int					check_quotes(char *str);

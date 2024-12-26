@@ -6,13 +6,13 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:29:22 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/23 15:10:47 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/26 16:03:55 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-t_pipe	*creat_bloc_pipe(char **str)
+t_pipe	*creat_bloc_pipe(char **str, t_vars	*vars)
 {
 	t_pipe	*p;
 
