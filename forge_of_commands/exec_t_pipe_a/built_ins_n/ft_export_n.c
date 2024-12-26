@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:05:06 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:26:39 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/26 12:32:11 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	extras(t_command_a *cmd, t_vars *vars)
 	i = 1;
 	while (cmd->args[i])
 	{
-		if (cmd->args[i][0] == '-')
+		if (cmd->args[i][0] == '-' || !ft_strncmp_a(cmd->args[i], "SHLVL"))
 		{
 			ft_perror_soft(cmd->args[i], "invalid option", vars, 2);
 			return ;

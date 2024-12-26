@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:29:21 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:32:17 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/26 12:37:56 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,47 @@ static int	error_check(char *args, t_vars *vars)
 	return (1);
 }
 
-static void	update_pwd_oldpwd_env(char *dir)
+static void	update_pwd_oldpwd_env(t_vars *vars)
 {
-	(void)dir;
+	char	pwd[1024];
+	char	*new_lol;
+	char	*lol;
+	char	*old;
+
+	if (getcwd(pwd, 1024))
+	{
+		lol = ft_strjoin_a("PWD=", pwd);
+		old = ft_getenv("PWD", vars->env);
+		if (old)
+		{
+			new_lol = ft_strjoin_a("OLDPWD=", old);
+			free(old);
+		}
+		else
+			new_lol = ft_strjoin_a("OLDPWD=", lol);
+		export_with_arg(&vars->env, lol);
+		export_with_arg(&vars->env, new_lol);
+		free(new_lol);
+		free(lol);
+	}
 }
 
 static void	go_home(t_vars *vars)
 {
 	char	*home_dir;
 
-	home_dir = getenv("HOME");
+	home_dir = ft_getenv("HOME", vars->env);
 	if (!error_check(home_dir, vars))
+	{
+		if (home_dir)
+			free(home_dir);
 		return ;
+	}
 	if (chdir(home_dir) == -1)
 		ft_perror_soft(home_dir, "cd: Failed to change directory\n", vars, 1);
+	if (home_dir)
+		free(home_dir);
+	home_dir = NULL;
 }
 
 static void	extras(t_command_a *cmd, t_vars *vars)
@@ -73,7 +100,7 @@ static void	extras(t_command_a *cmd, t_vars *vars)
 		ft_perror_soft(tab[1], "cd: Failed to change directory\n", vars, 1);
 		return ;
 	}
-	update_pwd_oldpwd_env(tab[1]);
+	update_pwd_oldpwd_env(vars);
 	vars->exit_code_int = 0;
 }
 

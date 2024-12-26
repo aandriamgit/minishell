@@ -6,11 +6,12 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:00:16 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:25:41 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/26 11:40:25 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include "../../minishell_dlc/parsing.h"
 #include "../utils.h"
 
 void	ft_execve_fork(char *cmd, char **argv)
@@ -84,7 +85,7 @@ void	ft_execve_path(t_pipe_a *pipe_a, char *cmd, char **argv, t_vars *vars)
 
 	(void)pipe_a;
 	mini_cmd = ft_strjoin_a("/", cmd);
-	path = test_path(getenv("PATH"), mini_cmd);
+	path = test_path(ft_getenv("PATH", vars->env), mini_cmd);
 	if (!path)
 		ft_perror_exit(cmd, "command not found\n", vars, 127);
 	else
