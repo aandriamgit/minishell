@@ -6,22 +6,41 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:36:57 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/26 17:09:26 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 11:32:45 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-void	ex_quote(char **str, t_list *env_cp, t_vars *vars)
+void	mini_ex_quote(char **str, char **tmp, char c)
 {
-	int start;
-	int i;
-	int j;
-	char *tmp;
-	char c;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
+	(*str)[j] = c;
+	j++;
+	while ((*tmp)[i])
+	{
+		(*str)[j] = (*tmp)[i];
+		i++;
+		j++;
+	}
+	(*str)[j] = c;
+	j++;
+	(*str)[j] = '\0';
+	free(*tmp);
+}
+
+void	ex_quote(char **str, t_list *env_cp, t_vars *vars)
+{
+	int		start;
+	int		i;
+	char	*tmp;
+	char	c;
+
+	i = 0;
 	tmp = NULL;
 	start = 0;
 	c = (*str)[i];
@@ -35,34 +54,5 @@ void	ex_quote(char **str, t_list *env_cp, t_vars *vars)
 	*str = malloc(sizeof(char) * (ft_strlen_p(tmp) + 3));
 	if (!(*str))
 		return ;
-	i = 0;
-	(*str)[j] = c;
-		j++;
-	while (tmp[i])
-	{
-		(*str)[j] = tmp[i];
-		i++;
-		j++;
-	}
-	(*str)[j] = c;
-	j++;
-	(*str)[j] = '\0';
-	free(tmp);
+	mini_ex_quote(str, &tmp, c);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

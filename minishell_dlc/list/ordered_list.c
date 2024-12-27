@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:16:36 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/19 14:38:14 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 10:46:24 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ordered_list(t_list **list)
 {
 	t_list	*tmp;
 	char	*stock;
-	int c;
+	int		c;
 
 	stock = NULL;
 	tmp = *list;

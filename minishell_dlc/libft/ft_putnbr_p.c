@@ -6,15 +6,15 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:44:07 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/28 13:53:00 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 10:56:51 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putnbr_p(int i, int fd)
+void	ft_putnbr_p(int i, int fd)
 {
-	char str[10] = "0123456789";
+	char	str[10] = "0123456789";
 
 	if (i == -2147483648)
 		ft_putstr_p("-2147483648", fd);

@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:01:24 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/12 16:30:33 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/27 12:33:48 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		compare_content(char *parameter, char *str);
 int		check_list(t_list **env, char *str);
 
 int		unset(t_list **environement, char *str);
-int		check_by_list(t_list **env, char *str);
+int		check_by_list(t_list **env, char *str, t_list *tmp, t_list *prev);
 int		compare_param(char *parameter, char *str);
 
 int		check_assignation(char *str);

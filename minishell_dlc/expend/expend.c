@@ -6,14 +6,13 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:54:34 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/26 15:11:25 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 11:34:07 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dep/dep.h"
 #include "../parsing.h"
 #include "../../minishell.h"
-#include <time.h>
 
 static int	found_it(char *tmp, char *parameter)
 {
@@ -77,9 +76,9 @@ static void	mini_expend(char **str, t_list *env)
 	}
 }
 
-int count_pp(char **str)
+int	count_pp(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str != NULL)
@@ -87,7 +86,7 @@ int count_pp(char **str)
 		while (str[i])
 			i++;
 	}
-	return(i);
+	return (i);
 }
 
 void	expend(char	**str, t_list *env, t_vars	*vars)
