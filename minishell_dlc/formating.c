@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:32:52 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/27 13:18:41 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 16:17:23 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "expend/dep/dep.h"
 #include "../utils/utils.h"
 
-static int check(char *str)
+static int	check(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -28,11 +28,11 @@ static int check(char *str)
 	return (0);
 }
 
-void modify_str(char **str, t_list *env_cp, t_vars	*vars)
+void	modify_str(char **str, t_list *env_cp, t_vars	*vars)
 {
-	char **split;
-	int i;
-	
+	char	**split;
+	int		i;
+
 	i = 0;
 	split = split_expand_1(*str);
 	while (split[i])
@@ -57,8 +57,8 @@ void modify_str(char **str, t_list *env_cp, t_vars	*vars)
 
 void	some_modification(char **str, t_list *env_cp, t_vars *vars)
 {
-	char **split;
-	int i;
+	char	**split;
+	int		i;
 
 	i = 0;
 	split = split_take_quote(*str, ' ');
@@ -75,8 +75,8 @@ void	some_modification(char **str, t_list *env_cp, t_vars *vars)
 
 void	formating_quote(char **str, t_list *env_cp, t_vars	*vars)
 {
-	char **split;
-	int i;
+	char	**split;
+	int		i;
 
 	i = 0;
 	split = split_quote(*str, ' ');
@@ -85,19 +85,19 @@ void	formating_quote(char **str, t_list *env_cp, t_vars	*vars)
 		if (check(split[i]) == 1)
 		{
 			if (check(split[i]) == 1)
-							modify_str(&split[i], env_cp, vars);
+				modify_str(&split[i], env_cp, vars);
 		}
 		i++;
 	}
 	free(*str);
 	*str = join_with_space(split);
 	free_split(&split);
-}	
+}
 
 void	formating(char **str, t_list *env_cp, t_vars	*vars)
 {
-	char **split;
-	int i;
+	char	**split;
+	int		i;
 
 	i = 0;
 	split = split_quote(*str, ' ');
@@ -109,7 +109,7 @@ void	formating(char **str, t_list *env_cp, t_vars	*vars)
 			if (check(split[i]) == 1)
 			{
 				if (i > 0 && check_her(split[i - 1], split[i], i) == 0)
-							modify_str(&split[i], env_cp, vars);
+					modify_str(&split[i], env_cp, vars);
 				if (i == 0 && check_bloc(split[i]) == 0)
 					modify_str(&split[i], env_cp, vars);
 			}
@@ -119,4 +119,4 @@ void	formating(char **str, t_list *env_cp, t_vars	*vars)
 	free(*str);
 	*str = join_with_space(split);
 	free_split(&split);
-}	
+}

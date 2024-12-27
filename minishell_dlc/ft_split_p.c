@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:03:37 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/25 11:14:33 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:55:38 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,17 @@ int	count(char *str)
 	return (count);
 }
 
+void	init_split(int *i, int *j, char ***new, char *str)
+{
+	*j = 0;
+	*new = malloc(sizeof(char *) * (count(str) + 1));
+	if (!(*new))
+		return ;
+	*i = 0;
+	while (str[*i] == ' ')
+		(*i)++;
+}
+
 char	**ft_split_na(char *str)
 {
 	int		i;
@@ -68,13 +79,7 @@ char	**ft_split_na(char *str)
 	char	**new;
 	int		start;
 
-	j = 0;
-	new = malloc(sizeof(char *) * (count(str) + 1));
-	if (!new)
-		return (NULL);
-	i = 0;
-	while (str[i] == ' ')
-		i++;
+	init_split(&i, &j, &new, str);
 	start = i;
 	while (str[i])
 	{

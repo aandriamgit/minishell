@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:54:01 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/03 16:47:54 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:38:04 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,16 @@ void	ft_free(char ***str)
 	*str = NULL;
 }
 
+void	mini_join_p(int *i, int *k, char **str, char **new)
+{
+		if (str[*i + 1] != NULL)
+		{
+			(*new)[*k] = ' ';
+			(*k)++;
+		}
+		(*i)++;
+}
+
 char *ft_strjoin_p(char ***str)
 {
 	int i;
@@ -68,13 +78,8 @@ char *ft_strjoin_p(char ***str)
 			j++;
 			k++;
 		}
-		if ((*str)[i + 1] != NULL)
-		{
-			new[k] = ' ';
-			k++;
-		}
+		mini_join_p(&i, &k, *str, &new);
 		j = 0;
-		i++;
 	}
 	new[k] = '\0';
 	ft_free(str);

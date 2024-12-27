@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:50:28 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/04 17:23:33 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:33:21 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ int	count_join(char **str)
 	return (count);
 }
 
+void	mini_join_s(char **str, char **new, int i, int *k)
+{
+	if (str[i + 1] != NULL)
+	{
+		(*new)[*k] = ' ';
+		(*k)++;
+	}
+}
+
 char	*join_with_space(char **str)
 {
 	int i;
@@ -57,11 +66,7 @@ char	*join_with_space(char **str)
 			k++;
 			j++;
 		}
-		if (str[i + 1] != NULL)
-		{
-			new[k] = ' ';
-			k++;
-		}
+		mini_join_s(str, &new, i, &k);
 		j = 0;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:01:36 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/04 15:50:26 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 17:59:23 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,27 @@ static int check(int i, char *str)
 }
 
 
+void	mini_count_z(char *str, int *i, int *count)
+{
+	if (str[(*i)] == '$')
+	{
+		(*count)++;
+		(*i)++;
+		while (str[(*i)] && (str[(*i)] != '\'' && str[(*i)] != '\"' && str[(*i)] != '$'))
+			(*i)++;
+	}
+	else
+	{
+		while (str[(*i)] && (str[(*i)] != '\'' && str[(*i)] != '\"' && str[(*i)] != '$'))
+			(*i)++;
+		if (str[(*i)] == '$' && check((*i), str) == 1)
+		{
+			(*count)++;
+			while (str[(*i)] && (str[(*i)] != '\'' && str[(*i)] != '\"' && str[(*i)] != '$'))
+				(*i)++;
+		}
+	}
+}
 
 int ft_count_z(char *str)
 {
@@ -50,26 +71,7 @@ int ft_count_z(char *str)
 			i++;
 		}
 		else
-		{
-			if (str[i] == '$')
-			{
-				count++;
-				i++;
-				while (str[i] && (str[i] != '\'' && str[i] != '\"' && str[i] != '$'))
-					i++;
-			}
-			else
-			{
-				while (str[i] && (str[i] != '\'' && str[i] != '\"' && str[i] != '$'))
-					i++;
-				if (str[i] == '$' && check(i, str) == 1)
-				{
-					count++;
-					while (str[i] && (str[i] != '\'' && str[i] != '\"' && str[i] != '$'))
-						i++;
-				}
-			}
-		}
+			mini_count_z(str, &i, &count);
 	}
 	return (count);
 }
