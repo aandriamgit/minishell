@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 14:04:55 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/27 18:49:48 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/27 20:37:18 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ char	*get_the_thing(char *tmp_str, int *j, t_vars *vars)
 		if (tmp_str[*j] == '$')
 			break ;
 	}
-	if (tmp_str[*j] == '$')
-		(*j)--;
+	/* if (tmp_str[*j] == '\0') */
+	/* 	(*j)--; */
 	tmp = ft_substr_a(tmp_str, lol, i);
 	ft_putstr_fd_a("::", 1);
 	ft_putstr_fd_a(tmp, 1);

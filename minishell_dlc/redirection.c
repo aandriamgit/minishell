@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:42:13 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/23 15:22:30 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 20:04:14 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,7 @@ t_redir	*redirection(char **str)
 {
 	int		i;
 	t_redir	*redir;
-	char	c;
 
-	c = '\0';
 	i = 0;
 	redir = NULL;
 	while ((*str)[i])

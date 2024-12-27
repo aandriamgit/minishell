@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:54:34 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/27 18:55:29 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/27 20:48:54 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ static void	just_add_exit_code(char **str, t_vars *vars)
 	*str = new_str;
 }
 
-static void	expend_it(char **buffer, int *i, char **new_str)
+static void	expend_it(char **buffer, int *i, char *new_str)
 {
 	char	*tmp_buffer;
 	char	*tmp_str;
 	int		j;
 
 	tmp_buffer = *buffer;
-	tmp_str = *new_str;
+	tmp_str = new_str;
 	j = 0;
 	while (tmp_str[j])
 	{
@@ -74,8 +74,7 @@ static void	expend_it(char **buffer, int *i, char **new_str)
 		j++;
 		(*i)++;
 	}
-	free(*new_str);
-	*new_str = NULL;
+	free(new_str);
 }
 
 static void	expend_the_else(char **str, t_vars *vars)
@@ -87,21 +86,20 @@ static void	expend_the_else(char **str, t_vars *vars)
 	int		j;
 
 	i = 0;
-	j = -1;
+	j = 0;
 	tmp_str = *str;
 	buffer = ft_calloc(sizeof(char), 1024);
-	while (tmp_str[++j])
+	while (tmp_str[j])
 	{
 		if (tmp_str[j] == '$')
+			expend_it(&buffer, &i, get_the_thing(tmp_str, &j, vars));
+		if (tmp_str[j] != '$')
 		{
-			new_str = get_the_thing(tmp_str, &j, vars);
-			expend_it((char **)&buffer, &i, &new_str);
+			buffer[i++] = tmp_str[j];
+			if (tmp_str[j])
+				j++;
 		}
-		else
-			buffer[i] = tmp_str[j];
-		i++;
 	}
-	buffer[i] = '\0';
 	new_str = ft_strdup_a(buffer);
 	free(*str);
 	free(buffer);
