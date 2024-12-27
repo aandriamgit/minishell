@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:33:52 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:19:08 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/27 17:36:38 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,5 @@ int		ft_isdigit_a(int c);
 int		ft_atoi_a(const char *nptr);
 int		ft_random_int(char *str);
 char	**ft_gen_env(t_list *list);
+void	*ft_calloc(size_t nmemb, size_t size);
+void	ft_bzero(void *s, size_t n);

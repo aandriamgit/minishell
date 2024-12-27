@@ -18,6 +18,8 @@ SRC = minishell.c \
 	  ./utils/lib/ft_isdigit_a.c \
 	  ./utils/lib/ft_random_int.c \
 	  ./utils/lib/ft_gen_env.c \
+	  ./utils/lib/ft_bzero.c \
+	  ./utils/lib/ft_calloc.c \
 	  ./utils/modules/add.c \
 	  ./utils/modules/ft_execve.c \
 	  ./utils/modules/ft_free.c \
@@ -107,6 +109,7 @@ SRC = minishell.c \
 	  ./minishell_dlc/display/display_list.c\
 	  ./minishell_dlc/display/sort_list.c\
 	  ./minishell_dlc/expend/expend.c\
+	  ./minishell_dlc/expend/fake_expend.c \
 	  ./minishell_dlc/expend/get_the_thing.c \
 	  ./minishell_dlc/expend/dep/dep.c\
 	  ./minishell_dlc/expend/dep/ft_split_a.c\

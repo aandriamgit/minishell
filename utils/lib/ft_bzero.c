@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen_a.c                                      :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 14:11:12 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/27 17:21:58 by aandriam         ###   ########.fr       */
+/*   Created: 2024/02/25 14:21:18 by aandriam          #+#    #+#             */
+/*   Updated: 2024/12/27 17:36:26 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
 
-size_t	ft_strlen_a(const char *s)
+void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
+	unsigned char	*c;
 
-	i = 0;
-	while (s[i] != '\0')
+	c = (unsigned char *)s;
+	while (n > 0)
 	{
-		i++;
+		*c = 0;
+		c++;
+		n--;
 	}
-	return (i);
 }

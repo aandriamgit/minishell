@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen_a.c                                      :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 14:11:12 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/27 17:21:58 by aandriam         ###   ########.fr       */
+/*   Created: 2024/03/05 12:36:19 by aandriam          #+#    #+#             */
+/*   Updated: 2024/12/27 17:36:04 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
 
-size_t	ft_strlen_a(const char *s)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t	i;
+	void	*point;
+	size_t	count;
 
-	i = 0;
-	while (s[i] != '\0')
+	if (nmemb == 0 || size == 0)
 	{
-		i++;
+		nmemb = 1;
+		size = 1;
 	}
-	return (i);
+	count = nmemb * size;
+	point = malloc(count);
+	if (point == 0)
+		return (NULL);
+	ft_bzero(point, count);
+	return (point);
 }

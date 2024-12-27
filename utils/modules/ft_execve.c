@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:00:16 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/26 11:40:25 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:03:14 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,14 @@ char	*test_path(char *path, char *input)
 void	ft_execve_path(t_pipe_a *pipe_a, char *cmd, char **argv, t_vars *vars)
 {
 	char	*path;
+	char	*path_mini;
 	char	*mini_cmd;
 
 	(void)pipe_a;
+	path_mini = ft_getenv("PATH", vars->env);
 	mini_cmd = ft_strjoin_a("/", cmd);
-	path = test_path(ft_getenv("PATH", vars->env), mini_cmd);
+	path = test_path(path_mini, mini_cmd);
+	free(path_mini);
 	if (!path)
 		ft_perror_exit(cmd, "command not found\n", vars, 127);
 	else

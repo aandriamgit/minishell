@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_the_thing.c                                    :+:      :+:    :+:   */
+/*   fake_expend.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/27 14:04:55 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/27 18:49:48 by aandriam         ###   ########.fr       */
+/*   Created: 2024/12/27 18:35:19 by aandriam          #+#    #+#             */
+/*   Updated: 2024/12/27 18:36:13 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
 #include "dep/dep.h"
 
 static int	found_it(char *tmp, char *parameter)
@@ -50,17 +49,15 @@ static void	replace_it(char **to_replace, char *parameter)
 	}
 }
 
-static void	mini_expend(char **str, t_list *env)
+static void	mini_expend_a(char **str, t_list *env)
 {
 	char	*to_replace;
 	char	*tmp;
 	t_list	*voyager_one;
 
 	tmp = *str;
-	if (tmp && tmp[1] && tmp[1] != '"' && tmp[1] != ' ')
+	if (tmp && tmp[1] != '"')
 	{
-		if (tmp[0] == '$')
-			tmp++;
 		to_replace = ft_strdup_ap("");
 		voyager_one = env;
 		while (voyager_one)
@@ -77,27 +74,42 @@ static void	mini_expend(char **str, t_list *env)
 	}
 }
 
-char	*get_the_thing(char *tmp_str, int *j, t_vars *vars)
+int	count_pp(char **str)
 {
-	char	*tmp;
-	int		i;
-	int		lol;
+	int	i;
 
 	i = 0;
-	lol = *j;
-	while (tmp_str[*j] && tmp_str[*j] != ' ')
+	if (str != NULL)
 	{
-		(*j)++;
-		i++;
-		if (tmp_str[*j] == '$')
-			break ;
+		while (str[i])
+			i++;
 	}
-	if (tmp_str[*j] == '$')
-		(*j)--;
-	tmp = ft_substr_a(tmp_str, lol, i);
-	ft_putstr_fd_a("::", 1);
-	ft_putstr_fd_a(tmp, 1);
-	ft_putstr_fd_a("::\n", 1);
-	mini_expend(&tmp, vars->env);
-	return (tmp);
+	return (i);
+}
+
+void	expend(char **str, t_list *env, t_vars *vars)
+{
+	char	**splited_a;
+	char	*new;
+	char	*exit_code;
+
+	exit_code = gen_exit_code(vars);
+	export_with_arg(&env, exit_code);
+	free(exit_code);
+	if ((*str)[0] == '$' && (*str)[1] == '\0')
+	{
+		free(*str);
+		*str = ft_strdup_p("");
+		unset_p(&env, "?");
+		return ;
+	}
+	splited_a = ft_split_aa(*str, '$');
+	if (count_pp(splited_a) == 1)
+		mini_expend_a(&splited_a[0], env);
+	else
+		mini_expend_a(&splited_a[1], env);
+	new = ft_strjoin_space(&splited_a);
+	free(*str);
+	*str = new;
+	unset_p(&env, "?");
 }
