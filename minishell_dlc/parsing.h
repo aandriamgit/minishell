@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:49:49 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/27 12:47:20 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/27 14:18:02 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ void	sort_list(t_list **list);
 void	duplicate_list(t_list **old_list, t_list *new_list);
 t_list	*duplicate(t_list *list);
 void	modify_str(char **str, t_list *env_cp, t_vars *vars);
+void	improved_expend(char **str, t_list *env, t_vars *vars);
 // char	**ft_split(char const *s, char c);
 #endif
