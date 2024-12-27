@@ -6,7 +6,7 @@
 /*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 14:04:55 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/27 20:37:18 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/27 20:51:40 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	replace_it(char **to_replace, char *parameter)
 	{
 		if (parameter[i] == '=')
 		{
-			new = ft_substr_ap(parameter, i + 1, ft_strlen_ap(parameter));
+			new = ft_substr_a(parameter, i + 1, ft_strlen_ap(parameter));
 			if (!new)
 				return ;
 			free(*to_replace);
@@ -61,7 +61,7 @@ static void	mini_expend(char **str, t_list *env)
 	{
 		if (tmp[0] == '$')
 			tmp++;
-		to_replace = ft_strdup_ap("");
+		to_replace = ft_strdup_a("");
 		voyager_one = env;
 		while (voyager_one)
 		{
