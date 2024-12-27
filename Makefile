@@ -107,6 +107,7 @@ SRC = minishell.c \
 	  ./minishell_dlc/display/display_list.c\
 	  ./minishell_dlc/display/sort_list.c\
 	  ./minishell_dlc/expend/expend.c\
+	  ./minishell_dlc/expend/get_the_thing.c \
 	  ./minishell_dlc/expend/dep/dep.c\
 	  ./minishell_dlc/expend/dep/ft_split_a.c\
 	  ./minishell_dlc/expend/dep/extras_expend.c \

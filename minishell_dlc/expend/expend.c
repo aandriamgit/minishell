@@ -6,113 +6,108 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:54:34 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/26 15:11:25 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 14:07:25 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "dep/dep.h"
-#include "../parsing.h"
 #include "../../minishell.h"
-#include <time.h>
+#include "dep/dep.h"
 
-static int	found_it(char *tmp, char *parameter)
+static void	add_it(char **buffer, int *i, t_vars *vars)
 {
-	int	i;
+	int		j;
+	char	*tmp_buffer;
+	char	*char_exit_code;
 
-	i = 0;
-	while (parameter[i])
+	j = 0;
+	char_exit_code = ft_itoa_a(vars->exit_code_int);
+	tmp_buffer = *buffer;
+	while (char_exit_code[j])
 	{
-		if (parameter[i] == '=')
-		{
-			if (ft_strncmp_ap(tmp, parameter, i) == 0)
-				return (1);
-		}
-		i++;
+		tmp_buffer[*i] = char_exit_code[j];
+		j++;
+		(*i)++;
 	}
-	return (0);
+	free(char_exit_code);
 }
 
-static void	replace_it(char **to_replace, char *parameter)
+static void	just_add_exit_code(char **str, t_vars *vars)
 {
+	char	*tmp_str;
+	char	buffer[1024];
+	char	*new_str;
 	int		i;
-	char	*new;
+	int		j;
 
 	i = 0;
-	while (parameter[i])
+	j = 0;
+	tmp_str = *str;
+	while (tmp_str[j])
 	{
-		if (parameter[i] == '=')
+		if (tmp_str[j] == '$' && tmp_str[j + 1] == '?')
 		{
-			new = ft_substr_ap(parameter, i + 1, ft_strlen_ap(parameter));
-			if (!new)
-				return ;
-			free(*to_replace);
-			*to_replace = new;
+			j = j + 2;
+			add_it((char **)&buffer, &i, vars);
 		}
+		buffer[i] = tmp_str[j];
+		if (tmp_str[j])
+			j++;
 		i++;
 	}
+	new_str = ft_strdup_a(buffer);
+	free(*str);
+	*str = new_str;
 }
 
-static void	mini_expend(char **str, t_list *env)
+static void	expend_it(char **buffer, int *i, char **new_str)
 {
-	char	*to_replace;
-	char	*tmp;
-	t_list	*voyager_one;
+	char	*tmp_buffer;
+	char	*tmp_str;
+	int		j;
 
-	tmp = *str;
-	if (tmp && tmp[1] != '"')
+	tmp_buffer = *buffer;
+	tmp_str = *new_str;
+	j = 0;
+	while (tmp_str[j])
 	{
-		to_replace = ft_strdup_ap("");
-		voyager_one = env;
-		while (voyager_one)
-		{
-			if (found_it(tmp, voyager_one->cmd))
-			{
-				replace_it(&to_replace, voyager_one->cmd);
-				break ;
-			}
-			voyager_one = voyager_one->next;
-		}
-		free(*str);
-		*str = to_replace;
+		tmp_buffer[*i] = tmp_str[j];
+		j++;
+		(*i)++;
 	}
+	free(*new_str);
+	*new_str = NULL;
 }
 
-int count_pp(char **str)
+static void	expend_the_else(char **str, t_vars *vars)
 {
-	int i;
+	char	buffer[1024];
+	char	*new_str;
+	char	*tmp_str;
+	int		i;
+	int		j;
 
 	i = 0;
-	if (str != NULL)
+	j = 0;
+	tmp_str = *str;
+	while (tmp_str[j])
 	{
-		while (str[i])
-			i++;
+		if (tmp_str[j] == '$')
+		{
+			new_str = get_the_thing(tmp_str, &j, vars);
+			expend_it((char **)&buffer, &i, &new_str);
+		}
+		buffer[i] = tmp_str[j];
+		i++;
+		j++;
 	}
-	return(i);
+	new_str = ft_strdup_a(buffer);
+	free(*str);
+	*str = new_str;
 }
 
-void	expend(char	**str, t_list *env, t_vars	*vars)
+void	expend(char **str, t_list *env, t_vars *vars)
 {
-	char	**splited_a;
-	char	*new;
-	char	*exit_code;
-
-	exit_code = gen_exit_code(vars);
-	export_with_arg(&env, exit_code);
-	free(exit_code);
-	if ((*str)[0] == '$' && (*str)[1] == '\0')
-	{
-		free(*str);
-		*str = ft_strdup_p("");
-		unset_p(&env, "?");
-		return ;
-	}
-	splited_a = ft_split_aa(*str, '$');
-	if (count_pp(splited_a) == 1)
-		mini_expend(&splited_a[0], env);
-	else
-		mini_expend(&splited_a[1], env);
-	new = ft_strjoin_space(&splited_a);
-	free(*str);
-	*str = new;
-	unset_p(&env, "?");
+	(void)env;
+	just_add_exit_code(str, vars);
+	expend_the_else(str, vars);
 }
