@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:01:36 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/27 17:59:23 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/28 12:31:12 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,68 +76,71 @@ int ft_count_z(char *str)
 	return (count);
 }
 
+void init_exp(int *i, int *j, int *start)
+{
+	*i = 0;
+	*j = 0;
+	*start = 0;
+}
+
 char **split_expand(char *str)
 {
 	char **new;
-	int i;
-	int j;
-	int start;
+	int var[3];
 	char c;
 
-	i = 0;
-	j = 0;
-	start = 0;
 	c = '\0';
+	init_exp(&var[0], &var[1], &var[2]);
 	new = malloc(sizeof(char *) * (ft_count_z(str) + 1));
 	if (!new)
 		return (NULL);
-	while (str[i])
+	while (str[var[0]])
 	{
-		if (str[i] == '\'' || str[i] == '\"')
+		if (str[var[0]] == '\'' || str[var[0]] == '\"')
 		{
-			c = str[i];
-			i++;
-			while (str[i] && str[i] != c)
-				i++;
-			new[j] = ft_substr_p(start, i, str);
-			j++;
-			i++;
-			start = i;
+			c = str[var[0]];
+			var[0]++;
+			while (str[var[0]] && str[var[0]] != c)
+				var[0]++;
+			new[var[1]] = ft_substr_p(var[2], var[0], str);
+			var[1]++;
+			var[0]++;
+			var[2] = var[0];
 		}
 		else
 		{
-			if (str[i] == '$')
+			if (str[var[0]] == '$')
 			{
-				i++;
-				while (str[i] && (str[i] != '\'' && str[i] != '\"' && str[i] != '$'))
-					i++;
-				new[j] = ft_substr_p(start, i - 1, str);
-				j++;
-				start = i;
+				var[0]++;
+				while (str[var[0]] && (str[var[0]] != '\'' && str[var[0]] != '\"' && str[var[0]] != '$'))
+					var[0]++;
+				new[var[1]] = ft_substr_p(var[2], var[0] - 1, str);
+				var[1]++;
+				var[2] = var[0];
 			}
 			else
 			{
-				while (str[i] && (str[i] != '\'' && str[i] != '\"' && str[i] != '$'))
-					i++;
-				if (str[i] == '$')
+				while (str[var[0]] && (str[var[0]] != '\'' && str[var[0]] != '\"' && str[var[0]] != '$'))
+					var[0]++;
+				if (str[var[0]] == '$')
 				{
-					i++;
-					while (str[i] && (str[i] != '\'' && str[i] != '\"' && str[i] != '$'))
-						i++;
-					new[j] = ft_substr_p(start, i - 1, str);
-					j++;
-					start = i;
+					var[0]++;
+					while (str[var[0]] && (str[var[0]] != '\'' && str[var[0]] != '\"' && str[var[0]] != '$'))
+						var[0]++;
+					new[var[1]] = ft_substr_p(var[2], var[0] - 1, str);
+					var[1]++;
+					var[2] = var[0];
 				}
 				else
 				{
-					new[j] = ft_substr_p(start, i - 1, str);
-					j++;
-					start = i;
+					new[var[1]] = ft_substr_p(var[2], var[0] - 1, str);
+					var[1]++;
+					var[2] = var[0];
 				}
 			}
 		}
 	}
-	new[j] = NULL;
+	new[var[1]] = NULL;
 	return (new);
 }
 
