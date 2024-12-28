@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:25:20 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 09:39:28 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 11:35:35 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,15 @@ static void	show_it(char *dir)
 
 	fd = open(dir, O_RDONLY);
 	tmp = get_next_line(fd);
-	close(fd);
 	ft_putstr_fd_a(tmp, STDERR_FILENO);
 	free(tmp);
+	tmp = get_next_line(fd);
+	while (tmp)
+	{
+		free(tmp);
+		tmp = get_next_line(fd);
+	}
+	close(fd);
 }
 
 void	show_errors(t_vars *vars)
