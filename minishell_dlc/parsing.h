@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:49:49 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/28 17:18:12 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:27:44 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void	for_dollars(int *i, int *count, char *str, char **new_x);
 void	for_quote(int *i, int *count, char *str, char **new_x);
 void	for_simple(int *i, int *count, char *str, char **new_x);
 void	improved_expend(char **str, t_list *env, t_vars *vars);
+void	init_expend(int *i, int *j, int *count, int *start);
 
 #endif
