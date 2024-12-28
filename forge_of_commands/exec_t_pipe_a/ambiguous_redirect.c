@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:24:07 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 09:03:21 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 21:35:41 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_ambiguous(char *dup_file, t_vars *vars)
 	tmp = ft_strdup_a(dup_file);
 	if (tmp[0] != '"')
 	{
-		modify_str(&tmp, vars->env, vars);
+		improved_expend(&tmp, vars->env, vars);
 		while (tmp[i])
 		{
 			if (tmp[i] == ' ')
@@ -77,6 +77,8 @@ int	ambiguous_redirect(char **file, t_vars *vars)
 	i = -1;
 	if (extra(dup_file, i, file, vars))
 		return (1);
+	if (dup_file[0] == '\'' || dup_file[0] == '\"')
+		rm_quote(file);
 	free(dup_file);
 	return (0);
 }

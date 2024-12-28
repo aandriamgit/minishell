@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:39:45 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/28 17:30:10 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 20:36:14 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,7 @@ t_cmd	*creat_bloc_cmd(char *str)
 {
 	char	**split;
 	t_cmd	*cmd;
-	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
 	if (!str)
 		return (NULL);
 	cmd = malloc(sizeof(t_cmd));

@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:05:06 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 09:09:34 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 21:11:12 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	extras(t_command_a *cmd, t_vars *vars)
 	{
 		if (!is_valid_identifier(cmd->args[i]))
 		{
-			ft_perror_soft(cmd->args[i], "invalid identifier\n", vars, 1);
+			ft_perror_soft(cmd->args[i], "not a valid identifier\n", vars, 1);
 			return ;
 		}
 		i++;
