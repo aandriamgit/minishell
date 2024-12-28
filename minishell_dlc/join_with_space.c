@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:50:28 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/27 18:33:21 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/28 16:11:34 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	count_join(char **str)
 {
-	int i;
-	int j;
-	int count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = 0;
 	j = 0;
@@ -47,10 +47,10 @@ void	mini_join_s(char **str, char **new, int i, int *k)
 
 char	*join_with_space(char **str)
 {
-	int i;
-	int j;
-	int k;
-	char *new;
+	int		i;
+	int		j;
+	int		k;
+	char	*new;
 
 	k = 0;
 	j = 0;

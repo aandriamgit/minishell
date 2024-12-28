@@ -6,16 +6,16 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:25:01 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/19 17:31:11 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/28 16:02:13 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "../minishell.h"
 
-char *ft_getenv(char *str, t_list *env)
+char	*ft_getenv(char *str, t_list *env)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = env;
 	if (tmp != NULL)

@@ -6,14 +6,13 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:32:52 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/28 10:55:51 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/28 15:35:46 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "expend/dep/dep.h"
 #include "../utils/utils.h"
-#include <stdio.h>
 
 static int	check(char *str)
 {
@@ -35,7 +34,7 @@ void	modify_str(char **str, t_list *env_cp, t_vars	*vars)
 	int		i;
 
 	i = 0;
-	split = split_expand_1(*str);
+	split = ft_expend(*str);
 	while (split[i])
 	{
 		if (check(split[i]) == 1 && split[i][0] != '\'')
