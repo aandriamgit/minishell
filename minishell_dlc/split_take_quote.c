@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:17:53 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/27 14:08:58 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:25:09 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	skip_y(int *i, char *str, char c)
 void	mini_count_quote(char *str, char c, int *i, int *count)
 {
 	(*count)++;
-	while (str[*i] && (str[*i] != c && str[*i] != '\"'))
+	while (str[*i] && (str[*i] != c && (str[*i] != '\"' || str[*i] != '\'')))
 	{
-		if (str[*i] == '\"')
+		if ((str[*i] == '\"') || (str[*i] == '\''))
 		{
 			(*count)++;
 			skip_y(i, str, str[*i]);
@@ -45,7 +45,7 @@ static int	count_quote_x(char *str, char c)
 	count = 0;
 	while (str[i])
 	{
-		if (str[i] && str[i] != c && str[i] == '\"')
+		if (str[i] && str[i] != c && ((str[i] == '\"') || (str[i] == '\'')))
 		{
 			count++;
 			skip_y(&i, str, str[i]);
@@ -65,7 +65,7 @@ void	mini_split_take(char *str, char ***new, int *i, int *j)
 
 	start = 0;
 	c = ' ';
-	if (str[*i] && str[*i] != c && str[*i] == '\"')
+	if (str[*i] && str[*i] != c && ((str[*i] == '\"') || (str[*i]) == '\''))
 	{
 		start = *i;
 		skip_y(i, str, str[*i]);
@@ -75,7 +75,7 @@ void	mini_split_take(char *str, char ***new, int *i, int *j)
 	else if (str[*i] && str[*i] != c)
 	{
 		start = *i;
-		while (str[*i] && (str[*i] != '\"' && str[*i] != c))
+		while (str[*i] && (str[*i] != '\"' && str[*i] != c && str[*i] != '\''))
 			(*i)++;
 		(*new)[*j] = ft_substr_p(start, *i - 1, str);
 		(*j)++;
