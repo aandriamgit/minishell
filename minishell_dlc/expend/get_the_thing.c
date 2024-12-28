@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_the_thing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 14:04:55 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 07:30:54 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 11:32:32 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ char	*get_the_thing(char *tmp_str, int *j, t_vars *vars)
 
 	i = 0;
 	lol = *j;
-	while (tmp_str[*j] && tmp_str[*j] != ' ')
+	while (tmp_str[*j] && tmp_str[*j] != ' ' && tmp_str[*j] != '\''
+		&& tmp_str[*j] != '\"')
 	{
 		(*j)++;
 		i++;
