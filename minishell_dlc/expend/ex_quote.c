@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:36:57 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/28 17:09:04 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 17:11:55 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	ex_quote(char **str, t_list *env_cp, t_vars *vars)
 		i++;
 	tmp = ft_substr_p(start, i - 1, *str);
 	free(*str);
-	// expand(&tmp, env_cp, vars);
 	improved_expend(&tmp, env_cp, vars);
 	*str = malloc(sizeof(char) * (ft_strlen_p(tmp) + 3));
 	if (!(*str))
