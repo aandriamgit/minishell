@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 16:45:05 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/01 16:25:33 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 11:41:02 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void	free_list(t_list **list)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = *list;
-
 	while (tmp)
 	{
 		free((tmp)->arg);
@@ -30,7 +29,7 @@ void	free_list(t_list **list)
 
 void	display_list_p(t_list *list)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = list;
 	while (tmp)
@@ -45,7 +44,7 @@ void	display_list_p(t_list *list)
 
 void	display_env_p(t_list *list)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = list;
 	while (tmp)
@@ -61,10 +60,20 @@ void	display_env_p(t_list *list)
 	}
 }
 
+void	mini_display_exp(t_list *tmp)
+{
+	ft_putstr_p(tmp->arg, 1);
+	ft_putchar_p('=', 1);
+	ft_putchar_p('\"', 1);
+	ft_putstr_p(tmp->parameter, 1);
+	ft_putchar_p('\"', 1);
+	ft_putchar_p('\n', 1);
+}
+
 void	display_export_p(t_list *list)
 {
-	t_list *exp_list;
-	t_list *tmp;
+	t_list	*exp_list;
+	t_list	*tmp;
 
 	tmp = NULL;
 	exp_list = NULL;
@@ -74,14 +83,7 @@ void	display_export_p(t_list *list)
 	while (tmp)
 	{
 		if (tmp->assignation == 1)
-		{
-			ft_putstr_p(tmp->arg, 1);
-			ft_putchar_p('=', 1);
-			ft_putchar_p('\"', 1);
-			ft_putstr_p(tmp->parameter, 1);
-			ft_putchar_p('\"', 1);
-			ft_putchar_p('\n', 1);
-		}
+			mini_display_exp(tmp);
 		else
 		{
 			ft_putstr_p(tmp->arg, 1);
@@ -90,5 +92,4 @@ void	display_export_p(t_list *list)
 		tmp = tmp->next;
 	}
 	free(exp_list);
-//	free_list(&exp_list);
 }

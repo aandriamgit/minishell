@@ -6,18 +6,17 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:54:01 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/21 18:18:13 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/28 16:04:57 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include <stdio.h>
 
 static int	ft_count(char **str)
 {
-	int i;
-	int j;
-	int count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = 0;
 	j = 0;
@@ -37,7 +36,7 @@ static int	ft_count(char **str)
 
 void	ft_free_p(char ***str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while ((*str)[i])
@@ -49,12 +48,12 @@ void	ft_free_p(char ***str)
 	*str = NULL;
 }
 
-char *ft_strjoin_space(char ***str)
+char	*ft_strjoin_space(char ***str)
 {
-	int i;
-	char *new;
-	int j;
-	int k;
+	int		i;
+	char	*new;
+	int		j;
+	int		k;
 
 	i = 0;
 	j = 0;

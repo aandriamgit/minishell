@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:39:45 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/28 12:12:17 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 17:30:10 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,24 @@ int	count_arg(char **str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+void	else_fact(char ***split, t_cmd **cmd)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while ((*split)[i])
+	{
+		if (check_quotes((*split)[i]) == 1)
+			rm_quote(&(*split)[i]);
+		(*cmd)->arg[j] = ft_strdup_p((*split)[i]);
+		j++;
+		i++;
+	}
+	(*cmd)->arg[j] = NULL;
 }
 
 t_cmd	*creat_bloc_cmd(char *str)
@@ -45,17 +63,7 @@ t_cmd	*creat_bloc_cmd(char *str)
 	if (!(cmd->arg))
 		cmd->arg = NULL;
 	else
-	{
-		while (split[i])
-		{
-			if (check_quotes(split[i]) == 1)
-				rm_quote(&split[i]);
-			cmd->arg[j] = ft_strdup_p(split[i]);
-			j++;
-			i++;
-		}
-		cmd->arg[j] = NULL;
-	}
+		else_fact(&split, &cmd);
 	ft_free_tab(&split);
 	return (cmd);
 }

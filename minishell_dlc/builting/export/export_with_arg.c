@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:02:31 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/21 17:51:41 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 12:36:09 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	export_with_arg(t_list **env, char *arg)
 {
-	char **splited_arg;
-	int i;
+	char	**splited_arg;
+	int		i;
 
 	i = 0;
 	splited_arg = ft_split_na(arg);

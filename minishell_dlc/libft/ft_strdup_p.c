@@ -6,16 +6,16 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 17:38:38 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/16 14:11:11 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 10:53:13 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strdup_p(char *str)
+char	*ft_strdup_p(char *str)
 {
-	int i;
-	char *new;
+	int		i;
+	char	*new;
 
 	i = 0;
 	if (!str)

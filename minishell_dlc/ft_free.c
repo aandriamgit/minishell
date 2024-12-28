@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:32:41 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/04 17:34:20 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/28 16:01:43 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_split(char ***str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while ((*str)[i])
