@@ -74,7 +74,6 @@ SRC = minishell.c \
 	  ./forge_of_commands/exec_t_pipe_a/built_ins_w/ft_pwd_w.c \
 	  ./forge_of_commands/exec_t_pipe_a/built_ins_w/ft_unset_w.c \
 	  ./minishell_dlc/check.c\
-	  ./minishell_dlc/check_expand.c\
 	  ./minishell_dlc/ft_strjoin_p.c\
 	  ./minishell_dlc/ft_strjoin_space.c\
 	  ./minishell_dlc/formating.c\
@@ -86,7 +85,6 @@ SRC = minishell.c \
 	  ./minishell_dlc/cmd.c\
 	  ./minishell_dlc/libft/ft_putstr_p.c\
 	  ./minishell_dlc/libft/ft_putchar_p.c\
-	  ./minishell_dlc/libft/ft_putnbr_p.c\
 	  ./minishell_dlc/libft/ft_strcmp_p.c\
 	  ./minishell_dlc/libft/ft_strlen_p.c\
 	  ./minishell_dlc/libft/ft_split_p.c\
@@ -106,7 +104,6 @@ SRC = minishell.c \
 	  ./minishell_dlc/list/creat_bloc_redir.c\
 	  ./minishell_dlc/list/creat_bloc_cmd.c\
 	  ./minishell_dlc/list/creat_bloc_pipe.c\
-	  ./minishell_dlc/split_expand.c\
 	  ./minishell_dlc/display/display_list.c\
 	  ./minishell_dlc/display/sort_list.c\
 	  ./minishell_dlc/expend/expend.c\
@@ -124,8 +121,9 @@ SRC = minishell.c \
 	  ./minishell_dlc/ft_free/free_list.c\
 	  ./minishell_dlc/ft_getenv.c\
 	  ./minishell_dlc/expend/check.c\
-	  ./minishell_dlc/split_expand_1.c\
 	  ./minishell_dlc/split_take_quote.c\
+	  ./minishell_dlc/ft_expend.c\
+	  ./minishell_dlc/ft_expend_ex.c\
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 

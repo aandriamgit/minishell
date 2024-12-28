@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:42:13 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/27 20:04:14 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 17:10:24 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,17 @@ void	make_type(int *i, char *str, char **type)
 		(*i)++;
 }
 
+void	mini_remove_replace(char *str, int *i)
+{
+	while (str[*i] && str[*i] != ' ')
+	{
+		if (str[*i] == '\'' || str[*i] == '\"')
+			skip_x(i, str, str[*i]);
+		else
+			(*i)++;
+	}
+}
+
 void	remove_replace(char **str, int i, t_redir **redir)
 {
 	int		start;
@@ -73,13 +84,7 @@ void	remove_replace(char **str, int i, t_redir **redir)
 	start = 0;
 	make_type(&i, *str, &type);
 	start = i;
-	while ((*str)[i] && (*str)[i] != ' ')
-	{
-		if ((*str)[i] == '\'' || (*str)[i] == '\"')
-			skip_x(&i, *str, (*str)[i]);
-		else
-			i++;
-	}
+	mini_remove_replace(*str, &i);
 	file = ft_substr_p(start, i - 1, *str);
 	ft_trim(c, i - 1, &tmp);
 	creat_chain_of_redir(redir, creat_bloc_redir(type, file));

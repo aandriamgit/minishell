@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:42:58 by mravelon          #+#    #+#             */
-/*   Updated: 2024/11/28 14:07:18 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/28 16:16:11 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	check_quote(char **str)
 {
-	int i;
-	char c;
+	int		i;
+	char	c;
 
 	i = 0;
 	c = '\0';
@@ -38,7 +38,7 @@ void	check_quote(char **str)
 	}
 }
 
-int unclosed(int i, char **str)
+int	unclosed(int i, char **str)
 {
 	while ((*str)[i] && (*str)[i] == ' ')
 		i++;
@@ -52,18 +52,18 @@ int unclosed(int i, char **str)
 
 void	check_pipe(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while ((*str)[i])
 	{
 		if ((*str)[i] == '|')
-			unclosed(i + 1, str);			
+			unclosed(i + 1, str);
 		i++;
 	}
 }
 
-void check_input(char **str)
+void	check_input(char **str)
 {
 	check_quote(str);
 	check_pipe(str);

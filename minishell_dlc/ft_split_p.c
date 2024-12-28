@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:03:37 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/25 11:14:33 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 11:36:15 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,42 +61,41 @@ int	count(char *str)
 	return (count);
 }
 
+void	init_split(int *i, int *j, char ***new, char *str)
+{
+	*j = 0;
+	*new = malloc(sizeof(char *) * (count(str) + 1));
+	if (!(*new))
+		return ;
+	*i = 0;
+	while (str[*i] == ' ')
+		(*i)++;
+}
+
 char	**ft_split_na(char *str)
 {
-	int		i;
-	int		j;
+	int		var[3];
 	char	**new;
-	int		start;
 
-	j = 0;
-	new = malloc(sizeof(char *) * (count(str) + 1));
-	if (!new)
-		return (NULL);
-	i = 0;
-	while (str[i] == ' ')
-		i++;
-	start = i;
-	while (str[i])
+	init_split(&var[0], &var[1], &new, str);
+	var[2] = var[0];
+	while (str[var[0]])
 	{
-		if (str[i] == '\"' || str[i] == '\'')
-			skip(str, &i);
-		else if (str[i] == ' ')
+		if (str[var[0]] == '\"' || str[var[0]] == '\'')
+			skip(str, &var[0]);
+		else if (str[var[0]] == ' ')
 		{
-			new[j] = ft_substr_p(start, i - 1, str);
-			j++;
-			while (str[i] == ' ')
-				i++;
-			if (str[i])
-				start = i;
+			new[var[1]++] = ft_substr_p(var[2], var[0] - 1, str);
+			while (str[var[0]] == ' ')
+				var[0]++;
+			if (str[var[0]])
+				var[2] = var[0];
 		}
-		else if (str[i])
-			i++;
+		else if (str[var[0]])
+			var[0]++;
 	}
-	if (i != 0)
-	{
-		new[j] = ft_substr_p(start, i - 1, str);
-		j++;
-	}
-	new[j] = NULL;
+	if (var[0] != 0)
+		new[var[1]++] = ft_substr_p(var[2], var[0] - 1, str);
+	new[var[1]] = NULL;
 	return (new);
 }

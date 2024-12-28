@@ -6,16 +6,16 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:59:15 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/02 15:11:09 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 10:52:37 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_substr_p(int start, int end, char *str)
+char	*ft_substr_p(int start, int end, char *str)
 {
-	char *new;
-	int i;
+	char	*new;
+	int		i;
 
 	i = 0;
 	new = malloc (sizeof(char) * (end - start + 2));

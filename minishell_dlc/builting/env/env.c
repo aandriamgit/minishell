@@ -6,16 +6,16 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:51:30 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/19 14:13:13 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 12:43:12 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../parsing.h"
 
-t_list   *duplicate_env(char **env)
+t_list	*duplicate_env(char **env)
 {
-	int i;
-	t_list *environement;
+	int		i;
+	t_list	*environement;
 
 	i = 0;
 	environement = NULL;

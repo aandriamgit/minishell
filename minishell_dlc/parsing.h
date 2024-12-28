@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:49:49 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/27 14:18:02 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/28 17:10:06 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	check_input(char **str);
 int		count(char *str);
 char	**ft_split_na(char *str);
 void	skip(char *str, int *i);
-char	**split_expand(char *str);
 char	*ft_strjoin_space(char ***str);
 void	simple_expend(char **str, t_list *env);
 void	modify(char **str, t_list *env_cp);
@@ -50,10 +49,8 @@ char	*ft_getenv(char *str, t_list *env);
 int		check_bloc(char *str);
 int		check_her(char *s1, char *s2, int flag);
 void	skip_x(int *i, char *str, char c);
-char	**split_expand_1(char *str);
 char	**split_take_quote(char *str, char c);
 void	formating_quote(char **str, t_list *env_cp, t_vars *vars);
-// builtings
 t_list	*duplicate_env(char **env);
 void	display_env_list(t_list *list);
 int		check_list(t_list **env, char *str);
@@ -61,8 +58,6 @@ void	display_export_list(t_list **list);
 void	export_with_arg(t_list **env, char *arg);
 void	simple_export(t_list *env);
 int		unset_p(t_list **environement, char *str);
-
-// list
 t_list	*creat_bloc_of_list(char *str);
 int		check_assignation(char *str);
 void	creat_chain_of_list(t_list **old_list, t_list *new_list);
@@ -70,12 +65,8 @@ void	display_list(t_list **list);
 void	ordered_list(t_list **list);
 t_redir	*creat_bloc_redir(char *type, char *file);
 void	creat_chain_of_redir(t_redir **old_list, t_redir *new_list);
-
-void	check_expand(char **str, t_list *cp_env, t_vars *vars);
 char	*ft_strjoin_p(char ***str);
 int		count_x(char *str);
-
-// display
 void	display_list_p(t_list *list);
 void	display_env_p(t_list *list);
 void	display_export_p(t_list *list);
@@ -83,6 +74,9 @@ void	sort_list(t_list **list);
 void	duplicate_list(t_list **old_list, t_list *new_list);
 t_list	*duplicate(t_list *list);
 void	modify_str(char **str, t_list *env_cp, t_vars *vars);
-void	improved_expend(char **str, t_list *env, t_vars *vars);
-// char	**ft_split(char const *s, char c);
+char	**ft_expend(char *str);
+void	for_dollars(int *i, int *count, char *str, char **new_x);
+void	for_quote(int *i, int *count, char *str, char **new_x);
+void	for_simple(int *i, int *count, char *str, char **new_x);
+
 #endif

@@ -6,18 +6,18 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 10:37:14 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/25 16:23:32 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/27 12:41:09 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../parsing.h"
 #include "../../../minishell.h"
 
-t_list   *duplicate_export(t_list *env)
+t_list	*duplicate_export(t_list *env)
 {
-	int i;
-	t_list *export;
-	t_list *tmp;
+	int		i;
+	t_list	*export;
+	t_list	*tmp;
 
 	i = 0;
 	export = NULL;
@@ -33,14 +33,15 @@ t_list   *duplicate_export(t_list *env)
 
 void	check_min(t_list *env, char *str)
 {
-	char *min;
-	t_list *tmp;
+	char	*min;
+	t_list	*tmp;
 
 	min = NULL;
 	tmp = env;
 	while (tmp)
 	{
-		if ((min == NULL || (min != NULL && (ft_strncmp_a(min, tmp->cmd) > 0))) && (ft_strncmp_a(tmp->cmd, str) > 0))
+		if ((min == NULL || (min != NULL && (ft_strncmp_a(min, tmp->cmd) > 0)))
+			&& (ft_strncmp_a(tmp->cmd, str) > 0))
 			min = tmp->cmd;
 		tmp = tmp->next;
 	}
