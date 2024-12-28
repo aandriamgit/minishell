@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:03:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:31:08 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 15:05:05 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,6 @@ void	init_heredoc(t_vars *vars, char *eof)
 	heredoc_nb = init_heredoc_nb(&fd_heredoc, vars);
 	heredoc_type = get_heredoc_type(eof);
 	nice_eof(&eof, heredoc_type);
-	ft_putstr_fd_a("::", 1);
-	ft_putnbr_fd_a(heredoc_type, 1);
-	ft_putstr_fd_a("::\n", 1);
 	free(heredoc_nb);
 	print_heredoc(vars, eof, heredoc_type, fd_heredoc);
 }
