@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/26 14:34:09 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/28 08:34:44 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,22 +83,11 @@ void	creat_files(t_vars *vars)
 
 void	handler(int signum)
 {
-	char	buffer[1024];
-	char	*lol;
-	char	*res;
-	char	*tmp;
-
-	getcwd(buffer, 1024);
-	tmp = ft_strjoin_a("\033[38;2;166;227;161m╭\033[38;2;148;226;213m ",
-			buffer);
-	res = ft_strjoin_a(tmp, "\033[38;2;137;180;250m  \033[0m");
-	lol = ft_strjoin_free_a(res, "\n\001\033[38;2;243;139;168m\002\001╰\002");
-	lol = ft_strjoin_free_a(lol, "\001\002\001\033[0m\002 ");
 	if (signum == SIGINT)
 	{
-		upload_exit_code(130);
-		printf("\n%s", lol);
+		printf("\n");
 		rl_replace_line("", 1);
+		rl_on_new_line();
 		rl_redisplay();
 	}
 }

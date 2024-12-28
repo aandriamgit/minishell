@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:24:07 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/26 13:58:27 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/28 09:03:21 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,9 @@ static int	check_ambiguous(char *dup_file, t_vars *vars)
 	return (0);
 }
 
-int	ambiguous_redirect(char **file, t_vars *vars)
+static int	extra(char *dup_file, int i, char **file, t_vars *vars)
 {
-	int		i;
-	char	*dup_file;
-
-	i = 0;
-	dup_file = ft_strdup_a(*file);
-	while (dup_file[i])
+	while (dup_file[++i])
 	{
 		if (dup_file[i] == '$')
 		{
@@ -60,8 +55,28 @@ int	ambiguous_redirect(char **file, t_vars *vars)
 				return (0);
 			}
 		}
-		i++;
 	}
+	return (0);
+}
+
+int	ambiguous_redirect(char **file, t_vars *vars)
+{
+	int		i;
+	char	*dup_file;
+
+	i = -1;
+	dup_file = ft_strdup_a(*file);
+	while (dup_file[++i])
+	{
+		if (dup_file[i] == ' ')
+		{
+			free(dup_file);
+			return (1);
+		}
+	}
+	i = -1;
+	if (extra(dup_file, i, file, vars))
+		return (1);
 	free(dup_file);
 	return (0);
 }

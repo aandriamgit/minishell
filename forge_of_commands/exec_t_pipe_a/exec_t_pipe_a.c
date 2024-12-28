@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:09:45 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/27 16:37:08 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 09:54:46 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static void	w_pipe(t_pipe_a *pipe_a, t_vars *vars)
 	{
 		if (waitpid(pipe_a->pid, &status, 0) == -1)
 			ft_perror_exit("waitpid", "w_pipe\n", vars, 1);
-		if (WIFEXITED(status))
-			vars->exit_code_int = WEXITSTATUS(status);
 		if (WIFSIGNALED(status))
-			vars->exit_code_int = WTERMSIG(status);
+			vars->exit_code_int = 128 + WTERMSIG(status);
+		else if (WIFEXITED(status))
+			vars->exit_code_int = WEXITSTATUS(status);
 		pipe_a = pipe_a->next;
 	}
 }
@@ -41,7 +41,7 @@ int	handle_child_exit_no_pipe(pid_t child_pid, t_vars *vars)
 		return (-1);
 	}
 	if (WIFSIGNALED(status))
-		return (WTERMSIG(status));
+		return (128 + WTERMSIG(status));
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	return (-1);
@@ -103,6 +103,8 @@ void	exec_t_pipe_a(t_pipe_a *pipe_a, t_vars *vars)
 		if (pipe_a->next)
 			w_pipe(pipe_a, vars);
 		else
+		{
 			no_pipe(pipe_a, vars);
+		}
 	}
 }

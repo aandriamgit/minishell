@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:33:52 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/27 17:36:38 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 08:45:57 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,4 @@ int		ft_random_int(char *str);
 char	**ft_gen_env(t_list *list);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_bzero(void *s, size_t n);
+int		ft_isalpha(int c);

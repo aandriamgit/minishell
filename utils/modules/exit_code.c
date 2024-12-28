@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 08:38:40 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:25:12 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 08:25:47 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,43 @@ int	download_exit_code(t_vars *vars)
 		}
 	}
 	return (nbr);
+}
+
+int	can_custom(void)
+{
+	char	*home_dir;
+	char	*dir;
+	char	*char_nbr;
+	int		fd;
+	int		res;
+
+	res = 0;
+	home_dir = ft_strjoin_a(getenv("HOME"), "/.minishell_log");
+	if (access(home_dir, F_OK) != -1)
+	{
+		dir = ft_strjoin_free_a(home_dir, "/.can_custom_dir");
+		fd = open(dir, O_RDONLY);
+		char_nbr = get_next_line(fd);
+		res = ft_atoi_a(char_nbr);
+		free(char_nbr);
+		close(fd);
+		free(dir);
+	}
+	return (res);
+}
+
+char	*get_magic_prompt(void)
+{
+	char	*res;
+	char	*tmp;
+	char	buffer[1024];
+	char	*lol;
+
+	getcwd(buffer, 1024);
+	tmp = ft_strjoin_a("\033[38;2;166;227;161m╭\033[38;2;148;226;213m ",
+			buffer);
+	res = ft_strjoin_free_a(tmp, "\033[38;2;137;180;250m  \033[0m");
+	lol = ft_strjoin_free_a(res, "\n\001\033[38;2;243;139;168m\002\001╰\002");
+	lol = ft_strjoin_free_a(lol, "\001\002\001\033[0m\002 ");
+	return (lol);
 }

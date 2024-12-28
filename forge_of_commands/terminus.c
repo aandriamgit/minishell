@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:25:20 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:27:33 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 09:39:28 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,16 @@ static char	*get_dir(int tmp, t_vars *vars)
 	return (lol);
 }
 
-static void	cat_it(char *dir)
+static void	show_it(char *dir)
 {
-	char	**args;
-	char	*cmd;
-	pid_t	pid;
+	int		fd;
+	char	*tmp;
 
-	pid = fork();
-	if (pid == 0)
-	{
-		args = malloc(sizeof(char *) * 3);
-		args[0] = ft_strdup_a("cat");
-		args[1] = dir;
-		args[2] = NULL;
-		cmd = ft_strdup_a("/bin/cat");
-		execve(cmd, args, NULL);
-	}
-	else if (pid < 0)
-		ft_putstr_fd_a("lol\n", 1);
-	else
-		wait(NULL);
+	fd = open(dir, O_RDONLY);
+	tmp = get_next_line(fd);
+	close(fd);
+	ft_putstr_fd_a(tmp, STDERR_FILENO);
+	free(tmp);
 }
 
 void	show_errors(t_vars *vars)
@@ -58,10 +48,8 @@ void	show_errors(t_vars *vars)
 	while (tmp <= count)
 	{
 		dir = get_dir(tmp, vars);
-		if (access(dir, F_OK) == 0)
-		{
-			cat_it(dir);
-		}
+		if (!access(dir, F_OK))
+			show_it(dir);
 		free(dir);
 		tmp++;
 	}

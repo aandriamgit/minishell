@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:25:37 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:26:28 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 09:34:52 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ void	ft_perror_redir(char *file, t_vars *vars, int err, int nbr)
 	if (err == EACCES)
 	{
 		errno = err;
-		ft_perror_soft(file, "permision denied\n", vars, nbr);
+		ft_perror_soft(file, "Permission denied\n", vars, nbr);
 	}
 	else if (err == ENOENT)
 	{
 		errno = err;
-		ft_perror_soft(file, "no such file or directory\n", vars, nbr);
+		ft_perror_soft(file, "No such file or directory\n", vars, nbr);
 	}
 	else if (err == EISDIR)
 	{
 		errno = err;
-		ft_perror_soft(file, "is a directory\n", vars, nbr);
+		ft_perror_soft(file, "Is a directory\n", vars, nbr);
 	}
 	else if (errno != 0)
 	{

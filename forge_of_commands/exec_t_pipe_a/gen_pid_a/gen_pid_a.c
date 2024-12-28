@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 12:55:03 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:30:07 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 07:49:49 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	extras(t_pipe_a *pipe_a, t_vars *vars)
 {
 	signal(SIGQUIT, SIG_DFL);
 	signal(SIGINT, SIG_DFL);
+	if (!pipe_a->cmd)
+		ft_perror_exit(NULL, NULL, vars, 0);
 	if (is_built_ins(pipe_a->cmd))
 		built_ins_w(pipe_a->cmd, vars);
 	else if (pipe_a->cmd->cmd[0] == '.' || pipe_a->cmd->cmd[0] == '/')
@@ -44,6 +46,8 @@ static void	handle_cmd(t_pipe_a *pipe_a, int input_fd, int output_fd,
 	handle_redir(pipe_a->cmd->redir, vars, &flag);
 	if (flag)
 		extras(pipe_a, vars);
+	else if (!pipe_a->cmd->cmd)
+		ft_perror_exit(NULL, NULL, vars, 0);
 	else
 		ft_perror_exit(NULL, NULL, vars, 1);
 }

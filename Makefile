@@ -20,6 +20,7 @@ SRC = minishell.c \
 	  ./utils/lib/ft_gen_env.c \
 	  ./utils/lib/ft_bzero.c \
 	  ./utils/lib/ft_calloc.c \
+	  ./utils/lib/ft_isalpha.c \
 	  ./utils/modules/add.c \
 	  ./utils/modules/ft_execve.c \
 	  ./utils/modules/ft_free.c \

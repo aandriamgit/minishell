@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:46:17 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/26 13:56:11 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/28 07:38:05 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,37 +59,36 @@ typedef struct s_pipe_a
 	struct s_pipe_a			*prev;
 }							t_pipe_a;
 
-
 typedef struct s_list
 {
-	char			*cmd;
-	char			*parameter;
-	char			*arg;
-	int				size_arg;
-	int				assignation;
-	struct s_list	*next;
-}					t_list;
+	char					*cmd;
+	char					*parameter;
+	char					*arg;
+	int						size_arg;
+	int						assignation;
+	struct s_list			*next;
+}							t_list;
 
 typedef struct s_redir
 {
-	char			*type;
-	char			*file;
-	struct s_redir	*next;
-}					t_redir;
+	char					*type;
+	char					*file;
+	struct s_redir			*next;
+}							t_redir;
 
 typedef struct s_cmd
 {
-	char			*cmd;
-	char			**arg;
+	char					*cmd;
+	char					**arg;
 	// struct s_cmd *next;
-}					t_cmd;
+}							t_cmd;
 
 typedef struct s_pipe
 {
-	t_redir			*redir;
-	t_cmd			*cmd;
-	struct s_pipe	*next;
-}					t_pipe;
+	t_redir					*redir;
+	t_cmd					*cmd;
+	struct s_pipe			*next;
+}							t_pipe;
 
 typedef struct s_vars
 {

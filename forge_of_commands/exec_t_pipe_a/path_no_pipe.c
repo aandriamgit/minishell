@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 11:23:18 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:30:31 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/28 10:02:33 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ static void	relative_path(t_pipe_a *pipe_a, t_vars *vars)
 		else
 			lol = ft_strdup_a(mini_cmd);
 		if (stat(lol, &file_stat) == -1)
-			ft_perror_redir(mini_cmd, vars, ENOENT, 1);
+			ft_perror_redir(mini_cmd, vars, ENOENT, 127);
 		else if (access(lol, X_OK) == -1)
-			ft_perror_redir(mini_cmd, vars, EACCES, 1);
+			ft_perror_redir(mini_cmd, vars, EACCES, 126);
 		else if (S_ISDIR(file_stat.st_mode))
-			ft_perror_redir(mini_cmd, vars, EISDIR, 1);
+			ft_perror_redir(mini_cmd, vars, EISDIR, 126);
 		else
 			extra(pipe_a, vars);
 		free(lol);
@@ -61,11 +61,11 @@ static void	absolute_path(t_pipe_a *pipe_a, t_vars *vars)
 
 	lol = pipe_a->cmd->cmd;
 	if (stat(lol, &file_stat) == -1)
-		ft_perror_redir(lol, vars, ENOENT, 1);
+		ft_perror_redir(lol, vars, ENOENT, 127);
 	else if (access(lol, X_OK) == -1)
-		ft_perror_redir(lol, vars, EACCES, 1);
+		ft_perror_redir(lol, vars, EACCES, 126);
 	else if (S_ISDIR(file_stat.st_mode))
-		ft_perror_redir(lol, vars, EISDIR, 1);
+		ft_perror_redir(lol, vars, EISDIR, 126);
 	else
 		extra(pipe_a, vars);
 }
