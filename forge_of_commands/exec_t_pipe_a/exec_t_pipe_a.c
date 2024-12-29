@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:09:45 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/29 17:36:05 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/29 17:43:19 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	extra(t_pipe_a *pipe_a, t_vars *vars)
 		if (pipe_a->cmd->cmd && (pipe_a->cmd->cmd[0] == '.'
 				|| pipe_a->cmd->cmd[0] == '/'))
 			path_no_pipe(pipe_a, vars);
-		else if (cmd_check(pipe_a->cmd->cmd, vars))
+		else if (pipe_a->cmd->cmd && cmd_check(pipe_a->cmd->cmd, vars))
 		{
 			pid = fork();
 			if (pid == 0)

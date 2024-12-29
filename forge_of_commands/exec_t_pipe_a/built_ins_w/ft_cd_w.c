@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:58:59 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:34:46 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/29 17:58:39 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	ft_cd_w(t_command_a *cmd, t_vars *vars)
 	tab = cmd->args;
 	if (tab[1] && !error_check(tab[1], vars))
 		ft_perror_exit(NULL, NULL, vars, 0);
+	ft_perror_exit(NULL, NULL, vars, 0);
 }
