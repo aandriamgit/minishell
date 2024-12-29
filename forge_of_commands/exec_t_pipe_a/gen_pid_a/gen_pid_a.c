@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 12:55:03 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 07:49:49 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/29 17:07:13 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ static void	extras(t_pipe_a *pipe_a, t_vars *vars)
 {
 	signal(SIGQUIT, SIG_DFL);
 	signal(SIGINT, SIG_DFL);
-	if (!pipe_a->cmd)
+	if (!pipe_a->cmd || !pipe_a->cmd->cmd)
 		ft_perror_exit(NULL, NULL, vars, 0);
 	if (is_built_ins(pipe_a->cmd))
 		built_ins_w(pipe_a->cmd, vars);
-	else if (pipe_a->cmd->cmd[0] == '.' || pipe_a->cmd->cmd[0] == '/')
+	else if (pipe_a->cmd->cmd && (pipe_a->cmd->cmd[0] == '.'
+			|| pipe_a->cmd->cmd[0] == '/'))
 		path_w_pipe(pipe_a, vars);
 	else
 		ft_execve_path(pipe_a, pipe_a->cmd->cmd, pipe_a->cmd->args, vars);

@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 16:31:20 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:18:46 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/29 17:20:22 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ static void	extra_pipe(int *i, int *res, char *str, t_vars *vars)
 		*res = 1;
 		return ;
 	}
-	while (str[j] == ' ' || str[j] == '\t')
+	while (str[j] == ' ' || str[j] == '\t' || str[j] == '|')
 	{
 		*i = *i + 1;
 		j++;
-		if (!str[*i])
+		if (!str[*i] || (str[*i] == '|' && str[*i + 1] == '|'))
 		{
-			ft_perror_soft("syntax error", "unclosed '|'\n", vars, 2);
+			ft_perror_soft("syntax error", "unexpected token '|'\n", vars, 2);
 			*res = 1;
 			return ;
 		}
