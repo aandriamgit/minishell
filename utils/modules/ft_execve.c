@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:00:16 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/29 14:37:49 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/29 16:58:01 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,11 @@ char	*test_path(char *path, char *input)
 	char	*tmp;
 	int		i;
 
-	i = 0;
-	res = ft_split_a(path, ':');
-	while (res[i])
+	i = -1;
+	res = NULL;
+	if (path)
+		res = ft_split_a(path, ':');
+	while (path && res[++i])
 	{
 		tmp = ft_strjoin_a(res[i], input);
 		if ((access(tmp, X_OK)) == 0)
@@ -70,10 +72,10 @@ char	*test_path(char *path, char *input)
 			return (tmp);
 		}
 		free(tmp);
-		i++;
 	}
 	free(input);
-	ft_free_tab(&res);
+	if (res)
+		ft_free_tab(&res);
 	input = NULL;
 	return (NULL);
 }

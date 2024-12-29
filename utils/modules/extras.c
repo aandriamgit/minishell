@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:52:41 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 09:52:11 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/29 16:31:31 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ int	cmd_check(char *cmd, t_vars *vars)
 	char	*mini_cmd;
 	char	*mini_path;
 
-	if (cmd)
+	path = NULL;
+	mini_path = ft_getenv("PATH", vars->env);
+	if (cmd && mini_path)
 	{
 		mini_cmd = ft_strjoin_a("/", cmd);
-		mini_path = ft_getenv("PATH", vars->env);
 		path = test_path(mini_path, mini_cmd);
 		free(mini_path);
 		if (path)
@@ -46,5 +47,8 @@ int	cmd_check(char *cmd, t_vars *vars)
 		return (0);
 	}
 	else
+	{
+		ft_perror_soft(cmd, "command not found\n", vars, 127);
 		return (0);
+	}
 }

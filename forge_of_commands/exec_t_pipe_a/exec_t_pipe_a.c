@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:09:45 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 09:54:46 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/29 16:24:11 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static void	extra(t_pipe_a *pipe_a, t_vars *vars)
 	handle_redir(pipe_a->cmd->redir, vars, &flag);
 	if (flag)
 	{
-		if (pipe_a->cmd->cmd[0] == '.' || pipe_a->cmd->cmd[0] == '/')
+		if (pipe_a->cmd->cmd && (pipe_a->cmd->cmd[0] == '.'
+				|| pipe_a->cmd->cmd[0] == '/'))
 			path_no_pipe(pipe_a, vars);
 		else if (cmd_check(pipe_a->cmd->cmd, vars))
 		{
@@ -103,8 +104,6 @@ void	exec_t_pipe_a(t_pipe_a *pipe_a, t_vars *vars)
 		if (pipe_a->next)
 			w_pipe(pipe_a, vars);
 		else
-		{
 			no_pipe(pipe_a, vars);
-		}
 	}
 }
