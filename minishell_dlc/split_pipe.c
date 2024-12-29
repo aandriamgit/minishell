@@ -55,7 +55,6 @@ void	mini_split_pipe(int *i, char *str)
 
 void	mini_mini(int *i, char *str, char c)
 {
-	(*i)++;
 	while (str[*i] && str[*i] != c)
 		mini_split_pipe(i, str);
 }
