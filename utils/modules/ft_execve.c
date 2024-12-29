@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:00:16 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/27 18:03:14 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/29 14:37:49 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	ft_execve_path(t_pipe_a *pipe_a, char *cmd, char **argv, t_vars *vars)
 	char	*path;
 	char	*path_mini;
 	char	*mini_cmd;
+	char	**env_lol;
 
 	(void)pipe_a;
 	path_mini = ft_getenv("PATH", vars->env);
@@ -94,6 +95,10 @@ void	ft_execve_path(t_pipe_a *pipe_a, char *cmd, char **argv, t_vars *vars)
 	else
 	{
 		close_all_fds();
-		execve(path, argv, ft_gen_env(vars->env));
+		env_lol = ft_gen_env(vars->env);
+		execve(path, argv, env_lol);
+		free(path);
+		ft_free_tab(&env_lol);
+		ft_perror_exit(cmd, "execve failed\n", vars, 2);
 	}
 }

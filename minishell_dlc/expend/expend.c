@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:54:34 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/28 17:16:29 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/29 14:19:29 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static void	just_add_exit_code(char **str, t_vars *vars)
 		if (tmp_str[j] == '$' && tmp_str[j + 1] == '?')
 			add_it(&buffer, &i, &j, vars);
 		buffer[i] = tmp_str[j];
+		if (!buffer[i])
+			break ;
 		i++;
 	}
 	buffer[i] = '\0';

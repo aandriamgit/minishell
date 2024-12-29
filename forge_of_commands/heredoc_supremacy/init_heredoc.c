@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:03:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 15:05:05 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/29 13:52:07 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,19 @@ static int	get_heredoc_type(char *eof)
 	int	i;
 
 	i = 0;
-	while (eof[i])
+	if (eof)
 	{
-		if (eof[i] == '\'' || eof[i] == '\"')
+		while (eof[i])
 		{
-			if (i == 1)
-				return (3);
-			else
-				return (2);
+			if (eof[i] == '\'' || eof[i] == '\"')
+			{
+				if (i == 1)
+					return (3);
+				else
+					return (2);
+			}
+			i++;
 		}
-		i++;
 	}
 	return (1);
 }
@@ -92,6 +95,8 @@ void	init_heredoc(t_vars *vars, char *eof)
 	int		fd_heredoc;
 	int		heredoc_type;
 
+	if (eof == NULL)
+		eof = ft_strdup_a("\n");
 	heredoc_nb = init_heredoc_nb(&fd_heredoc, vars);
 	heredoc_type = get_heredoc_type(eof);
 	nice_eof(&eof, heredoc_type);

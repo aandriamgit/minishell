@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:24:07 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 21:35:41 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/29 13:36:07 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ambiguous_redirect(char **file, t_vars *vars)
 		if (dup_file[i] == ' ')
 		{
 			free(dup_file);
-			return (1);
+			return (0);
 		}
 	}
 	i = -1;
