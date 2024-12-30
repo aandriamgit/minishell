@@ -6,20 +6,29 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/28 12:16:30 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/30 16:49:43 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line/get_next_line.h"
 #include "interpret/interpret.h"
 #include "minishell.h"
+#include "minishell_dlc/libft/libft.h"
 #include "minishell_dlc/parsing.h"
 #include <errno.h>
+#include <readline/readline.h>
+#include <signal.h>
 
 static void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
 {
 	char	**big_param;
 
+	/*struct	sigaction moi;
+
+	moi.sa_sigaction = handler_magic;
+	sigemptyset(&moi.sa_mask);
+	moi.sa_flags = SA_RESTART;
+	sigaction(SIGINT, &moi, NULL);*/
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, handler);
 	*input = NULL;

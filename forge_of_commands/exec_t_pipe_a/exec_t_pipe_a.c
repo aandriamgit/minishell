@@ -6,13 +6,28 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:09:45 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/29 17:43:19 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/30 16:55:22 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 #include "exec_t_pipe_a.h"
 #include <unistd.h>
+
+void	handler_magic(int d, siginfo_t *u, void *x)
+{
+	x++;
+	ft_putstr_fd_a("enter here \n\n\n\n\n", 2);
+	if (u->si_pid == 0 && d == SIGINT)
+	{
+		ft_putstr_fd_a("enter \n\n\n\n\n", 2);
+		exit(987);
+		rl_on_new_line();
+		rl_replace_line("\0", 0);
+		/* rl_redisplay(); */
+	}
+
+}
 
 static void	w_pipe(t_pipe_a *pipe_a, t_vars *vars)
 {
@@ -53,12 +68,25 @@ int	handle_child_exit_no_pipe(pid_t child_pid, t_vars *vars)
 	return (-1);
 }
 
+static void	test_it(int	signum)
+{
+if (signum == SIGINT)
+	{
+		printf("holla john\n");
+		rl_replace_line("", 1);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+}
+
 static void	extra(t_pipe_a *pipe_a, t_vars *vars)
 {
 	pid_t	pid;
 	int		flag;
 
 	flag = 0;
+
+
 	handle_redir(pipe_a->cmd->redir, vars, &flag);
 	if (flag)
 	{
@@ -71,7 +99,15 @@ static void	extra(t_pipe_a *pipe_a, t_vars *vars)
 			if (pid == 0)
 			{
 				signal(SIGQUIT, SIG_DFL);
-				signal(SIGINT, SIG_DFL);
+				signal(SIGINT, test_it);
+	/* 		ft_putstr_fd_a("holla\n\n\n\n", 2); */
+	/* signal(SIGINT, SIG_DFL); */
+	/* struct	sigaction moi; */
+	/* sigemptyset(&moi.sa_mask); */
+	/* moi.sa_sigaction = handler_magic; */
+	/* moi.sa_flags = SA_SIGINFO; */
+	/* sigaction(SIGINT, &moi, NULL); */
+			ft_putstr_fd_a("holla\n", 2);
 				ft_execve_path(pipe_a, pipe_a->cmd->cmd, pipe_a->cmd->args,
 					vars);
 			}
