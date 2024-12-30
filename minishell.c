@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/28 12:16:30 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/30 16:29:36 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,14 @@ static void	interpret(char **input, t_vars *vars, t_pipe **cmd)
 
 	prompt = nice_prompt(vars);
 	*input = readline(prompt);
-	vars->input = ft_strdup_a(*input);
 	free(prompt);
+	vars->input = ft_strdup_a(*input);
 	if (*input == NULL)
 	{
 		ft_putstr_fd_a("exit\n", 1);
 		exit_protocol(vars, input, 0);
 	}
+	ft_strtrim_special(input, " \t\r\v\f\a\b");
 	if (access(vars->history_dir, F_OK) == 0)
 		ft_add_history(*input, vars);
 	else

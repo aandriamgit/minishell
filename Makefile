@@ -21,6 +21,8 @@ SRC = minishell.c \
 	  ./utils/lib/ft_bzero.c \
 	  ./utils/lib/ft_calloc.c \
 	  ./utils/lib/ft_isalpha.c \
+	  ./utils/lib/ft_strchr.c \
+	  ./utils/lib/ft_strtrim.c \
 	  ./utils/modules/add.c \
 	  ./utils/modules/ft_execve.c \
 	  ./utils/modules/ft_free.c \
@@ -73,6 +75,7 @@ SRC = minishell.c \
 	  ./forge_of_commands/exec_t_pipe_a/built_ins_w/ft_export_w.c \
 	  ./forge_of_commands/exec_t_pipe_a/built_ins_w/ft_pwd_w.c \
 	  ./forge_of_commands/exec_t_pipe_a/built_ins_w/ft_unset_w.c \
+	  ./forge_of_commands/exec_t_pipe_a/built_ins_w/ft_exit_w.c \
 	  ./minishell_dlc/check.c\
 	  ./minishell_dlc/ft_strjoin_p.c\
 	  ./minishell_dlc/ft_strjoin_space.c\
