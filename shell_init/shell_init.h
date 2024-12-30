@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:46:17 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 07:38:05 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:54:57 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct s_redir_fd
 
 char						*test(char *path, char *cmd);
 void						creat_files(t_vars *vars);
-void						handler(int signum);
+void						handler(int signum, siginfo_t *s_siginfo,
+								void *context);
 
 #endif

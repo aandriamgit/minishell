@@ -6,12 +6,13 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 12:12:30 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:54:24 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "shell_init.h"
+#include <bits/types/siginfo_t.h>
 
 void	vars_init(t_vars *vars, t_list **env_cpy)
 {
@@ -81,13 +82,15 @@ void	creat_files(t_vars *vars)
 	close(fd);
 }
 
-void	handler(int signum)
+void	handler(int signum, siginfo_t *s_siginfo, void *context)
 {
+	(void)context;
 	if (signum == SIGINT)
 	{
 		printf("\n");
 		rl_replace_line("", 1);
 		rl_on_new_line();
-		rl_redisplay();
+		if (s_siginfo->si_pid > 0)
+			rl_redisplay();
 	}
 }

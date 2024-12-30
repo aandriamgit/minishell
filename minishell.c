@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/28 12:16:30 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:55:09 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,19 @@
 #include "minishell.h"
 #include "minishell_dlc/parsing.h"
 #include <errno.h>
+#include <signal.h>
+#include <string.h>
 
 static void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
 {
-	char	**big_param;
+	char				**big_param;
+	struct sigaction	s_sigint;
 
+	s_sigint.sa_sigaction = handler;
+	s_sigint.sa_flags = SA_SIGINFO;
+	sigemptyset(&s_sigint.sa_mask);
 	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handler);
+	sigaction(SIGINT, &s_sigint, NULL);
 	*input = NULL;
 	*env_cpy = duplicate_env(env);
 	vars_init(vars, env_cpy);
