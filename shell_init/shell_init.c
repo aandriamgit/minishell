@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/31 11:34:53 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/31 15:32:05 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ void	vars_init(t_vars *vars, t_list **env_cpy)
 	vars->custom_flag = 0;
 	vars->exit_code_int = 0;
 	vars->err_nbr = 0;
+	vars->input = NULL;
+	vars->cmd = NULL;
+	vars->cmd = NULL;
+	vars->save_heredoc = NULL;
+	vars->exit_code_int = 0;
 }
 
 void	big_param_init(char ***big_param, t_vars vars)

@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:56:13 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 13:16:47 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/31 15:29:31 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	free_vars(t_vars *vars)
 	free(vars->stderr_a);
 	free(vars->stderr_log);
 	free(vars->quote_dir);
+	free(vars->save_heredoc);
 	if (vars->input)
 	{
 		free(vars->input);
@@ -85,7 +86,7 @@ void	ft_add_history(char *input, t_vars *vars)
 {
 	int	fd;
 
-	if (input[0] != '\n')
+	if (input && input[0] && input[0] != '\n')
 	{
 		fd = open(vars->history_dir, O_RDWR | O_APPEND);
 		if (fd == -1)

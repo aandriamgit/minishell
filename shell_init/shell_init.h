@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:46:17 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/30 18:54:57 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/31 14:55:49 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_vars
 	char					*stderr_a;
 	char					*stderr_log;
 	char					**env_cpy;
+	char					*save_heredoc;
 	int						err_nbr;
 	int						custom_flag;
 	int						custom_prompt;

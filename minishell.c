@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/31 11:11:12 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/31 17:05:40 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,14 @@ static void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
 	struct sigaction	s_sigint;
 
 	s_sigint.sa_sigaction = handler;
-	s_sigint.sa_flags = SA_SIGINFO;
+	s_sigint.sa_flags = SA_RESTART;
 	sigemptyset(&s_sigint.sa_mask);
 	signal(SIGQUIT, SIG_IGN);
 	sigaction(SIGINT, &s_sigint, NULL);
 	*input = NULL;
 	*env_cpy = duplicate_env(env);
 	vars_init(vars, env_cpy);
-	vars->input = NULL;
-	vars->cmd = NULL;
 	vars->env_cpy = env;
-	vars->cmd = NULL;
 	big_param_init(&big_param, *vars);
 	if (access(vars->log_dir, F_OK) == 0)
 		ft_free_tab(&big_param);
@@ -78,7 +75,9 @@ static void	interpret(char **input, t_vars *vars, t_pipe **cmd)
 static void	forge_of_commands(t_pipe **cmd, t_vars *vars)
 {
 	t_pipe_a	*pipe_a;
+	int			flag;
 
+	flag = 1;
 	if (vars->input)
 	{
 		pipe_a = convert_t_pipe_a(*cmd);
@@ -89,12 +88,13 @@ static void	forge_of_commands(t_pipe **cmd, t_vars *vars)
 			reboot_prompt(vars, &pipe_a);
 		else
 		{
-			heredoc_supremacy(pipe_a, vars);
+			while (flag)
+				heredoc_supremacy(&pipe_a, vars, &flag);
 			exec_t_pipe_a(pipe_a, vars);
 			terminus((void *)&pipe_a, vars);
-			if (vars->cmd)
+			if (vars->cmd && vars->exit_code_int != 130)
 			{
-				free_pipe(cmd);
+				free_pipe(&vars->cmd);
 				vars->cmd = NULL;
 			}
 		}
