@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:09:45 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/29 17:43:19 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:00:36 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static void	extra(t_pipe_a *pipe_a, t_vars *vars)
 			if (pid == 0)
 			{
 				signal(SIGQUIT, SIG_DFL);
-				signal(SIGINT, SIG_DFL);
 				ft_execve_path(pipe_a, pipe_a->cmd->cmd, pipe_a->cmd->args,
 					vars);
 			}
