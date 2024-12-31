@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:10:06 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:31:50 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/31 11:08:48 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	extras(t_command_a *cmd, t_vars *vars)
 	}
 	else
 		ft_putstr_fd_a("\n", STDOUT_FILENO);
-	vars->exit_code_int = 0;
+	upload_exit_code(0);
 }
 
 void	ft_echo_n(t_command_a *cmd, t_vars *vars)
@@ -86,7 +86,10 @@ void	ft_echo_n(t_command_a *cmd, t_vars *vars)
 	flag = 0;
 	handle_redir(cmd->redir, vars, &flag);
 	if (flag)
+	{
+		vars->exit_code_int = 0;
 		extras(cmd, vars);
+	}
 	dup2(save_stdout, STDOUT_FILENO);
 	dup2(save_stdin, STDIN_FILENO);
 	close(save_stdout);

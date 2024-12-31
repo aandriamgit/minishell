@@ -6,44 +6,19 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 10:03:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/29 16:36:22 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/31 11:47:56 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "heredoc_supremacy.h"
 
-static char	*get_heredoc_nb(char *heredoc_dir)
-{
-	char	*res;
-	char	*prev;
-	char	*tmp;
-	int		fd;
-	int		nb;
-
-	tmp = ft_strjoin_a(heredoc_dir, "/.log");
-	fd = open(tmp, O_RDONLY);
-	free(tmp);
-	nb = 1;
-	prev = get_next_line(fd);
-	while (prev)
-	{
-		free(prev);
-		prev = get_next_line(fd);
-		if (prev)
-			nb++;
-	}
-	res = ft_itoa_a(nb);
-	close(fd);
-	return (res);
-}
-
-static char	*init_heredoc_nb(int *fd_heredoc, t_vars *vars)
+static char	*init_heredoc_nb(int *fd_heredoc, t_vars *vars, int nb)
 {
 	char	*heredoc_nb;
 	char	*lol;
 	char	*tmp;
 
-	heredoc_nb = get_heredoc_nb(vars->heredoc_dir);
+	heredoc_nb = ft_itoa_a(nb);
 	tmp = ft_strjoin_a("/.", heredoc_nb);
 	lol = ft_strjoin_a(vars->heredoc_dir, tmp);
 	*fd_heredoc = open(lol, O_WRONLY | O_TRUNC | O_CREAT, 0755);
@@ -89,7 +64,7 @@ static void	nice_eof(char **eof, int heredoc_type)
 		rm_quote(eof);
 }
 
-void	init_heredoc(t_vars *vars, char *eof)
+void	init_heredoc(t_vars *vars, char *eof, int nb)
 {
 	char	*heredoc_nb;
 	int		fd_heredoc;
@@ -97,7 +72,7 @@ void	init_heredoc(t_vars *vars, char *eof)
 
 	if (eof == NULL)
 		eof = ft_strdup_a("");
-	heredoc_nb = init_heredoc_nb(&fd_heredoc, vars);
+	heredoc_nb = init_heredoc_nb(&fd_heredoc, vars, nb);
 	heredoc_type = get_heredoc_type(eof);
 	nice_eof(&eof, heredoc_type);
 	free(heredoc_nb);

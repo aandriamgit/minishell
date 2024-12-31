@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/30 18:59:40 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/31 11:34:53 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	vars_init(t_vars *vars, t_list **env_cpy)
 	vars->heredoc_dir = ft_strjoin_a(vars->log_dir, "/.heredoc_dir");
 	vars->exit_code_dir = ft_strjoin_a(vars->log_dir, "/.exit_code_dir");
 	vars->quote_dir = ft_strjoin_a(vars->log_dir, "/.quote_dir");
-	vars->custom_prompt = 0;
+	vars->custom_prompt = 1;
 	vars->custom_flag = 0;
 	vars->exit_code_int = 0;
 	vars->err_nbr = 0;
@@ -84,13 +84,19 @@ void	creat_files(t_vars *vars)
 
 void	handler(int signum, siginfo_t *s_siginfo, void *context)
 {
+	char	*lol;
+
 	(void)context;
 	if (signum == SIGINT)
 	{
+		upload_exit_code(130);
 		printf("\n");
 		rl_replace_line("", 1);
-		rl_on_new_line();
 		if (s_siginfo->si_pid > 0)
-			rl_redisplay();
+		{
+			lol = get_magic_prompt();
+			printf("%s", lol);
+			free(lol);
+		}
 	}
 }

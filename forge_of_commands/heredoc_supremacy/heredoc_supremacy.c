@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:15:38 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:29:32 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/31 11:46:00 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,11 @@ void	heredoc_supremacy(t_pipe_a *pipe_a, t_vars *vars)
 	remove_heredoc_dir(vars);
 	while (have_heredoc(pipe_a))
 	{
-		if (access(vars->heredoc_dir, F_OK) == 0)
-		{
-			eof = get_eof(pipe_a);
-			init_heredoc(vars, eof);
-			purify_from_heredoc(&pipe_a, vars->heredoc_dir, nb);
-		}
-		else
-		{
+		if (access(vars->heredoc_dir, F_OK) != 0)
 			gen_heredoc_dir(vars);
-			eof = get_eof(pipe_a);
-			init_heredoc(vars, eof);
-			purify_from_heredoc(&pipe_a, vars->heredoc_dir, nb);
-		}
+		eof = get_eof(pipe_a);
+		init_heredoc(vars, eof, nb);
+		purify_from_heredoc(&pipe_a, vars->heredoc_dir, nb);
 		nb++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:09:45 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/30 19:00:36 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/31 10:17:43 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	handle_child_exit_no_pipe(pid_t child_pid, t_vars *vars)
 	{
 		if (waitpid(child_pid, &status, 0) == -1)
 		{
+			if (errno == EINTR)
+				return (130);
 			ft_perror_soft("waitpid", "handle_child_exit_no_pipe", vars, 1);
 			return (-1);
 		}
@@ -71,6 +73,7 @@ static void	extra(t_pipe_a *pipe_a, t_vars *vars)
 			if (pid == 0)
 			{
 				signal(SIGQUIT, SIG_DFL);
+				signal(SIGINT, SIG_DFL);
 				ft_execve_path(pipe_a, pipe_a->cmd->cmd, pipe_a->cmd->args,
 					vars);
 			}
