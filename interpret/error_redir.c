@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 13:53:47 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/02 16:58:28 by mravelon         ###   ########.fr       */
+/*   Updated: 2025/01/02 18:16:18 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	check_redir(int *i, char *str)
 	while (str[*i] && str[*i] == ' ')
 		*i = *i + 1;
 	if (str[*i] == '\0' || (str[*i] == '>' && x == '<') || (str[*i] == '<'
-			&& x == '<') || (str[*i] == '|'))
+			&& x == '>') || (str[*i] == '|'))
 		return (1);
 	else
 		return (0);
