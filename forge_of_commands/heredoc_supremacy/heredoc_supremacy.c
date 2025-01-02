@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:15:38 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/31 17:10:03 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/02 09:06:11 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	heredoc_supremacy(t_pipe_a **pipe_a, t_vars *vars, int *flag)
 		nb++;
 		if (vars->exit_code_int == 130)
 		{
-			vars->exit_code_int = 0;
 			ft_free_t_pipe_a(*pipe_a);
 			ft_free_t_pipe_again(pipe_a);
 			*pipe_a = NULL;

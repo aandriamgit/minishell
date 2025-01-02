@@ -6,10 +6,11 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 10:31:50 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/31 16:31:48 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/02 09:41:37 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../interpret/interpret.h"
 #include "../../minishell_dlc/parsing.h"
 #include "heredoc_supremacy.h"
 
@@ -46,20 +47,30 @@ static void	expend_them(t_vars *vars, char *eof, int fd_heredoc)
 				if (input_heredoc)
 					free(input_heredoc);
 				if (input_heredoc == NULL)
+				{
+					free(eof);
 					vars->save_heredoc = ft_strdup_a("exit");
+				}
 				else
+				{
 					vars->save_heredoc = ft_strdup_a(input_heredoc);
+					ft_add_history(vars->save_heredoc, vars);
+				}
 				return ;
 			}
 			extra(&input_heredoc, fd_heredoc, &eof);
 			return ;
 		}
+		else
+			vars->exit_code_int = download_exit_code(vars);
 		improved_expend(&input_heredoc, vars->env, vars);
 		ft_putstr_fd_a(input_heredoc, fd_heredoc);
 		ft_putstr_fd_a("\n", fd_heredoc);
-		vars->exit_code_int = download_exit_code(vars);
 		if (vars->exit_code_int == 130)
+		{
 			vars->save_heredoc = ft_strdup_a(input_heredoc);
+			ft_add_history(vars->save_heredoc, vars);
+		}
 		if (input_heredoc)
 		{
 			free(input_heredoc);
