@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandriam <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 13:53:47 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/02 15:09:49 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:14:36 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ static int	check_apend(int *i, char *str)
 
 static int	check_redir(int *i, char *str)
 {
-	char x;
+	char	x;
 
 	x = str[*i];
 	(*i)++;
 	while (str[*i] && str[*i] == ' ')
 		*i = *i + 1;
-	if (str[*i] == '\0' || (str[*i] == '>' && x == '<') || (str[*i] == '<' && x == '<'))
+	if (str[*i] == '\0' || (str[*i] == '>' && x == '<') || (str[*i] == '<'
+			&& x == '<'))
 		return (1);
 	else
 		return (0);

@@ -6,15 +6,16 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:16:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/30 14:53:56 by mravelon         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:23:14 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int 	numnum(char c)
+int	numnum(char c)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '_' || c == '?')
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0'
+			&& c <= '9') || c == '_' || c == '?')
 		return (1);
 	else
 		return (0);
@@ -28,7 +29,8 @@ void	for_dollars(int *i, int *count, char *str, char **new_x)
 	if ((*count) >= 0)
 		(*count)++;
 	(*i)++;
-	while (str[*i] && (str[*i] != '\'' && str[*i] != '\"' && str[*i] != '$') && (numnum(str[*i]) == 1))
+	while (str[*i] && (str[*i] != '\'' && str[*i] != '\"' && str[*i] != '$')
+		&& numnum(str[*i]) == 1)
 		(*i)++;
 	if ((*count) < 0)
 		(*new_x) = ft_substr_p(start, *i - 1, str);
