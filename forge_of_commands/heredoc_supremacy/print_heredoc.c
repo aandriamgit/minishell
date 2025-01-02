@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 10:31:50 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/02 09:41:37 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/02 09:50:14 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ static void	expend_them(t_vars *vars, char *eof, int fd_heredoc)
 		}
 		else
 			vars->exit_code_int = download_exit_code(vars);
-		improved_expend(&input_heredoc, vars->env, vars);
-		ft_putstr_fd_a(input_heredoc, fd_heredoc);
-		ft_putstr_fd_a("\n", fd_heredoc);
 		if (vars->exit_code_int == 130)
 		{
 			vars->save_heredoc = ft_strdup_a(input_heredoc);
 			ft_add_history(vars->save_heredoc, vars);
 		}
+		improved_expend(&input_heredoc, vars->env, vars);
+		ft_putstr_fd_a(input_heredoc, fd_heredoc);
+		ft_putstr_fd_a("\n", fd_heredoc);
 		if (input_heredoc)
 		{
 			free(input_heredoc);
@@ -89,8 +89,32 @@ static void	dont_expend_them(t_vars *vars, char *eof, int fd_heredoc)
 		input_heredoc = readline("> ");
 		if (!input_heredoc || ft_strncmp_a(input_heredoc, eof) == 0)
 		{
+			vars->exit_code_int = download_exit_code(vars);
+			if (vars->exit_code_int == 130)
+			{
+				if (input_heredoc)
+					free(input_heredoc);
+				if (input_heredoc == NULL)
+				{
+					free(eof);
+					vars->save_heredoc = ft_strdup_a("exit");
+				}
+				else
+				{
+					vars->save_heredoc = ft_strdup_a(input_heredoc);
+					ft_add_history(vars->save_heredoc, vars);
+				}
+				return ;
+			}
 			extra(&input_heredoc, fd_heredoc, &eof);
 			return ;
+		}
+		else
+			vars->exit_code_int = download_exit_code(vars);
+		if (vars->exit_code_int == 130)
+		{
+			vars->save_heredoc = ft_strdup_a(input_heredoc);
+			ft_add_history(vars->save_heredoc, vars);
 		}
 		ft_putstr_fd_a(input_heredoc, fd_heredoc);
 		ft_putstr_fd_a("\n", fd_heredoc);
