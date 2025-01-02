@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:29:21 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/26 12:37:56 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:33:59 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	error_check(char *args, t_vars *vars)
 {
 	struct stat	path_stat;
 
+	if (args == NULL)
+		ft_perror_soft("cd", "HOME not set\n", vars, 1);
 	if (stat(args, &path_stat) == -1)
 	{
 		ft_perror_soft(args, "cd: No such file or directory\n", vars, 1);
@@ -68,6 +70,7 @@ static void	go_home(t_vars *vars)
 	{
 		if (home_dir)
 			free(home_dir);
+		ft_perror_soft(home_dir, "HOME not set\n", vars, 1);
 		return ;
 	}
 	if (chdir(home_dir) == -1)
@@ -101,7 +104,6 @@ static void	extras(t_command_a *cmd, t_vars *vars)
 		return ;
 	}
 	update_pwd_oldpwd_env(vars);
-	vars->exit_code_int = 0;
 }
 
 void	ft_cd_n(t_command_a *cmd, t_vars *vars)

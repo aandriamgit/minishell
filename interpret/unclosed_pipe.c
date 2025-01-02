@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 16:31:20 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/02 14:51:52 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:07:36 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,18 @@ int	unclosed_pipe(char **input, t_vars *vars)
 	int		res;
 	char	*str;
 
-	i = -1;
+	i = 0;
 	res = 0;
 	str = *input;
 	if (check_void_pipe(str) == 0)
 	{
-		while (str[++i])
+		while (str[i])
 		{
 			extra_again(str, &i, &res, vars);
 			if (res)
 				return (res);
+			if (str[i])
+				i++;
 		}
 	}
 	else
