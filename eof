@@ -1,0 +1,13 @@
+eof
+forge_of_commands
+get_next_line
+interpret
+Makefile
+minishell
+minishell.c
+minishell_dlc
+minishell.h
+obj
+readline.supp
+shell_init
+utils
