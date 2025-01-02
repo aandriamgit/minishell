@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:39:45 by mravelon          #+#    #+#             */
-/*   Updated: 2025/01/02 16:10:56 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/02 17:05:01 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	else_fact(char ***split, t_cmd **cmd)
 	j = 0;
 	while ((*split)[i])
 	{
-		if (check_quotes(*split[i]) == 1)
-			rm_quote(split[i]);
+		if (check_quotes((*split)[i]) == 1)
+			rm_quote(&(*split)[i]);
 		(*cmd)->arg[j] = ft_strdup_p((*split)[i]);
 		j++;
 		i++;
