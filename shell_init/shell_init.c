@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:24:19 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 12:12:30 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:02:51 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,17 @@ void	creat_files(t_vars *vars)
 }
 
 void	handler(int signum)
+{
+	if (signum == SIGINT)
+	{
+		printf("\n");
+		rl_replace_line("", 1);
+		rl_on_new_line();
+	//	rl_redisplay();
+	}
+}
+
+void	handler_child(int signum)
 {
 	if (signum == SIGINT)
 	{

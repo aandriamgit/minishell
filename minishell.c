@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/30 16:49:43 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/30 17:35:18 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ static void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
 {
 	char	**big_param;
 
-	/*struct	sigaction moi;
-
-	moi.sa_sigaction = handler_magic;
-	sigemptyset(&moi.sa_mask);
-	moi.sa_flags = SA_RESTART;
-	sigaction(SIGINT, &moi, NULL);*/
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, handler);
 	*input = NULL;
