@@ -6,13 +6,14 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2025/01/02 14:39:12 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:01:08 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line/get_next_line.h"
 #include "interpret/interpret.h"
 #include "minishell.h"
+#include "minishell_dlc/libft/libft.h"
 #include "minishell_dlc/parsing.h"
 #include <errno.h>
 #include <signal.h>

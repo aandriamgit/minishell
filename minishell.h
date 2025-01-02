@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:01:24 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/27 12:33:48 by mravelon         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:00:34 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,6 @@ void	redirection_test(t_vars *vars);
 char	*get_next_line(int fd);
 char	*nice_prompt_lol(void);
 
+//void	handler_magic(int d, siginfo_t *u, void *x);
+void	handler_child(int signum);
 #endif
