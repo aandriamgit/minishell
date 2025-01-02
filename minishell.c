@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/31 17:05:40 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/02 13:47:56 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,31 +45,26 @@ static void	shell_init(t_vars *vars, t_list **env_cpy, char **input, char **env)
 static void	interpret(char **input, t_vars *vars, t_pipe **cmd)
 {
 	char	*prompt;
+	char	*tmp;
 
 	prompt = nice_prompt(vars);
-	*input = readline(prompt);
+	tmp = readline(prompt);
+	free(prompt);
 	if (!vars->exit_code_int)
 		vars->exit_code_int = download_exit_code(vars);
-	vars->input = ft_strdup_a(*input);
-	free(prompt);
-	if (*input == NULL)
+	if (tmp == NULL)
 	{
 		ft_putstr_fd_a("exit\n", 1);
 		exit_protocol(vars, input, vars->exit_code_int);
 	}
+	special_ft_strtrim(input, &tmp, " \t\b\a\v\f\r");
+	vars->input = ft_strdup_a(*input);
 	if (access(vars->history_dir, F_OK) == 0)
 		ft_add_history(*input, vars);
-	else
-		exit_protocol(vars, input, 127);
 	if (unclosed_quote(input, vars) || unclosed_pipe(input, vars))
-		show_errors(vars);
+		extended_interpret(vars, input);
 	else
-	{
-		check_input(input);
-		formating(input, vars->env, vars);
-		*cmd = gen_pipe(input);
-		vars->cmd = *cmd;
-	}
+		extended_interpret_again(input, vars, cmd);
 }
 
 static void	forge_of_commands(t_pipe **cmd, t_vars *vars)

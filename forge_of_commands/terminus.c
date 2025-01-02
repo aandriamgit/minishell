@@ -6,10 +6,11 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:25:20 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 11:35:35 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/02 10:45:23 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../interpret/interpret.h"
 #include "../utils/utils.h"
 #include "forge_of_commands.h"
 
@@ -60,6 +61,11 @@ void	show_errors(t_vars *vars)
 		tmp++;
 	}
 	vars->err_nbr = 0;
+	if (vars->input)
+	{
+		free(vars->input);
+		vars->input = NULL;
+	}
 }
 
 void	terminus(void **pipe_a, t_vars *vars)

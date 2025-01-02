@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:12:12 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:27:07 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/02 13:43:41 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	extra(t_vars *vars, char *char_nbr)
 	john = ft_strjoin_a("/", char_nbr);
 	tmp = ft_strjoin_a(vars->stderr_a, john);
 	free(john);
-	res = open(tmp, O_WRONLY | O_APPEND | O_CREAT, 0755);
+	res = open(tmp, O_WRONLY | O_TRUNC | O_CREAT, 0755);
 	free(tmp);
 	return (res);
 }

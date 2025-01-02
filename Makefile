@@ -21,6 +21,8 @@ SRC = minishell.c \
 	  ./utils/lib/ft_bzero.c \
 	  ./utils/lib/ft_calloc.c \
 	  ./utils/lib/ft_isalpha.c \
+	  ./utils/lib/ft_strtrim.c \
+	  ./utils/lib/ft_strchr.c \
 	  ./utils/modules/add.c \
 	  ./utils/modules/ft_execve.c \
 	  ./utils/modules/ft_free.c \
@@ -40,6 +42,7 @@ SRC = minishell.c \
 	  ./interpret/interpret.c \
 	  ./interpret/unclosed_quote.c \
 	  ./interpret/unclosed_pipe.c \
+	  ./interpret/extended_interpret.c \
 	  ./forge_of_commands/convert_t_pipe_a.c \
 	  ./forge_of_commands/init_stderr.c \
 	  ./forge_of_commands/custom_prompt.c \

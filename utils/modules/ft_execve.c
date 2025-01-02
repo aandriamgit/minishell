@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:00:16 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/29 16:58:01 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/02 12:06:28 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_execve_row(char *cmd, char **argv)
 	}
 }
 
-char	*test_path(char *path, char *input)
+char	*test_path(char *mini_path, char *input)
 {
 	char	**res;
 	char	*tmp;
@@ -59,9 +59,9 @@ char	*test_path(char *path, char *input)
 
 	i = -1;
 	res = NULL;
-	if (path)
-		res = ft_split_a(path, ':');
-	while (path && res[++i])
+	if (mini_path)
+		res = ft_split_a(mini_path, ':');
+	while (mini_path && res[++i])
 	{
 		tmp = ft_strjoin_a(res[i], input);
 		if ((access(tmp, X_OK)) == 0)
@@ -88,9 +88,13 @@ void	ft_execve_path(t_pipe_a *pipe_a, char *cmd, char **argv, t_vars *vars)
 	char	**env_lol;
 
 	(void)pipe_a;
+	path = NULL;
+	mini_cmd = NULL;
 	path_mini = ft_getenv("PATH", vars->env);
-	mini_cmd = ft_strjoin_a("/", cmd);
-	path = test_path(path_mini, mini_cmd);
+	if (cmd[0])
+		mini_cmd = ft_strjoin_a("/", cmd);
+	if (mini_cmd)
+		path = test_path(path_mini, mini_cmd);
 	free(path_mini);
 	if (!path)
 		ft_perror_exit(cmd, "command not found\n", vars, 127);
