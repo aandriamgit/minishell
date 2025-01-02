@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2025/01/02 13:47:56 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/02 14:39:12 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ static void	interpret(char **input, t_vars *vars, t_pipe **cmd)
 	vars->input = ft_strdup_a(*input);
 	if (access(vars->history_dir, F_OK) == 0)
 		ft_add_history(*input, vars);
-	if (unclosed_quote(input, vars) || unclosed_pipe(input, vars))
+	if (unclosed_quote(input, vars) || unclosed_pipe(input, vars)
+		|| error_redir(*input, vars))
 		extended_interpret(vars, input);
 	else
 		extended_interpret_again(input, vars, cmd);

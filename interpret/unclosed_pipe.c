@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 16:31:20 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/02 13:42:53 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/02 14:51:52 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,16 @@ static int	check_void_pipe(char *str)
 	return (0);
 }
 
-static void	extra(int *i, int *res, char **str, char **input)
+static void	extra_again(char *str, int *i, int *res, t_vars *vars)
 {
-	*i = -1;
-	*res = 0;
-	*str = *input;
+	if (str[*i] == '\"' || str[*i] == '\'')
+		skip_x(i, str, str[*i]);
+	if (str[*i] == '|')
+		extra_pipe(i, res, str, vars);
+	else if (str[*i] == '\\')
+		extra_error(res, vars, str[*i]);
+	else if (str[*i] == ';')
+		extra_error(res, vars, str[*i]);
 }
 
 int	unclosed_pipe(char **input, t_vars *vars)
@@ -88,23 +93,14 @@ int	unclosed_pipe(char **input, t_vars *vars)
 	int		res;
 	char	*str;
 
-	extra(&i, &res, &str, input);
+	i = -1;
+	res = 0;
+	str = *input;
 	if (check_void_pipe(str) == 0)
 	{
 		while (str[++i])
 		{
-			if (str[i] == '\"' || str[i] == '\'')
-				skip_x(&i, str, str[i]);
-			if (str[i] == '|')
-			{
-				extra_pipe(&i, &res, str, vars);
-			}
-			else if (str[i] == '\\')
-				extra_error(&res, vars, str[i]);
-			else if (str[i] == ';')
-			{
-				extra_error(&res, vars, str[i]);
-			}
+			extra_again(str, &i, &res, vars);
 			if (res)
 				return (res);
 		}
