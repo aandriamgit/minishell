@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 16:31:20 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/02 16:07:36 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/03 09:20:12 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static int	check_void_pipe(char *str)
 	i = 0;
 	while (str[i])
 	{
+		if (str[i] == '\'' || str[i] == '\"')
+			skip_x(&i, str, str[i]);
 		if (str[i] && i == 0 && str[i] == '|')
 			return (1);
 		else if (str[i] && str[i] == '|')
