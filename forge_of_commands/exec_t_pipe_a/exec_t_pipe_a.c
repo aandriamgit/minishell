@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:09:45 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/04 16:42:29 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/04 17:41:55 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	extra(t_pipe_a *pipe_a, t_vars *vars, int *flag)
 {
 	pid_t	pid;
 
-	if (!vars->exit_code_int)
+	if (vars->exit_code_int == 0)
 		vars->exit_code_int = download_exit_code(vars);
 	handle_redir(pipe_a->cmd->redir, vars, flag);
 	if (flag)
@@ -108,7 +108,8 @@ void	exec_t_pipe_a(t_pipe_a *pipe_a, t_vars *vars)
 {
 	if (pipe_a)
 	{
-		vars->exit_code_int = 0;
+		if (vars->exit_code_int == 130)
+			vars->exit_code_int = 0;
 		vars->t_pipe_a = pipe_a;
 		if (pipe_a->next)
 			w_pipe(pipe_a, vars);

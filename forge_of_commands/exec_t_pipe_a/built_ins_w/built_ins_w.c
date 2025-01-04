@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:18:13 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/25 20:32:02 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/04 17:57:13 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,6 @@ void	built_ins_w(t_command_a *cmd, t_vars *vars)
 		ft_env_w(cmd, vars);
 	else if (ft_strncmp_a(cmd->args[0], "export") == 0)
 		ft_export_w(cmd, vars);
+	else if (ft_strncmp_a(cmd->args[0], "exit") == 0)
+		ft_exit_w(cmd, vars);
 }

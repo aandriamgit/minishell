@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 13:53:47 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/04 16:52:24 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/04 17:27:06 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	error_redir(char *str, t_vars *t_var, int i)
 	{
 		if (str[i] == '\"' || str[i] == '\'')
 			skip_x(&i, str, str[i]);
-		if (str[i] == '<' || str[i] == '>')
+		else if (str[i] == '<' || str[i] == '>')
 		{
 			if (check_apend(&i, str) == 1)
 			{
