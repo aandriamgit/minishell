@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 16:31:20 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/04 17:10:52 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/04 17:07:44 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,8 @@ static void	extra_error(int *res, t_vars *vars, char c)
 		ft_perror_soft("syntax error", "unexpected token ';'\n", vars, 2);
 }
 
-static int	check_void_pipe(char *str)
+static int	check_void_pipe(char *str, int i)
 {
-	int	i;
-
-	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '\'' || str[i] == '\"')
@@ -62,14 +59,17 @@ static int	check_void_pipe(char *str)
 		{
 			i++;
 			while (str[i] && str[i] == ' ')
+			{
 				i++;
-			if (str[i] && str[i] != '|')
+			}
+			if (str[i] && str[i] != '|' )
 			{
 				while (str[i] && str[i] != '|')
 				{
 					if (str[i] == '\'' || str[i] == '\"')
 						skip_x(&i, str, str[i]);
-					i++;
+					else
+						i++;
 				}
 			}
 			else
@@ -102,7 +102,7 @@ int	unclosed_pipe(char **input, t_vars *vars)
 	i = 0;
 	res = 0;
 	str = *input;
-	if (check_void_pipe(str) == 0)
+	if (check_void_pipe(str, 0) == 0)
 	{
 		while (str[i])
 		{
