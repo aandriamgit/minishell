@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:46:17 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/31 14:55:49 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/04 16:53:23 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ typedef struct s_cmd
 {
 	char					*cmd;
 	char					**arg;
-	// struct s_cmd *next;
 }							t_cmd;
 
 typedef struct s_pipe

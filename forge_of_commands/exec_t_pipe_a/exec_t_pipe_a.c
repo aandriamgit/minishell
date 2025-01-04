@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:09:45 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/02 15:05:35 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/04 16:42:29 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ int	handle_child_exit_no_pipe(pid_t child_pid, t_vars *vars)
 	return (-1);
 }
 
-static void	extra(t_pipe_a *pipe_a, t_vars *vars)
+static void	extra(t_pipe_a *pipe_a, t_vars *vars, int *flag)
 {
 	pid_t	pid;
-	int		flag;
 
-	flag = 0;
-	handle_redir(pipe_a->cmd->redir, vars, &flag);
+	if (!vars->exit_code_int)
+		vars->exit_code_int = download_exit_code(vars);
+	handle_redir(pipe_a->cmd->redir, vars, flag);
 	if (flag)
 	{
 		if (pipe_a->cmd->cmd && (pipe_a->cmd->cmd[0] == '.'
@@ -73,6 +73,7 @@ static void	extra(t_pipe_a *pipe_a, t_vars *vars)
 			if (pid == 0)
 			{
 				signal(SIGQUIT, SIG_DFL);
+				signal(SIGINT, SIG_DFL);
 				ft_execve_path(pipe_a, pipe_a->cmd->cmd, pipe_a->cmd->args,
 					vars);
 			}
@@ -86,14 +87,16 @@ static void	no_pipe(t_pipe_a *pipe_a, t_vars *vars)
 {
 	int	in;
 	int	out;
+	int	flag;
 
+	flag = 0;
 	if (is_built_ins(pipe_a->cmd))
 		built_ins_n(pipe_a->cmd, vars);
 	else
 	{
 		in = dup(STDIN_FILENO);
 		out = dup(STDOUT_FILENO);
-		extra(pipe_a, vars);
+		extra(pipe_a, vars, &flag);
 		dup2(in, STDIN_FILENO);
 		dup2(out, STDOUT_FILENO);
 		close(in);
@@ -105,6 +108,7 @@ void	exec_t_pipe_a(t_pipe_a *pipe_a, t_vars *vars)
 {
 	if (pipe_a)
 	{
+		vars->exit_code_int = 0;
 		vars->t_pipe_a = pipe_a;
 		if (pipe_a->next)
 			w_pipe(pipe_a, vars);
