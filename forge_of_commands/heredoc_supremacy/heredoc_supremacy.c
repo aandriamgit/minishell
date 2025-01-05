@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:15:38 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/05 18:26:56 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 20:13:10 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,19 @@ static void	gen_heredoc_dir(t_vars *vars)
 static void	extra(t_pipe_a **pipe_a, t_vars *vars)
 {
 	t_pipe	*cmd;
+	char	*tmp;
 
+	tmp = ft_strdup_a(vars->save_heredoc);
 	ft_free_t_pipe_a(*pipe_a);
 	ft_free_t_pipe_again(pipe_a);
 	*pipe_a = NULL;
-	check_input(&vars->save_heredoc);
-	formating(&vars->save_heredoc, vars->env, vars);
-	cmd = gen_pipe(&vars->save_heredoc);
+	check_input(&tmp);
+	formating(&tmp, vars->env, vars);
+	cmd = gen_pipe(&tmp);
 	*pipe_a = convert_t_pipe_a(cmd);
 	free_pipe(&vars->cmd);
 	vars->cmd = cmd;
+	vars->exit_code_int = 0;
 }
 
 void	heredoc_supremacy(t_pipe_a **pipe_a, t_vars *vars, int *flag)

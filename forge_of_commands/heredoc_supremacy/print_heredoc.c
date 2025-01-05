@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 10:31:50 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/02 12:56:31 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 20:14:12 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static void	extra_print_heredoc(t_vars *vars, char **input_heredoc,
 {
 	if (vars->exit_code_int == 130)
 	{
+		if (vars->save_heredoc != NULL)
+			free(vars->save_heredoc);
 		vars->save_heredoc = ft_strdup_a(*input_heredoc);
 		ft_add_history(vars->save_heredoc, vars);
 	}
