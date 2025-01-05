@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:25:37 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 09:34:52 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:50:26 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,21 @@ void	ft_perror_exit(char *file, char *str, t_vars *vars, int nbr)
 	ft_free_t_pipe_again(&vars->t_pipe_a);
 	free_vars(vars);
 	close_all_fds();
+	exit(nbr);
+}
+
+void	ft_perror_exit_free(char *file, char *str, t_vars *vars, int nbr)
+{
+	if (file && str)
+	{
+		if (custom_error(file, str, vars))
+			extras(file);
+	}
+	ft_free_t_pipe_a(vars->t_pipe_a);
+	ft_free_t_pipe_again(&vars->t_pipe_a);
+	free_vars(vars);
+	close_all_fds();
+	free(file);
+	free(str);
 	exit(nbr);
 }

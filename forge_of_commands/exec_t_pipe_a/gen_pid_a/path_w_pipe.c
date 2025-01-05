@@ -6,15 +6,14 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:22:27 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/04 16:48:18 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:53:43 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../exec_t_pipe_a.h"
 
-static void	relative_path(t_pipe_a *pipe_a, t_vars *vars)
+static void	relative_path(t_pipe_a *pipe_a, t_vars *vars, char *lol)
 {
-	char		*lol;
 	struct stat	file_stat;
 
 	if (!pipe_a->cmd->cmd[1])
@@ -28,11 +27,13 @@ static void	relative_path(t_pipe_a *pipe_a, t_vars *vars)
 		else
 			lol = ft_strdup_a(pipe_a->cmd->cmd);
 		if (stat(lol, &file_stat) == -1)
-			ft_perror_exit(lol, "no such file or directory\n", vars, 127);
+			ft_perror_exit_free(lol, ft_strdup_a("no such file or directory\n"),
+				vars, 127);
 		else if (access(lol, X_OK) == -1)
-			ft_perror_exit(lol, "access denied\n", vars, 126);
+			ft_perror_exit_free(lol, ft_strdup_a("access denied\n"), vars, 126);
 		else if (S_ISDIR(file_stat.st_mode))
-			ft_perror_exit(lol, "is a directory\n", vars, 126);
+			ft_perror_exit_free(lol, ft_strdup_a("is a directory\n"), vars,
+				126);
 		else
 			execve(pipe_a->cmd->cmd, pipe_a->cmd->args, ft_gen_env(vars->env));
 	}
@@ -58,8 +59,11 @@ static void	absolute_path(t_pipe_a *pipe_a, t_vars *vars)
 
 void	path_w_pipe(t_pipe_a *pipe_a, t_vars *vars)
 {
+	char	*lol;
+
+	lol = NULL;
 	if (pipe_a->cmd->cmd[0] == '.')
-		relative_path(pipe_a, vars);
+		relative_path(pipe_a, vars, lol);
 	else
 		absolute_path(pipe_a, vars);
 }
