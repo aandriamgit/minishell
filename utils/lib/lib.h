@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:33:52 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/02 12:21:20 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 08:57:20 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,5 @@ int		ft_isalpha(int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strtrim(char const *s1, char const *set);
 void	special_ft_strtrim(char **s1, char **s2, char *set);
+size_t	ft_strlen_exit_a(const char *s);
+int		ft_isspace(int c);

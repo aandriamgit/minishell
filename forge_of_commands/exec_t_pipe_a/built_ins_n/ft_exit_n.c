@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:25:12 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/04 17:54:02 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 08:57:32 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,45 @@ static int	is_numeric(char *arg)
 	int	i;
 	int	n;
 
-	i = -1;
+	i = 0;
+	while (*arg && ft_isspace(*arg))
+		arg++;
 	n = (*arg == '-');
 	arg += (*arg == '-' || *arg == '+');
-	while (arg[++i])
-	{
-		if (!ft_isdigit_a(arg[i]))
-			return (0);
-	}
-	if ((ft_strlen_a(arg) > 19) || ((ft_strlen_a(arg) == 19) && ((n == 1
-					&& ft_strncmp_a(arg, "9223372036854775808") > 0) || (n == 0
-					&& ft_strncmp_a(arg, "9223372036854775807") > 0))))
+	if (*arg == '\0')
+		return (0);
+	while (*arg && *arg == '0')
+		arg++;
+	while (arg[i] && ft_isdigit_a(arg[i]))
+		i++;
+	while (arg[i] && ft_isspace(arg[i]))
+		i++;
+	if (arg[i] != '\0')
+		return (0);
+	if ((ft_strlen_exit_a(arg) > 19) || ((ft_strlen_exit_a(arg) == 19)
+			&& ((n == 1 && ft_strncmp_a(arg, "9223372036854775808") > 0)
+				|| (n == 0 && ft_strncmp_a(arg, "9223372036854775807") > 0))))
 		return (0);
 	return (1);
+}
+
+static int	get_nbr(char *arg)
+{
+	unsigned long long	m;
+	int					i;
+	int					sign;
+
+	m = 0;
+	sign = 1;
+	while (*arg && ft_isspace(*arg))
+		arg++;
+	if (*arg == '-')
+		sign = -1;
+	arg += (*arg == '-' || *arg == '+');
+	i = -1;
+	while (arg[++i] && ft_isdigit_a(arg[i]))
+		m = m * 10 + arg[i] - '0';
+	return ((m * sign) % 256);
 }
 
 static void	good_bye(t_command_a *cmd, t_vars *vars)
@@ -38,7 +64,7 @@ static void	good_bye(t_command_a *cmd, t_vars *vars)
 
 	if (cmd->args[1])
 	{
-		nbr = ft_atoi_a(cmd->args[1]);
+		nbr = get_nbr(cmd->args[1]);
 		if (nbr >= 0 && nbr <= 255)
 			ft_perror_exit(NULL, NULL, vars, nbr);
 		else
