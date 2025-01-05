@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:17:53 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/27 13:39:01 by mravelon         ###   ########.fr       */
+/*   Updated: 2025/01/05 18:34:18 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	skip_x(int *i, char *str, char c)
 {
 	(*i)++;
-	while (str[*i] && str[*i] != c)
+	while (str[*i] && (str[*i] != c && str[*i] != '\t'))
 		(*i)++;
 	(*i)++;
 }
@@ -30,12 +30,12 @@ static int	count_x(char *str, char c)
 	count = 0;
 	while (str[i])
 	{
-		if (str[i] && str[i] != c)
+		if (str[i] && (str[i] != c && str[i] != '\t'))
 		{
 			count++;
 			if (str[i] && (str[i] == '\'' || str[i] == '\"'))
 				skip_x(&i, str, str[i]);
-			while (str[i] && (str[i] != c))
+			while (str[i] && (str[i] != c && str[i] != '\t'))
 			{
 				if (str[i] == '\'' || str[i] == '\"')
 					skip_x(&i, str, str[i]);
@@ -58,7 +58,7 @@ void	mini_split_quote(char *str, char ***new, int *i, int *j)
 	start = *i;
 	if (str[*i] && (str[*i] == '\'' || str[*i] == '\"'))
 		skip_x(i, str, str[*i]);
-	while (str[*i] && str[*i] != c)
+	while (str[*i] && (str[*i] != c && str[*i] != '\t'))
 	{
 		if (str[*i] && (str[*i] == '\'' || str[*i] == '\"'))
 			skip_x(i, str, str[*i]);
@@ -82,7 +82,7 @@ char	**split_quote(char *str, char c)
 		return (NULL);
 	while (str[i])
 	{
-		if (str[i] && str[i] != c)
+		if (str[i] && (str[i] != c && str[i] != '\t'))
 			mini_split_quote(str, &new, &i, &j);
 		else
 			i++;

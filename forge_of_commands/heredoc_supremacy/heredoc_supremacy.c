@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:15:38 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/02 12:17:14 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 18:26:56 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	heredoc_supremacy(t_pipe_a **pipe_a, t_vars *vars, int *flag)
 
 	nb = 1;
 	remove_heredoc_dir(vars);
-	while (have_heredoc(*pipe_a) && vars->exit_code_int != 130)
+	while (have_heredoc(*pipe_a))
 	{
 		if (access(vars->heredoc_dir, F_OK) != 0)
 			gen_heredoc_dir(vars);
