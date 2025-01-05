@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 16:31:20 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/04 17:07:44 by mravelon         ###   ########.fr       */
+/*   Updated: 2025/01/05 12:35:43 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,9 @@ static int	check_void_pipe(char *str, int i)
 		{
 			i++;
 			while (str[i] && str[i] == ' ')
-			{
 				i++;
-			}
-			if (str[i] && str[i] != '|' )
-			{
-				while (str[i] && str[i] != '|')
-				{
-					if (str[i] == '\'' || str[i] == '\"')
-						skip_x(&i, str, str[i]);
-					else
-						i++;
-				}
-			}
+			if (str[i] && str[i] != '|')
+				extra_check_void_pipe(str, &i);
 			else
 				return (1);
 		}
@@ -85,7 +75,7 @@ static void	extra_again(char *str, int *i, int *res, t_vars *vars)
 {
 	if (str[*i] == '\"' || str[*i] == '\'')
 		skip_x(i, str, str[*i]);
-	if (str[*i] == '|')
+	else if (str[*i] == '|')
 		extra_pipe(i, res, str, vars);
 	else if (str[*i] == '\\')
 		extra_error(res, vars, str[*i]);
@@ -109,7 +99,7 @@ int	unclosed_pipe(char **input, t_vars *vars)
 			extra_again(str, &i, &res, vars);
 			if (res)
 				return (res);
-			if (str[i])
+			if (str[i] && (str[i] != '\'' && str[i] != '\"'))
 				i++;
 		}
 	}

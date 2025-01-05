@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 09:09:45 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/04 17:41:55 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 12:53:28 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,8 @@ static void	extra(t_pipe_a *pipe_a, t_vars *vars, int *flag)
 {
 	pid_t	pid;
 
-	if (vars->exit_code_int == 0)
-		vars->exit_code_int = download_exit_code(vars);
 	handle_redir(pipe_a->cmd->redir, vars, flag);
-	if (flag)
+	if (*flag)
 	{
 		if (pipe_a->cmd->cmd && (pipe_a->cmd->cmd[0] == '.'
 				|| pipe_a->cmd->cmd[0] == '/'))
@@ -88,7 +86,12 @@ static void	no_pipe(t_pipe_a *pipe_a, t_vars *vars)
 	int	in;
 	int	out;
 	int	flag;
+	int	save;
 
+	save = vars->exit_code_int;
+	vars->exit_code_int = download_exit_code(vars);
+	if (vars->exit_code_int == 0)
+		vars->exit_code_int = save;
 	flag = 0;
 	if (is_built_ins(pipe_a->cmd))
 		built_ins_n(pipe_a->cmd, vars);
@@ -108,8 +111,6 @@ void	exec_t_pipe_a(t_pipe_a *pipe_a, t_vars *vars)
 {
 	if (pipe_a)
 	{
-		if (vars->exit_code_int == 130)
-			vars->exit_code_int = 0;
 		vars->t_pipe_a = pipe_a;
 		if (pipe_a->next)
 			w_pipe(pipe_a, vars);

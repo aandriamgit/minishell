@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2025/01/04 16:51:53 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 12:56:20 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,15 @@ static void	interpret(char **input, t_vars *vars, t_pipe **cmd)
 {
 	char	*prompt;
 	char	*tmp;
+	int		save;
 
 	prompt = nice_prompt(vars);
 	tmp = readline(prompt);
 	free(prompt);
-	if (!vars->exit_code_int)
-		vars->exit_code_int = download_exit_code(vars);
+	save = vars->exit_code_int;
+	vars->exit_code_int = download_exit_code(vars);
+	if (vars->exit_code_int == 0)
+		vars->exit_code_int = save;
 	if (tmp == NULL)
 	{
 		ft_putstr_fd_a("exit\n", 1);

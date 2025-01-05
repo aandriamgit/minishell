@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:21:46 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/28 08:26:04 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 13:08:48 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,5 @@ void			custom_permission_denied(char *file, char *str, t_vars *vars,
 void			close_all_fds(void);
 int				can_custom(void);
 char			*get_magic_prompt(void);
+void			extra_check_void_pipe(char *str, int *i);
+char			*emergency_prompt_lol(void);
