@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:56:13 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/02 12:30:05 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 13:09:07 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static char	*custom_prompt_interpret(t_vars *vars)
 		tmp = ft_strjoin_free_a(tmp, "\001\002\001\033[0m\002 ");
 	}
 	else
-		tmp = ft_strdup_a("minishell> ");
+		tmp = emergency_prompt_lol();
 	return (tmp);
 }
 

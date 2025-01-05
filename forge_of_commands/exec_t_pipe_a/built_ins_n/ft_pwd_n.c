@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:47:02 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/26 12:22:42 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:47:07 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ static void	extras(t_command_a *cmd, t_vars *vars)
 {
 	char	buffer[1024];
 
-	if (cmd->args[1] && cmd->args[1][0] == '-')
-		ft_perror_soft(cmd->args[1], "invalid option\n", vars, 1);
+	if (cmd->args[1] && cmd->args[1][0] == '-' && cmd->args[1][1])
+		ft_perror_soft(cmd->args[1], "invalid option\n", vars, 2);
 	else
 	{
 		if (getcwd(buffer, 1024))
 		{
 			ft_putstr_fd_a(buffer, STDOUT_FILENO);
 			ft_putstr_fd_a("\n", STDOUT_FILENO);
+			vars->exit_code_int = 0;
 		}
 	}
-	vars->exit_code_int = 0;
 }
 
 void	ft_pwd_n(t_command_a *cmd, t_vars *vars)

@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:34:53 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/26 17:54:32 by mravelon         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:45:20 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	handle_redir(t_redirection_a *redir, t_vars *vars, int *flag)
 	*flag = 1;
 	if (syntax_error_check(redir, vars, flag))
 	{
+		vars->exit_code_int = 0;
 		while (voyager_one && *flag)
 		{
 			if (ft_strncmp_a(voyager_one->type, "<") == 0)

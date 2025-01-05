@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:17:53 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/28 18:25:09 by mravelon         ###   ########.fr       */
+/*   Updated: 2025/01/05 14:55:04 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	skip_y(int *i, char *str, char c)
 void	mini_count_quote(char *str, char c, int *i, int *count)
 {
 	(*count)++;
-	while (str[*i] && (str[*i] != c && (str[*i] != '\"' || str[*i] != '\'')))
+	while (str[*i] && (str[*i] != c && (str[*i] != '\"' && str[*i] != '\'')))
 	{
 		if ((str[*i] == '\"') || (str[*i] == '\''))
 		{

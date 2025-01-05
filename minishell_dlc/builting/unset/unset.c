@@ -6,12 +6,12 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 13:18:27 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/27 12:35:13 by mravelon         ###   ########.fr       */
+/*   Updated: 2025/01/04 18:07:18 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../parsing.h"
 #include "../../../minishell.h"
+#include "../../parsing.h"
 #include <stdio.h>
 
 int	compare_param(char *parameter, char *str)
@@ -68,11 +68,6 @@ int	unset_p(t_list **environement, char *str)
 	splited_str = ft_split_p(str, ' ');
 	while (splited_str[i])
 	{
-		if (check_assignation(splited_str[i]) == 1)
-		{
-			printf("invalid parameter name\n");
-			return (1);
-		}
 		check_by_list(environement, splited_str[i], tmp, prev);
 		i++;
 	}

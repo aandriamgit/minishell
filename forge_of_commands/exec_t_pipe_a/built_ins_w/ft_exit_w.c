@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit_n.c                                        :+:      :+:    :+:   */
+/*   ft_exit_w.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 08:25:12 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/05 12:43:13 by aandriam         ###   ########.fr       */
+/*   Created: 2025/01/04 17:49:16 by aandriam          #+#    #+#             */
+/*   Updated: 2025/01/05 20:39:21 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "built_ins_n.h"
+#include "built_ins_w.h"
 
 static int	is_numeric(char *arg)
 {
@@ -81,13 +81,13 @@ static void	extras(t_command_a *cmd, t_vars *vars)
 	{
 		if (!is_numeric(cmd->args[1]))
 		{
-			ft_perror_soft(cmd->args[0], "numeric argument required\n", vars,
+			ft_perror_exit(cmd->args[0], "numeric argument required\n", vars,
 				2);
 			show_errors(vars);
 			ft_perror_exit(NULL, NULL, vars, 2);
 		}
 		else if (cmd->args[2])
-			ft_perror_soft("exit", "too many arguments\n", vars, 1);
+			ft_perror_exit("exit", "too many arguments\n", vars, 1);
 		else
 			good_bye(cmd, vars);
 	}
@@ -95,22 +95,7 @@ static void	extras(t_command_a *cmd, t_vars *vars)
 		ft_perror_exit(NULL, NULL, vars, vars->exit_code_int);
 }
 
-void	ft_exit_n(t_command_a *cmd, t_vars *vars)
+void	ft_exit_w(t_command_a *cmd, t_vars *vars)
 {
-	int	flag;
-	int	save_stdout;
-	int	save_stdin;
-
-	flag = 0;
-	save_stdout = dup(STDOUT_FILENO);
-	save_stdin = dup(STDIN_FILENO);
-	if (!vars->exit_code_int)
-		vars->exit_code_int = download_exit_code(vars);
-	handle_redir(cmd->redir, vars, &flag);
-	if (flag)
-		extras(cmd, vars);
-	dup2(save_stdout, STDOUT_FILENO);
-	dup2(save_stdin, STDIN_FILENO);
-	close(save_stdout);
-	close(save_stdin);
+	extras(cmd, vars);
 }

@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 16:31:20 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/03 09:20:12 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 20:20:30 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,13 @@ static void	extra_error(int *res, t_vars *vars, char c)
 		ft_perror_soft("syntax error", "unexpected token ';'\n", vars, 2);
 }
 
-static int	check_void_pipe(char *str)
+static int	check_void_pipe(char *str, int i)
 {
-	int	i;
-
-	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '\'' || str[i] == '\"')
 			skip_x(&i, str, str[i]);
-		if (str[i] && i == 0 && str[i] == '|')
+		else if (str[i] && i == 0 && str[i] == '|')
 			return (1);
 		else if (str[i] && str[i] == '|')
 		{
@@ -64,10 +61,7 @@ static int	check_void_pipe(char *str)
 			while (str[i] && str[i] == ' ')
 				i++;
 			if (str[i] && str[i] != '|')
-			{
-				while (str[i] && str[i] != '|')
-					i++;
-			}
+				extra_check_void_pipe(str, &i);
 			else
 				return (1);
 		}
@@ -81,7 +75,7 @@ static void	extra_again(char *str, int *i, int *res, t_vars *vars)
 {
 	if (str[*i] == '\"' || str[*i] == '\'')
 		skip_x(i, str, str[*i]);
-	if (str[*i] == '|')
+	else if (str[*i] == '|')
 		extra_pipe(i, res, str, vars);
 	else if (str[*i] == '\\')
 		extra_error(res, vars, str[*i]);
@@ -98,14 +92,14 @@ int	unclosed_pipe(char **input, t_vars *vars)
 	i = 0;
 	res = 0;
 	str = *input;
-	if (check_void_pipe(str) == 0)
+	if (check_void_pipe(str, 0) == 0)
 	{
 		while (str[i])
 		{
 			extra_again(str, &i, &res, vars);
 			if (res)
 				return (res);
-			if (str[i])
+			if (str[i] && (str[i] != '\'' && str[i] != '\"'))
 				i++;
 		}
 	}

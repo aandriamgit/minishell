@@ -6,14 +6,13 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:11:50 by mravelon          #+#    #+#             */
-/*   Updated: 2025/01/02 15:01:08 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 18:38:54 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line/get_next_line.h"
 #include "interpret/interpret.h"
 #include "minishell.h"
-#include "minishell_dlc/libft/libft.h"
 #include "minishell_dlc/parsing.h"
 #include <errno.h>
 #include <signal.h>
@@ -47,12 +46,15 @@ static void	interpret(char **input, t_vars *vars, t_pipe **cmd)
 {
 	char	*prompt;
 	char	*tmp;
+	int		save;
 
 	prompt = nice_prompt(vars);
 	tmp = readline(prompt);
 	free(prompt);
-	if (!vars->exit_code_int)
-		vars->exit_code_int = download_exit_code(vars);
+	save = vars->exit_code_int;
+	vars->exit_code_int = download_exit_code(vars);
+	if (vars->exit_code_int == 0)
+		vars->exit_code_int = save;
 	if (tmp == NULL)
 	{
 		ft_putstr_fd_a("exit\n", 1);
@@ -63,7 +65,7 @@ static void	interpret(char **input, t_vars *vars, t_pipe **cmd)
 	if (access(vars->history_dir, F_OK) == 0)
 		ft_add_history(*input, vars);
 	if (unclosed_quote(input, vars) || unclosed_pipe(input, vars)
-		|| error_redir(*input, vars))
+		|| error_redir(*input, vars, 0))
 		extended_interpret(vars, input);
 	else
 		extended_interpret_again(input, vars, cmd);
@@ -89,7 +91,7 @@ static void	forge_of_commands(t_pipe **cmd, t_vars *vars)
 				heredoc_supremacy(&pipe_a, vars, &flag);
 			exec_t_pipe_a(pipe_a, vars);
 			terminus((void *)&pipe_a, vars);
-			if (vars->cmd && vars->exit_code_int != 130)
+			if (vars->cmd)
 			{
 				free_pipe(&vars->cmd);
 				vars->cmd = NULL;

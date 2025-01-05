@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:40:59 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/02 15:55:10 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/05 20:21:21 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	extras(t_command_a *cmd, t_vars *vars)
 {
 	if (cmd->args[1])
 	{
-		if (cmd->args[1][0] == '-')
+		if (cmd->args[1][0] == '-' && cmd->args[1][1])
 			ft_perror_soft(cmd->args[1], "invalid option\n", vars, 1);
 		else
 			ft_perror_soft(cmd->args[0], "too much argument(s)\n", vars, 1);

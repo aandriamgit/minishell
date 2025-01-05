@@ -77,6 +77,7 @@ SRC = minishell.c \
 	  ./forge_of_commands/exec_t_pipe_a/built_ins_w/ft_export_w.c \
 	  ./forge_of_commands/exec_t_pipe_a/built_ins_w/ft_pwd_w.c \
 	  ./forge_of_commands/exec_t_pipe_a/built_ins_w/ft_unset_w.c \
+	  ./forge_of_commands/exec_t_pipe_a/built_ins_w/ft_exit_w.c \
 	  ./minishell_dlc/check.c\
 	  ./minishell_dlc/ft_strjoin_p.c\
 	  ./minishell_dlc/ft_strjoin_space.c\
