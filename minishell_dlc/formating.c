@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:32:52 by mravelon          #+#    #+#             */
-/*   Updated: 2024/12/28 18:42:00 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/06 10:28:52 by mravelon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	formating(char **str, t_list *env_cp, t_vars *vars)
 	int		i;
 
 	i = 0;
+	modify_tab(str);
 	split = split_quote(*str, ' ');
 	while (split[i])
 	{
