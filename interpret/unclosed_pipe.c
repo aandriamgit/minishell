@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 16:31:20 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/05 20:20:30 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/06 10:59:19 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	check_void_pipe(char *str, int i)
 		else if (str[i] && str[i] == '|')
 		{
 			i++;
-			while (str[i] && str[i] == ' ')
+			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 				i++;
 			if (str[i] && str[i] != '|')
 				extra_check_void_pipe(str, &i);

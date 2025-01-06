@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:29:21 by aandriam          #+#    #+#             */
-/*   Updated: 2025/01/02 15:33:59 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/06 11:23:30 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	update_pwd_oldpwd_env(t_vars *vars)
 			free(old);
 		}
 		else
-			new_lol = ft_strjoin_a("OLDPWD=", lol);
+			new_lol = ft_strjoin_a("OLDPWD=", lol + 4);
 		export_with_arg(&vars->env, lol);
 		export_with_arg(&vars->env, new_lol);
 		free(new_lol);

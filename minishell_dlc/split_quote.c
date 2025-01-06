@@ -6,7 +6,7 @@
 /*   By: mravelon <mravelon@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:17:53 by mravelon          #+#    #+#             */
-/*   Updated: 2025/01/05 18:34:18 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/06 10:58:10 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	skip_x(int *i, char *str, char c)
 {
 	(*i)++;
-	while (str[*i] && (str[*i] != c && str[*i] != '\t'))
+	while (str[*i] && (str[*i] != c))
 		(*i)++;
 	(*i)++;
 }
