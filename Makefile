@@ -133,7 +133,7 @@ SRC = minishell.c \
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)/$(dir $<)
