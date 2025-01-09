@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:10:06 by aandriam          #+#    #+#             */
-/*   Updated: 2024/12/31 11:08:48 by aandriam         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:11:28 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	is_valid_flag_n(const char *arg)
 {
 	int	i;
 
-	if (arg[0] != '-' || arg[1] != 'n')
+	if (arg && (arg[0] != '-' || arg[1] != 'n'))
 		return (0);
 	i = 2;
 	while (arg[i])
